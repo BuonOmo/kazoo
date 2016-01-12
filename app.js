@@ -6,7 +6,8 @@ $(document)
     client_window = window.open();
 
     $.get('client.html', function(html) {
-      $(client_window.document.body).html(html);
+      console.log(html);
+      client_window.document.write(html);
     }, 'html');
 
     setInterval(update, 100);
