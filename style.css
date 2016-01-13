@@ -1,4 +1,44 @@
 body {
   background-color: black;
   color: white;
+  text-align: center;
+  height: 600px;
+  width: 800px;
+}
+
+#content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: space-around;
+  border: 4px solid white;
+  padding: 10px;
+}
+
+#timer {
+  width: 40%;
+  border: 4px solid white;
+  padding: 5px;
+}
+
+#team1, #team2 {
+  width: 25%;
+}
+
+#theme {
+  margin-top: 10px;
+  width: 60%;
+  border: 4px solid white;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#theme_title {
+  width: 90%;
+}
+
+#category {
+  width: 90%;
 }
