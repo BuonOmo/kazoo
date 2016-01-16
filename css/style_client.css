@@ -1,9 +1,6 @@
 body {
   background-color: black;
   color: white;
-  text-align: center;
-  height: 600px;
-  width: 800px;
 }
 
 #content {
@@ -12,7 +9,11 @@ body {
   flex-wrap: wrap;
   align-content: space-around;
   border: 4px solid white;
+  border-radius: 15px;
   padding: 10px;
+  height: 572px;
+  width: 772px;
+  text-align: center;
 }
 
 #timer {
@@ -27,12 +28,14 @@ body {
 
 #theme {
   margin-top: 10px;
-  width: 60%;
+  width: 80%;
   border: 4px solid white;
+  border-radius: 15px;
   padding: 5px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
 }
 
 #theme_title {
@@ -41,4 +44,21 @@ body {
 
 #category {
   width: 90%;
+}
+
+#team1_errors, #team2_errors {
+  display: flex;
+  justify-content: space-around;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: black;
+  border: 2px solid white;
+}
+
+.circle.error {
+  background: white;
 }
