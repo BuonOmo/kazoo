@@ -2,6 +2,7 @@ var client_window;
 
 var global_time; // in seconds
 var timer_global_running = false;
+var timer_interval;
 
 var team1_score = 0;
 var team2_score = 0;
@@ -38,13 +39,15 @@ $(document)
       gameError(2);
     });
 
-    $('#timer_global_set').click(function() {
-      setGlobalTimer();
-    });
+    $('#timer_global_set').click(setGlobalTimer);
 
-    $('#timer_global_start').click(function() {
-      startGlobalTimer();
-    });
+    $('#timer_global_start')
+      .click(function() {
+        if (timer_global_running)
+          stopGlobalTimer();
+        else
+          startGlobalTimer();
+      });
   });
 
 function setTeams() {
@@ -99,18 +102,21 @@ function setGlobalTimer() {
 }
 
 function startGlobalTimer() {
-  if (!timer_global_running) {
-    var timer_interval = setInterval(function() {
-      timer_global_running = true;
-      $(client_window.document.body)
-        .find('#timer_global')
-        .html(convertTime(--global_time));
-      if (global_time <= 0) {
-        clearInterval(timer_interval);
-        timer_global_running = false;
-      }
-    }, 1000);
-  }
+
+  timer_interval = setInterval(function() {
+    timer_global_running = true;
+    $(client_window.document.body)
+      .find('#timer_global')
+      .html(convertTime(--global_time));
+    if (global_time <= 0) {
+      stopGlobalTimer();
+    }
+  }, 1000);
+}
+
+function stopGlobalTimer() {
+  clearInterval(timer_interval);
+  timer_global_running = false;
 }
 
 function convertTime(time) {
