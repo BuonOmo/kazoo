@@ -2,18 +2,34 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
-  </script>
-  <script src="app.js">
-  </script>
   <title>Master</title>
 </head>
 <body>
-  Petit exemple pour montrer comment on change le texte.
-  <form>
-    Equipe 1 : <input id="team1_name"
-          placeholder="Nom de l'équipe"
-          type="text">
+  <form id="teams"
+        name="teams">
+    <h3>Equipes</h3>
+    <div>
+      <label for="team1_name">Equipe 1</label> <input id="team1_name"
+           placeholder="Nom"
+           type="text">
+    </div>
+    <div>
+      <label for="team2_name">Equipe 2</label> <input id="team2_name"
+           placeholder="Nom"
+           type="text">
+    </div><button type="button">Confirmer</button>
+  </form>
+  <hr>
+  <form id="timers"
+        name="timers">
+    <h3>Timers</h3>
+    <div>
+      <label for="timer_global">
+      <script src="js/jquery-2.2.0.min.js">
+      </script>
+      <script src="js/app.js">
+      </script></label>
+    </div>
   </form>
 </body>
 </html>
