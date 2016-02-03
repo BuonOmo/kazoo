@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
-  <title>Master</title>
-</head>
-<body>
-  <form id="teams">
-    <h3>Equipes</h3>
-    <div>
-      <label for="team1_name">Equipe 1</label> <input id="team1_name" placeholder="Nom" type="text"> <button id="team1_score_up" type="button">+1 point</button><button id="team1_error" type="button">Faute !</button>
-    </div>
-    <div>
-      <label for="team2_name">Equipe 2</label> <input id="team2_name" placeholder="Nom" type="text"> <button id="team2_score_up" type="button">+1 point</button><button id="team2_error" type="button">Faute !</button>
-    </div><button id='teams_name' type="button">Confirmer</button>
-  </form>
-  <hr>
-  <form id="timers">
-    <h3>Timers</h3>
-    <div>
-      <label for="timer_global">Global</label><input id="timer_global" type="time"><em>en secondes pour l'instant</em><br>
-      <button id="timer_global_set" type="button">Régler</button><button id="timer_global_start" type="button">Start/Stop</button>
-    </div>
-  </form>
-  <script src="js/jquery-2.2.0.min.js">
-  </script>
-  <script src="js/app.js">
-  </script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/jquery-2.2.0.min.js">
+        </script>
+        <script src="js/app.js">
+        </script>
+        <script src="js/window.js">
+        </script>
+        <title>Master</title>
+    </head>
+    <body>
+        <button type="button" id="toggle_client">La magie !</button>
+        <div id="client_controls" hidden>
+            <form id="teams">
+                <h3>Equipes</h3>
+                <div>
+                    <label for="team1_name">Equipe 1</label> <input id="team1_name" placeholder="Nom" type="text"> <button id="team1_score_up" type="button">+1 point</button><button id="team1_error" type="button">Faute !</button>
+                </div>
+                <div>
+                    <label for="team2_name">Equipe 2</label> <input id="team2_name" placeholder="Nom" type="text"> <button id="team2_score_up" type="button">+1 point</button><button id="team2_error" type="button">Faute !</button>
+                </div><button id='teams_name' type="button">Confirmer</button>
+            </form>
+            <hr>
+            <form id="timers">
+                <h3>Timers</h3>
+                <div>
+                    <label for="timer_global">Global</label><input id="timer_global" type="time"><em>en secondes pour l'instant</em><br>
+                    <button id="timer_global_set" type="button">Régler</button><button id="timer_global_start" type="button">Start/Stop</button>
+                </div>
+            </form>
+            <hr>
+            <form id="window_size">
+                <h3>Taille de la fenêtre</h3>
+                <label for="width_slider">Largeur</label><input type="range" id="width_slider" min="0" max="100" value="80"/><br>
+                <label for="height_slider">Hauteur</label><input type="range" id="height_slider" min="0" max="100" value="80"/>
+            </form>
+        </div>
+    </body>
 </html>
