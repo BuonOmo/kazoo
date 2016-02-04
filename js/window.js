@@ -14,14 +14,12 @@ var team2_score = 0;
 var team1_errors = 0;
 var team2_errors = 0;
 
+function master_init() {
+    client_window = window.open();    
 
-
-function client_init() {
-    client_window = window.open();
-
-    $.get('client.html',
-            function (html) {
+    $.get('client.html', function (html) {
                 client_window.document.write(html);
+                client_init(client_window);
             }, 'html');
 
     $('#teams_name').click(function () {
@@ -61,44 +59,52 @@ function client_init() {
     });
 }
 
+function client_init() {
+    client_window = $(client_window.document.body);
+    
+    /*
+     client_window.find('#team2_errors .circle:last').on('animationstart', function () {
+     client_window.find('#team2_errors .circle').slice(0,2).removeclass('error').addclass('error');
+     });
+     */
+
+    client_window.find('#team2_errors .circle:last').on('animationend', function () {
+        client_window.find('#team2_errors .circle').removeClass('error');
+        scoreUp(1);
+        team2_errors = 0;
+    });
+
+    client_window.find('#team1_errors .circle:last').on('animationend', function () {
+        client_window.find('#team1_errors .circle').removeClass('error');
+        scoreUp(2);
+        team1_errors = 0;
+    });
+}
+
 function setTeams() {
-    $(client_window.document.body)
+    client_window
             .find('#team1_name')
             .html($('#team1_name').val());
-    $(client_window.document.body)
+    client_window
             .find('#team2_name')
             .html($('#team2_name').val());
 }
 
 function scoreUp(team_number) {
-    $(client_window.document.body)
-            .find('#team' + team_number + '_score')
-            .html((team_number == 1) ? ++team1_score : ++team2_score);
+    client_window.find('#team' + team_number + '_score').html((team_number === 1) ? ++team1_score : ++team2_score);
 }
 
 function gameError(team_number) {
 
-    if (team_number == 1) {
-        if (++team1_errors >= 3) {
-            scoreUp(2);
-            team1_errors = 0;
-            $(client_window.document.body)
-                    .find('#team1_errors .circle')
-                    .removeClass('error')
-        }
-        $(client_window.document.body)
-                .find('#team1_errors .circle')
-                .slice(0, team1_errors)
-                .addClass('error');
+    if (team_number === 1) {
+        team1_errors++;
+        $('#team1_errors').text(team1_errors);
+
+        client_window.find('#team1_errors .circle').slice(0, team1_errors).addClass('error');
     } else {
-        if (++team2_errors >= 3) {
-            scoreUp(1);
-            team2_errors = 0;
-            $(client_window.document.body)
-                    .find('#team2_errors .circle')
-                    .removeClass('error')
-        }
-        $(client_window.document.body)
+        team2_errors++;
+        $('#team2_errors').text(team2_errors);
+        client_window
                 .find('#team2_errors .circle')
                 .slice(0, team2_errors)
                 .addClass('error');
@@ -107,7 +113,7 @@ function gameError(team_number) {
 
 function setGlobalTimer() {
     global_time = $('#timer_global').val();
-    $(client_window.document.body)
+    client_window
             .find('#timer_global')
             .html(convertTime(global_time));
 }
@@ -116,7 +122,7 @@ function startGlobalTimer() {
 
     timer_interval = setInterval(function () {
         timer_global_running = true;
-        $(client_window.document.body)
+        client_window
                 .find('#timer_global')
                 .html(convertTime(--global_time));
         if (global_time <= 0) {
@@ -143,13 +149,13 @@ function convertTime(time) {
 }
 
 function setWidth(width) {
-    $(client_window.document.body)
-        .find('#content')
-        .css('width', width + 'vw');
+    client_window
+            .find('#content')
+            .css('width', width + 'vw');
 }
 
 function setHeight(height) {
-    $(client_window.document.body)
-        .find('#content')
-        .css('height', height + 'vh');
+    client_window
+            .find('#content')
+            .css('height', height + 'vh');
 }
