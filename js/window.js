@@ -8,38 +8,35 @@ var global_time; // in seconds
 var timer_global_running = false;
 var timer_interval;
 
-var team1_score = 0;
-var team2_score = 0;
-
-var team1_errors = 0;
-var team2_errors = 0;
+var team1, team2;
 
 function master_init() {
-    client_window = window.open();    
+    client_window = window.open();
 
     $.get('client.html', function (html) {
-                client_window.document.write(html);
-                client_init(client_window);
-            }, 'html');
+        client_window.document.write(html);
+        client_init(client_window);
+    }, 'html');
 
     $('#teams_name').click(function () {
-        setTeams();
+        team1.setName($('#team1_name').val());
+        team2.setName($('#team2_name').val());
     });
 
     $('#team1_score_up').click(function () {
-        scoreUp(1);
+        team1.scoreUp();
     });
 
     $('#team2_score_up').click(function () {
-        scoreUp(2);
+        team2.scoreUp();
     });
 
     $('#team1_error').click(function () {
-        gameError(1);
+        team1.error();
     });
 
     $('#team2_error').click(function () {
-        gameError(2);
+        team2.error();
     });
 
     $('#timer_global_set').click(setGlobalTimer);
@@ -52,68 +49,48 @@ function master_init() {
                     startGlobalTimer();
             });
     $('#width_slider').change(function () {
-        setWidth($(this).val());
+        $(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
     });
     $('#height_slider').change(function () {
-        setHeight($(this).val());
+        $(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
     });
 }
 
-function client_init() {
-    client_window = $(client_window.document.body);
-    
+function client_init() {    
+
     /*
      client_window.find('#team2_errors .circle:last').on('animationstart', function () {
      client_window.find('#team2_errors .circle').slice(0,2).removeclass('error').addclass('error');
      });
      */
+    
+    team1 = new Team(
+            $(client_window.document.body).find('#team1_name'),
+            $(client_window.document.body).find('#team1_score'),
+            $(client_window.document.body).find('#team1_errors .circle')
+            );
+    team2 = new Team(
+            $(client_window.document.body).find('#team2_name'),
+            $(client_window.document.body).find('#team2_score'),
+            $(client_window.document.body).find('#team2_errors .circle')
+            );
 
-    client_window.find('#team2_errors .circle:last').on('animationend', function () {
-        client_window.find('#team2_errors .circle').removeClass('error');
-        scoreUp(1);
-        team2_errors = 0;
+    team1.dom_error_circles.slice(-1).on('animationend', function () {
+        team1.dom_error_circles.removeClass('error');
+        team1.errors = 0;
+        team2.scoreUp();
     });
 
-    client_window.find('#team1_errors .circle:last').on('animationend', function () {
-        client_window.find('#team1_errors .circle').removeClass('error');
-        scoreUp(2);
-        team1_errors = 0;
+    team2.dom_error_circles.slice(-1).on('animationend', function () {
+        team2.dom_error_circles.removeClass('error');
+        team2.errors = 0;
+        team1.scoreUp();
     });
-}
-
-function setTeams() {
-    client_window
-            .find('#team1_name')
-            .html($('#team1_name').val());
-    client_window
-            .find('#team2_name')
-            .html($('#team2_name').val());
-}
-
-function scoreUp(team_number) {
-    client_window.find('#team' + team_number + '_score').html((team_number === 1) ? ++team1_score : ++team2_score);
-}
-
-function gameError(team_number) {
-
-    if (team_number === 1) {
-        team1_errors++;
-        $('#team1_errors').text(team1_errors);
-
-        client_window.find('#team1_errors .circle').slice(0, team1_errors).addClass('error');
-    } else {
-        team2_errors++;
-        $('#team2_errors').text(team2_errors);
-        client_window
-                .find('#team2_errors .circle')
-                .slice(0, team2_errors)
-                .addClass('error');
-    }
 }
 
 function setGlobalTimer() {
     global_time = $('#timer_global').val();
-    client_window
+    $(client_window.document.body)
             .find('#timer_global')
             .html(convertTime(global_time));
 }
@@ -122,7 +99,7 @@ function startGlobalTimer() {
 
     timer_interval = setInterval(function () {
         timer_global_running = true;
-        client_window
+        $(client_window.document.body)
                 .find('#timer_global')
                 .html(convertTime(--global_time));
         if (global_time <= 0) {
@@ -146,16 +123,4 @@ function convertTime(time) {
         seconds = "0" + seconds;
     }
     return minutes + ':' + seconds;
-}
-
-function setWidth(width) {
-    client_window
-            .find('#content')
-            .css('width', width + 'vw');
-}
-
-function setHeight(height) {
-    client_window
-            .find('#content')
-            .css('height', height + 'vh');
 }
