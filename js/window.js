@@ -42,13 +42,9 @@ function master_init() {
     $('#impro_name').click(function () {
         impro.setTheme($('#theme_title').val());
         impro.setCategory($('#category').val());
+        impro.setType($('#impro_type').val());
+        impro.setNumberOfPlayers($('#number_of_players').val());
     });
-
-    /*
-    $('#number_of_players').click(function () {
-        impro.setTheme($('#number_of_players').val() + " joueurs");
-    });
-    */
 
     $('#timer_global_set').click(setGlobalTimer);
 
@@ -88,7 +84,9 @@ function client_init() {
     impro = new Impro(
             $(client_window.document.body).find('#category'),
             $(client_window.document.body).find('#number_of_players'),
-            $(client_window.document.body).find('#theme_title')
+            $(client_window.document.body).find('#theme_title'),
+            $(client_window.document.body).find('#impro_type')
+
             );
 
     team1.dom_error_circles.slice(-1).on('animationend', function () {

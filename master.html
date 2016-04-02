@@ -23,12 +23,31 @@
             </form>
             <hr>
             <form id="impro">
-                <h3>Nom de l’improvisation</h3>
+                <h3>Gestion de l’improvisation</h3>
                 <div>
-                    <label for="theme_title">Theme</label><input id="theme_title" placeholder="Nom" type="text">
+                    <label for="theme_title">Theme </label><input id="theme_title" placeholder="Nom" type="text">
                 </div>
                 <div>
-                    <label for="category">Catégorie</label><input id="category" placeholder="Nom" type="text">
+                    <label for="category">Catégorie </label><input id="category" placeholder="Nom" type="text">
+                </div>
+                <div>
+                    <label for="number_of_players">Nombre de joueurs </label>
+                    <input type="text" list="number_of_players_value" id="number_of_players">
+                    <datalist id="number_of_players_value">
+                        <option value="illimité">
+                        <option value="tous">
+                        <option value="1 joueur">
+                        <option value="2 joueurs">
+                        <option value="3 joueurs">
+                        <option value="4 joueurs">
+                    </datalist>
+                </div>
+                <div>
+                    <label for="impro_type">Type d’improvisation </label>
+                    <select id="impro_type">
+                        <option value="mixte">mixte</option>
+                        <option value="comparée">comparée</option>
+                    </select>
                 </div><button id='impro_name' type="button">Confirmer</button>
             </form>
             <hr>
