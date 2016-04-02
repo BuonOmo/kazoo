@@ -39,15 +39,25 @@ function master_init() {
         team2.error();
     });
 
+    $('#impro_name').click(function () {
+        impro.setTheme($('#theme_title').val());
+        impro.setCategory($('#category').val());
+    });
+
+    /*
+    $('#number_of_players').click(function () {
+        impro.setTheme($('#number_of_players').val() + " joueurs");
+    });
+    */
+
     $('#timer_global_set').click(setGlobalTimer);
 
-    $('#timer_global_start')
-            .click(function () {
-                if (timer_global_running)
-                    stopGlobalTimer();
-                else
-                    startGlobalTimer();
-            });
+    $('#timer_global_start').click(function () {
+        if (timer_global_running)
+            stopGlobalTimer();
+        else
+            startGlobalTimer();
+    });
     $('#width_slider').change(function () {
         $(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
     });
@@ -56,14 +66,14 @@ function master_init() {
     });
 }
 
-function client_init() {    
+function client_init() {
 
     /*
      client_window.find('#team2_errors .circle:last').on('animationstart', function () {
      client_window.find('#team2_errors .circle').slice(0,2).removeclass('error').addclass('error');
      });
      */
-    
+
     team1 = new Team(
             $(client_window.document.body).find('#team1_name'),
             $(client_window.document.body).find('#team1_score'),
@@ -73,6 +83,12 @@ function client_init() {
             $(client_window.document.body).find('#team2_name'),
             $(client_window.document.body).find('#team2_score'),
             $(client_window.document.body).find('#team2_errors .circle')
+            );
+
+    impro = new Impro(
+            $(client_window.document.body).find('#category'),
+            $(client_window.document.body).find('#number_of_players'),
+            $(client_window.document.body).find('#theme_title')
             );
 
     team1.dom_error_circles.slice(-1).on('animationend', function () {
