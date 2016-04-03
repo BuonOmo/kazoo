@@ -6,7 +6,10 @@ var client_window;
 
 var global_time; // in seconds
 var timer_global_running = false;
-var timer_interval;
+var global_timer_interval;
+var current_timer_interval;
+var current_time;
+var timer_current_running = false;
 
 var team1, team2;
 
@@ -54,6 +57,16 @@ function master_init() {
         else
             startGlobalTimer();
     });
+
+    $('#timer_current_set').click(setCurrentTimer);
+
+    $('#timer_current_start').click(function () {
+        if (timer_current_running)
+            stopCurrentTimer();
+        else
+            startCurrentlTimer();
+    });
+
     $('#width_slider').change(function () {
         $(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
     });
@@ -111,7 +124,7 @@ function setGlobalTimer() {
 
 function startGlobalTimer() {
 
-    timer_interval = setInterval(function () {
+    global_timer_interval = setInterval(function () {
         timer_global_running = true;
         $(client_window.document.body)
                 .find('#timer_global')
@@ -123,8 +136,33 @@ function startGlobalTimer() {
 }
 
 function stopGlobalTimer() {
-    clearInterval(timer_interval);
+    clearInterval(global_timer_interval);
     timer_global_running = false;
+}
+
+function setCurrentTimer() {
+    current_time = $('#timer_current').val();
+    $(client_window.document.body)
+            .find('#timer_current')
+            .html(convertTime(--current_time));
+}
+
+function startCurrentTimer() {
+
+    current_timer_interval = setInterval(function () {
+        timer_current_running = true;
+        $(client_window.document.body)
+                .find('#timer_current')
+                .html(convertTime(--current_time));
+        if (current_time <= 0) {
+            stopcurrentTimer();
+        }
+    }, 1000);
+}
+
+function stopCurrentTimer() {
+    clearInterval(current_timer_interval);
+    timer_current_running = false;
 }
 
 function convertTime(time) {
