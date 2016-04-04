@@ -144,7 +144,7 @@ function setCurrentTimer() {
     current_time = $('#timer_current').val();
     $(client_window.document.body)
             .find('#timer_current')
-            .html(convertTime(--current_time));
+            .html(convertTime(current_time));
 }
 
 function startCurrentTimer() {
@@ -155,7 +155,7 @@ function startCurrentTimer() {
                 .find('#timer_current')
                 .html(convertTime(--current_time));
         if (current_time <= 0) {
-            stopcurrentTimer();
+            stopCurrentTimer();
         }
     }, 1000);
 }
