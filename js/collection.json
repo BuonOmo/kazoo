@@ -1,0 +1,19 @@
+[{
+	"category": "western",
+	"duration": "120",
+	"number_of_players": "3 joueurs par équipe",
+	"theme": "le poireau étendu",
+	"type": "mixte"
+}, {
+	"category": "huit clos",
+	"duration": "300",
+	"number_of_players": "illimité",
+	"theme": "la canne à sel",
+	"type": "mixte"
+}, {
+	"category": "chantée",
+	"duration": "180",
+	"number_of_players": "tous",
+	"theme": "mange une tuile, ça ira mieux",
+	"type": "comparée"
+}]

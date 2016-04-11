@@ -3,6 +3,7 @@
  */
 
 var client_window;
+var master_window;
 
 var global_time; // in seconds
 var timer_global_running = false;
@@ -12,9 +13,25 @@ var current_time;
 var timer_current_running = false;
 
 var team1, team2;
+var collection;
 
 function master_init() {
     client_window = window.open();
+
+    // retrieves collection of improvisation from a json file
+    collection = $.getJSON("js/collection.json", function(obj) {
+    })
+    .done(function() {
+        console.log( "succes retrieving collection file" );
+    })
+    .fail(function() {
+        console.log( "error retrieving collection file" );
+    });
+
+    console.log(collection[0].theme);
+    $.get('master.html', function (html) {
+        master_window.document.write(html);
+    }, 'html');
 
     $.get('client.html', function (html) {
         client_window.document.write(html);
