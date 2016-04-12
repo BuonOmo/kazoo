@@ -13,26 +13,6 @@ var timer_current_running = false;
 
 var team1, team2;
 var collection;
-collection =
-[{
-	"category": "western",
-	"duration": "120",
-	"number_of_players": "3 joueurs par équipe",
-	"theme": "le poireau étendu",
-	"impro_type": "mixte"
-}, {
-	"category": "huit clos",
-	"duration": "300",
-	"number_of_players": "illimité",
-	"theme": "la canne à sel",
-	"impro_type": "mixte"
-}, {
-	"category": "chantée",
-	"duration": "180",
-	"number_of_players": "tous",
-	"theme": "mange une tuile, ça ira mieux",
-	"impro_type": "comparée"
-}];
 
 function master_add_impro_list()
 {
@@ -53,16 +33,10 @@ function master_init() {
 
 
     // retrieves collection of improvisation from a json file
-    /*collection = $.getJSON("js/collection.json", function(obj) {
-    })
-    .done(function() {
-        console.log( "succes retrieving collection file" );
-    })
-    .fail(function() {
-        console.log( "error retrieving collection file" );
-    });*/
-
-    master_add_impro_list();
+    $.getJSON("js/collection.json", function(data) {
+        collection = data;
+        master_add_impro_list();
+    });
 
 
     $.get('client.html', function (html) {
