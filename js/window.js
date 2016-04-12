@@ -3,7 +3,6 @@
  */
 
 var client_window;
-var master_window;
 
 var global_time; // in seconds
 var timer_global_running = false;
@@ -14,24 +13,57 @@ var timer_current_running = false;
 
 var team1, team2;
 var collection;
+collection =
+[{
+	"category": "western",
+	"duration": "120",
+	"number_of_players": "3 joueurs par équipe",
+	"theme": "le poireau étendu",
+	"impro_type": "mixte"
+}, {
+	"category": "huit clos",
+	"duration": "300",
+	"number_of_players": "illimité",
+	"theme": "la canne à sel",
+	"impro_type": "mixte"
+}, {
+	"category": "chantée",
+	"duration": "180",
+	"number_of_players": "tous",
+	"theme": "mange une tuile, ça ira mieux",
+	"impro_type": "comparée"
+}];
 
+function master_add_impro_list()
+{
+    var impro_list = document.getElementById('impro_list');
+    //var html_to_add = '\n\t\t';
+    var newOption;
+    for (var i in collection) {
+        newOption = document.createElement('option');
+        newOption.value = collection[i].theme;
+        impro_list.appendChild(newOption);
+        //html_to_add += "\t<option value=\""+collection[i].theme+"\">\n\t\t";
+    }
+    //console.log(html_to_add);
+    //impro_list.innerHTML = html_to_add;
+}
 function master_init() {
     client_window = window.open();
 
+
     // retrieves collection of improvisation from a json file
-    collection = $.getJSON("js/collection.json", function(obj) {
+    /*collection = $.getJSON("js/collection.json", function(obj) {
     })
     .done(function() {
         console.log( "succes retrieving collection file" );
     })
     .fail(function() {
         console.log( "error retrieving collection file" );
-    });
+    });*/
 
-    console.log(collection[0].theme);
-    $.get('master.html', function (html) {
-        master_window.document.write(html);
-    }, 'html');
+    master_add_impro_list();
+
 
     $.get('client.html', function (html) {
         client_window.document.write(html);
@@ -64,6 +96,24 @@ function master_init() {
         impro.setCategory($('#category').val());
         impro.setType($('#impro_type').val());
         impro.setNumberOfPlayers($('#number_of_players').val());
+    });
+
+    $('#confirm_impro_from_list').click(function ()
+    {
+        var theme = document.getElementById('select_impro').value;
+        console.log(theme);
+        var i;
+        for (i = 0; i < collection.length; i++) {
+            if (collection[i].theme == theme)
+            {
+                break;
+            }
+        }
+        impro.setTheme          (collection[i].theme);
+        impro.setCategory       (collection[i].category);
+        impro.setType           (collection[i].impro_type);
+        impro.setNumberOfPlayers(collection[i].number_of_players);
+        setCurrentTimer         (collection[i].duration);
     });
 
     $('#timer_global_set').click(setGlobalTimer);
@@ -159,6 +209,13 @@ function stopGlobalTimer() {
 
 function setCurrentTimer() {
     current_time = $('#timer_current').val();
+    $(client_window.document.body)
+            .find('#timer_current')
+            .html(convertTime(current_time));
+}
+
+function setCurrentTimer(time) {
+    current_time = time;
     $(client_window.document.body)
             .find('#timer_current')
             .html(convertTime(current_time));
