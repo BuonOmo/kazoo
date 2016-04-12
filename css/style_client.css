@@ -32,6 +32,10 @@ body {
 
 #team1, #team2 {
     width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 #theme {
