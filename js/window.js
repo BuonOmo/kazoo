@@ -17,16 +17,12 @@ var collection;
 function master_add_impro_list()
 {
     var impro_list = document.getElementById('impro_list');
-    //var html_to_add = '\n\t\t';
     var newOption;
     for (var i in collection) {
         newOption = document.createElement('option');
         newOption.value = collection[i].theme;
         impro_list.appendChild(newOption);
-        //html_to_add += "\t<option value=\""+collection[i].theme+"\">\n\t\t";
     }
-    //console.log(html_to_add);
-    //impro_list.innerHTML = html_to_add;
 }
 function master_init() {
     client_window = window.open();
@@ -49,13 +45,14 @@ function master_init() {
         team2.setName($('#team2_name').val());
     });
 
-    $('#team1_score_up').click(function () {
-        team1.scoreUp();
+    $('#team1_score').click(function () {
+        team1.setScore($('#team1_score').val());
     });
 
-    $('#team2_score_up').click(function () {
-        team2.scoreUp();
+    $('#team2_score').click(function () {
+        team2.setScore($('#team2_score').val());
     });
+
 
     $('#team1_error').click(function () {
         team1.error();
@@ -88,6 +85,10 @@ function master_init() {
         impro.setType           (collection[i].impro_type);
         impro.setNumberOfPlayers(collection[i].number_of_players);
         setCurrentTimer         (collection[i].duration);
+        document.getElementById('number_of_players').value = collection[i].number_of_players;
+        document.getElementById('theme_title').value = collection[i].theme;
+        document.getElementById('category').value = collection[i].category;
+        document.getElementById('impro_type').value = collection[i].impro_type;
     });
 
     $('#timer_global_set').click(setGlobalTimer);

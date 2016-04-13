@@ -11,6 +11,12 @@
 	"theme": "la canne à sel",
 	"impro_type": "mixte"
 }, {
+	"category": "libre",
+	"duration": "300",
+	"number_of_players": "illimité",
+	"theme": "blanc bouillon et triste souillon",
+	"impro_type": "mixte"
+}, {
 	"category": "chantée",
 	"duration": "180",
 	"number_of_players": "tous",
