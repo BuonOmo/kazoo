@@ -86,9 +86,9 @@ function master_init() {
         impro.setNumberOfPlayers(collection[i].number_of_players);
         setCurrentTimer         (collection[i].duration);
         document.getElementById('number_of_players').value = collection[i].number_of_players;
-        document.getElementById('theme_title').value = collection[i].theme;
-        document.getElementById('category').value = collection[i].category;
-        document.getElementById('impro_type').value = collection[i].impro_type;
+        document.getElementById('theme_title').value       = collection[i].theme;
+        document.getElementById('category').value          = collection[i].category;
+        document.getElementById('impro_type').value        = collection[i].impro_type;
     });
 
     $('#timer_global_set').click(setGlobalTimer);
