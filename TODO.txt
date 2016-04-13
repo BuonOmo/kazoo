@@ -1,0 +1,2 @@
+ - make a dynamic path for the collection.json file (so that anyone can choose his file)
+ - debugger le timer courant 

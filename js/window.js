@@ -12,9 +12,28 @@ var current_time;
 var timer_current_running = false;
 
 var team1, team2;
+var collection;
 
+function master_add_impro_list()
+{
+    var impro_list = document.getElementById('impro_list');
+    var newOption;
+    for (var i in collection) {
+        newOption = document.createElement('option');
+        newOption.value = collection[i].theme;
+        impro_list.appendChild(newOption);
+    }
+}
 function master_init() {
     client_window = window.open();
+
+
+    // retrieves collection of improvisation from a json file
+    $.getJSON("js/collection.json", function(data) {
+        collection = data;
+        master_add_impro_list();
+    });
+
 
     $.get('client.html', function (html) {
         client_window.document.write(html);
@@ -26,13 +45,14 @@ function master_init() {
         team2.setName($('#team2_name').val());
     });
 
-    $('#team1_score_up').click(function () {
-        team1.scoreUp();
+    $('#team1_score').click(function () {
+        team1.setScore($('#team1_score').val());
     });
 
-    $('#team2_score_up').click(function () {
-        team2.scoreUp();
+    $('#team2_score').click(function () {
+        team2.setScore($('#team2_score').val());
     });
+
 
     $('#team1_error').click(function () {
         team1.error();
@@ -47,6 +67,28 @@ function master_init() {
         impro.setCategory($('#category').val());
         impro.setType($('#impro_type').val());
         impro.setNumberOfPlayers($('#number_of_players').val());
+    });
+
+    $('#confirm_impro_from_list').click(function ()
+    {
+        var theme = document.getElementById('select_impro').value;
+        console.log(theme);
+        var i;
+        for (i = 0; i < collection.length; i++) {
+            if (collection[i].theme == theme)
+            {
+                break;
+            }
+        }
+        impro.setTheme          (collection[i].theme);
+        impro.setCategory       (collection[i].category);
+        impro.setType           (collection[i].impro_type);
+        impro.setNumberOfPlayers(collection[i].number_of_players);
+        setCurrentTimer         (collection[i].duration);
+        document.getElementById('number_of_players').value = collection[i].number_of_players;
+        document.getElementById('theme_title').value = collection[i].theme;
+        document.getElementById('category').value = collection[i].category;
+        document.getElementById('impro_type').value = collection[i].impro_type;
     });
 
     $('#timer_global_set').click(setGlobalTimer);
@@ -142,6 +184,13 @@ function stopGlobalTimer() {
 
 function setCurrentTimer() {
     current_time = $('#timer_current').val();
+    $(client_window.document.body)
+            .find('#timer_current')
+            .html(convertTime(current_time));
+}
+
+function setCurrentTimer(time) {
+    current_time = time;
     $(client_window.document.body)
             .find('#timer_current')
             .html(convertTime(current_time));
