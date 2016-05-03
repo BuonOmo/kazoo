@@ -4,17 +4,38 @@
     <meta charset="UTF-8"/>
 
     <!-- Bootstrap -->
-     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>Master</title>
   </head>
-  <body>
-    <div class="jumbotron" style="margin : 10px; text-align: center; border-radius: 10px" id="toggle_client">
-      <h1>Kazoo 2.0</h1>
-      <p></p>
-      <button class="btn btn-primary btn-lg" type="button">Coup de kazoo !</button>
+  <body  data-spy="scroll" data-target="#navbar" style="position: relative">
+    <!--  Navbar  -->
+    <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+      <div class="container">
+        <div class="navbar-header"><a href="https://github.com/Ealhad/improvsc" class="navbar-brand">Kazoo</a></div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#teams">Equipes</a></li>
+            <li><a href="#impro">Gestion</a></li>
+            <li><a href="#impro_from_collection">Selection</a></li>
+            <li><a href="#timers">Timer</a></li>
+            <li><a href="#window_size">Parametrage</a></li>
+          </ul>
+          <div class="nav navbar-right navbar-text" id=cocus_timer style="font-size: 25px; margin-bottom : 0px; margin-top : 10px">20</div>
+        </div>
+      </div>
+    </nav>
+    <!--  End of navbar  -->
+
+    <!--  Jumbotron presentation -->
+    <div class="jumbotron" style="margin: 10px; text-align: center; border-radius: 10px" id="jumbotron">
+      <h1 style="margin-bottom: 20px">Kazoo 2.0</h1>
+      <p> Application libre disponible sur <a href="https://github.com/Ealhad/improvsc">github</a>.</p>
+      <p> En cas de probleme ou de retour, vous pouvez envoyer un mail à <a href="mailto:buonomo.ulysse@gmail.com">buonomo.ulysse@gmail.com</a>.</p>
+      <button class="btn btn-primary btn-lg" type="button"  id="toggle_client">C’est parti !</button>
     </div>
-    <div id="client_controls" hidden>
+    <!--  End of jumbotron  -->
+
+    <div id="client_controls" style="padding-top : 70px; padding-left: 20px; padding-right: 20px" hidden>
       <form class="form-group" id="teams">
         <h3 class="page-header">Equipes</h3>
         <div class="row">
@@ -35,18 +56,18 @@
           </div>
         </div>
       </form>
-      <hr>
-      <form class="pure-form" id="impro">
+      <!-- next form -->
+      <form class="form-group" id="impro">
         <h3 class="page-header">Gestion de l’improvisation</h3>
         <div>
-          <label for="theme_title">Theme </label><input id="theme_title" placeholder="Nom" type="text">
+          <label for="theme_title">Theme </label><input class="form-control" id="theme_title" placeholder="Nom" type="text">
         </div>
         <div>
-          <label for="category">Catégorie </label><input id="category" placeholder="Nom" type="text">
+          <label for="category">Catégorie </label><input class="form-control" id="category" placeholder="Nom" type="text">
         </div>
         <div>
           <label for="number_of_players">Nombre de joueurs </label>
-          <input type="text" list="number_of_players_value" id="number_of_players">
+          <input class="form-control" type="text" list="number_of_players_value" id="number_of_players">
           <datalist id="number_of_players_value">
             <option value="illimité">
             <option value="tous">
@@ -58,44 +79,48 @@
         </div>
         <div>
           <label for="impro_type">Type d’improvisation </label>
-          <select id="impro_type">
+          <select class="form-control" id="impro_type">
             <option value="mixte">mixte</option>
             <option value="comparée">comparée</option>
           </select>
         </div><button class="btn btn-default" id='impro_name' type="button">Confirmer</button>
       </form>
-      <hr>
-      <form class="pure-form" id="impro_from_collection">
+      <!-- next form -->
+      <form class="form-group" id="impro_from_collection">
         <h3 class="page-header">Improvisations préparées</h3>
         <div>
           <input type="text" list="impro_list" id="select_impro">
           <datalist id="impro_list"></datalist>
-          <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirm</button>
+          <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirmer</button>
         </div>
       </form>
-      <hr>
-      <form class="pure-form" id="timers">
+      <!-- next form -->
+      <form class="form-group" id="timers">
         <h3 class="page-header">Timers</h3>
         <div>
-          <label for="timer_global">Global</label><input id="timer_global" type="time"><em>en secondes pour l'instant</em><br>
+          <label for="timer_global">Global</label><input class="form-control" id="timer_global" type="time"><em>en secondes pour l'instant</em><br>
           <button class="btn btn-default" id="timer_global_set" type="button">Régler</button><button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
         </div>
         <div>
-          <label for="timer_current">Courant</label><input id="timer_current" type="time"><em>en secondes pour l'instant</em><br>
+          <label for="timer_current">Courant</label><input  class="form-control" id="timer_current" type="time"><em>en secondes pour l'instant</em><br>
           <button class="btn btn-default" id="timer_current_set" type="button">Régler</button><button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
         </div>
       </form>
-      <hr>
-      <form class="pure-form" id="window_size">
+      <!-- next form -->
+      <form class="form-group" id="window_size">
         <h3 class="page-header">Taille de la fenêtre</h3>
         <label for="width_slider">Largeur</label><input type="range" id="width_slider" min="40" max="100" value="80"/><br>
         <label for="height_slider">Hauteur</label><input type="range" id="height_slider" min="40" max="100" value="80"/>
       </form>
     </div>
+
+
+    <!--  JS  -->
+
     <!--  JQuery -->
     <script src="js/jquery-2.2.0.min.js"></script>
     <!--  Bootstrap  -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <script src="js/team.js"></script>
     <script src="js/improvisation.js"></script>

@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('#toggle_client').click(function() {
        $('#client_controls').slideDown();
        document.getElementById('client_controls').removeAttribute('hidden');
-       $(this).slideUp();
+       $('#jumbotron').slideUp();
        master_init();
     });
 });
