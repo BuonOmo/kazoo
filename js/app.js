@@ -4,8 +4,8 @@
 $(document).ready(function () {
     $('#toggle_client').click(function() {
        $('#client_controls').slideDown();
-       document.getElementById('client_controls').removeAttribute('hidden');
        $('#jumbotron').slideUp();
+       $('#navbar').slideDown();
        master_init();
     });
 });
