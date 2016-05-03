@@ -1,94 +1,105 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-        <meta charset="UTF-8"/>
-        <script src="js/jquery-2.2.0.min.js"></script>
-        <script src="js/team.js"></script>
-        <script src="js/improvisation.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/window.js"></script>
-        <title>Master</title>
-    </head>
-    <body>
-        <button class="pure-button" type="button" id="toggle_client">La magie !</button>
-        <div id="client_controls" hidden>
-            <form class="pure-form" id="teams">
-                <h3>Equipes</h3>
-                <div class="pure-g">
-                    <div class="pure-u-1-2">
-                        <label for="team1_name">Equipe 1</label> <input id="team1_name" placeholder="Nom" type="text">
-                        <input type="number" value="0" id="team1_score">
-                        <button class="pure-button" id="team1_error" type="button">Faute !</button>
-                    </div>
-                    <div class="pure-u-1-2">
-                        <label for="team2_name">Equipe 2</label> <input id="team2_name" placeholder="Nom" type="text">
-                        <input type="number" value="0" id="team2_score">
-                        <button class="pure-button" id="team2_error" type="button">Faute !</button>
-                    </div>
-                    <div class="pure-u-1">
-                    <center>
-                        <button class="pure-button" id='teams_name' type="button">Confirmer</button>
-                    </center>
-                    </div>
-                </div>
-            </form>
-            <hr>
-            <form class="pure-form" id="impro">
-                <h3>Gestion de l’improvisation</h3>
-                <div>
-                    <label for="theme_title">Theme </label><input id="theme_title" placeholder="Nom" type="text">
-                </div>
-                <div>
-                    <label for="category">Catégorie </label><input id="category" placeholder="Nom" type="text">
-                </div>
-                <div>
-                    <label for="number_of_players">Nombre de joueurs </label>
-                    <input type="text" list="number_of_players_value" id="number_of_players">
-                    <datalist id="number_of_players_value">
-                        <option value="illimité">
-                        <option value="tous">
-                        <option value="1 joueur">
-                        <option value="2 joueurs">
-                        <option value="3 joueurs">
-                        <option value="4 joueurs">
-                    </datalist>
-                </div>
-                <div>
-                    <label for="impro_type">Type d’improvisation </label>
-                    <select id="impro_type">
-                        <option value="mixte">mixte</option>
-                        <option value="comparée">comparée</option>
-                    </select>
-                </div><button class="pure-button" id='impro_name' type="button">Confirmer</button>
-            </form>
-            <hr>
-            <form class="pure-form" id="impro_from_collection">
-                <h3>Improvisations préparées</h3>
-                <div>
-                    <input type="text" list="impro_list" id="select_impro">
-                    <datalist id="impro_list"></datalist>
-                    <button class="pure-button" id="confirm_impro_from_list" type="button">Confirm</button>
-                </div>
-            </form>
-            <hr>
-            <form class="pure-form" id="timers">
-                <h3>Timers</h3>
-                <div>
-                    <label for="timer_global">Global</label><input id="timer_global" type="time"><em>en secondes pour l'instant</em><br>
-                    <button class="pure-button" id="timer_global_set" type="button">Régler</button><button class="pure-button" id="timer_global_start" type="button">Start/Stop</button>
-                </div>
-                <div>
-                    <label for="timer_current">Courant</label><input id="timer_current" type="time"><em>en secondes pour l'instant</em><br>
-                    <button class="pure-button" id="timer_current_set" type="button">Régler</button><button class="pure-button" id="timer_current_start" type="button">Start/Stop</button>
-                </div>
-            </form>
-            <hr>
-            <form class="pure-form" id="window_size">
-                <h3>Taille de la fenêtre</h3>
-                <label for="width_slider">Largeur</label><input type="range" id="width_slider" min="40" max="100" value="80"/><br>
-                <label for="height_slider">Hauteur</label><input type="range" id="height_slider" min="40" max="100" value="80"/>
-            </form>
+  <head>
+    <meta charset="UTF-8"/>
+
+    <!-- Bootstrap -->
+     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Master</title>
+  </head>
+  <body>
+    <div class="jumbotron" style="margin : 10px; text-align: center; border-radius: 10px" id="toggle_client">
+      <h1>Kazoo 2.0</h1>
+      <p></p>
+      <button class="btn btn-primary btn-lg" type="button">Coup de kazoo !</button>
+    </div>
+    <div id="client_controls" hidden>
+      <form class="form-group" id="teams">
+        <h3 class="page-header">Equipes</h3>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <label for="team1_name">Equipe 1</label> <input class="form-control" id="team1_name" placeholder="Nom" type="text">
+            <input type="number" value="0" id="team1_score">
+            <button class="btn btn-default" id="team1_error" type="button">Faute !</button>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <label for="team2_name">Equipe 2</label> <input class="form-control" id="team2_name" placeholder="Nom" type="text">
+            <input type="number" value="0" id="team2_score">
+            <button class="btn btn-default" id="team2_error" type="button">Faute !</button>
+          </div>
+          <div class="col-xs-12" style="margin-top : 10px">
+            <center>
+              <button class="btn btn-default btn-lg" id='teams_name' type="button">Confirmer</button>
+            </center>
+          </div>
         </div>
-    </body>
+      </form>
+      <hr>
+      <form class="pure-form" id="impro">
+        <h3 class="page-header">Gestion de l’improvisation</h3>
+        <div>
+          <label for="theme_title">Theme </label><input id="theme_title" placeholder="Nom" type="text">
+        </div>
+        <div>
+          <label for="category">Catégorie </label><input id="category" placeholder="Nom" type="text">
+        </div>
+        <div>
+          <label for="number_of_players">Nombre de joueurs </label>
+          <input type="text" list="number_of_players_value" id="number_of_players">
+          <datalist id="number_of_players_value">
+            <option value="illimité">
+            <option value="tous">
+            <option value="1 joueur">
+            <option value="2 joueurs">
+            <option value="3 joueurs">
+            <option value="4 joueurs">
+          </datalist>
+        </div>
+        <div>
+          <label for="impro_type">Type d’improvisation </label>
+          <select id="impro_type">
+            <option value="mixte">mixte</option>
+            <option value="comparée">comparée</option>
+          </select>
+        </div><button class="btn btn-default" id='impro_name' type="button">Confirmer</button>
+      </form>
+      <hr>
+      <form class="pure-form" id="impro_from_collection">
+        <h3 class="page-header">Improvisations préparées</h3>
+        <div>
+          <input type="text" list="impro_list" id="select_impro">
+          <datalist id="impro_list"></datalist>
+          <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirm</button>
+        </div>
+      </form>
+      <hr>
+      <form class="pure-form" id="timers">
+        <h3 class="page-header">Timers</h3>
+        <div>
+          <label for="timer_global">Global</label><input id="timer_global" type="time"><em>en secondes pour l'instant</em><br>
+          <button class="btn btn-default" id="timer_global_set" type="button">Régler</button><button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
+        </div>
+        <div>
+          <label for="timer_current">Courant</label><input id="timer_current" type="time"><em>en secondes pour l'instant</em><br>
+          <button class="btn btn-default" id="timer_current_set" type="button">Régler</button><button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
+        </div>
+      </form>
+      <hr>
+      <form class="pure-form" id="window_size">
+        <h3 class="page-header">Taille de la fenêtre</h3>
+        <label for="width_slider">Largeur</label><input type="range" id="width_slider" min="40" max="100" value="80"/><br>
+        <label for="height_slider">Hauteur</label><input type="range" id="height_slider" min="40" max="100" value="80"/>
+      </form>
+    </div>
+    <!--  JQuery -->
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <!--  Bootstrap  -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/team.js"></script>
+    <script src="js/improvisation.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/window.js"></script>
+  </body>
 </html>
