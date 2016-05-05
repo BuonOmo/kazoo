@@ -6,6 +6,6 @@ $(document).ready(function () {
        $('#client_controls').slideDown();
        $('#jumbotron').slideUp();
        $('#navbar').toggle("slide");
-       //master_init();
+       master_init();
     });
 });
