@@ -1,2 +1,3 @@
  - make a dynamic path for the collection.json file (so that anyone can choose his file)
- - debugger le timer courant 
+ - debugger le timer courant
+ - garder le focus sur la fenetre master lors de la création de la seconde
