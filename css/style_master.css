@@ -1,0 +1,38 @@
+
+/* Global */
+body {
+  position: relative
+}
+
+/* Navbar */
+.navbar-btn {
+  margin: 0px;
+  .text {
+    font-size: 12px;
+  };
+  .counter {
+    text-align: center;
+  };
+}
+
+/* Homepage / Jumbotron */
+
+#jumbotron {
+  margin:        10px;
+	text-align:  center;
+  border-radius: 30px;
+  .title {
+    margin-bottom: 20px;
+  }
+}
+
+
+/* principal container */
+#client_controls {
+   padding-top:  70px;
+   min-height: 2000px;
+}
+
+#teams_name {
+  margin-top: 10px;
+}
