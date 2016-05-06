@@ -1,21 +1,31 @@
-
-/* Global */
-body {
-  position: relative
+/********************************  Global ********************************/
+* {
+  /**
+   * Color of the title and brand :
+   * - 581845 for the dark one
+   * - 900C3F for the light one
+   * @type color
+   ************************/
+  --brand-color: #581845;
 }
 
-/* Navbar */
-.navbar-btn {
-  margin: 0px;
-  .text {
-    font-size: 12px;
-  };
-  .counter {
-    text-align: center;
-  };
+/********************************  Navbar ********************************/
+#navbar {
+  font-size: 16px;
+}
+.navbar-brand {
+  font-size: 24px;
+  color: var(--brand-color) !important;
+}
+#navbar-timer>.btn {
+  background-color: var(--brand-color);
+  color:                       #E7E7E7;
+  margin-top:                      4px;
+  font-size:                      18px;
+  text-align:                   center;
 }
 
-/* Homepage / Jumbotron */
+/************************** Homepage / Jumbotron *************************/
 
 #jumbotron {
   margin:        10px;
@@ -25,12 +35,15 @@ body {
     margin-bottom: 20px;
   }
 }
+#jumbotron>.title {
+  color: var(--brand-color) !important;
+}
 
-
-/* principal container */
+/************************** principal container **************************/
 #client_controls {
-   padding-top:  70px;
-   min-height: 2000px;
+  position: relative;
+  padding-top:  70px;
+  min-height: 2000px;
 }
 
 #teams_name {
