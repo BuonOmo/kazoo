@@ -17,14 +17,13 @@
   font-size: 24px;
   color: var(--brand-color) !important;
 }
-#navbar-timer>.btn {
+#navbar_timer>.btn {
   background-color: var(--brand-color);
   color:                       #E7E7E7;
   margin-top:                      4px;
-  font-size:                      18px;
+  font-size:                      20px;
   text-align:                   center;
 }
-
 /************************** Homepage / Jumbotron *************************/
 
 #jumbotron {

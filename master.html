@@ -9,7 +9,7 @@
 
     <title>Master</title>
   </head>
-  <body  data-spy="scroll" data-target="#navbar" data-offset="70">
+  <body  data-spy="scroll" data-target="#navbar" data-offset="75">
     <!--  Navbar  -->
     <nav class="navbar navbar-default navbar-fixed-top" id="navbar" hidden>
       <div class="container">
@@ -22,10 +22,10 @@
             <li><a href="#timers">Timer</a></li>
             <li><a href="#window_size">Parametrage</a></li>
           </ul>
-          <div class="nav navbar-right" id="navbar-timer">
-            <button class="btn btn-default">
+          <div class="nav navbar-right" id="navbar_timer">
+            <button class="btn btn-default" id="navbar_timer_button" onclick="toggleCocusTimer()">
               <!-- <div class="text">cocus</div> -->
-              <strong>20</strong>
+              <strong id="navbar_timer_value">20</strong>
             </button>
           </div>
         </div>
