@@ -18,6 +18,10 @@ function Team(dom_name, dom_score, dom_error_circles) {
         this.dom_score.html(++this.score);
     };
 
+    this.scoreLow = function() {
+        this.dom_score.html(--this.score);
+    };
+
     this.setScore = function(score) {
         this.dom_score.html(score);
         this.score = score;
