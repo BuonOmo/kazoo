@@ -108,7 +108,7 @@ function master_init() {
         if (timer_current_running)
             stopCurrentTimer();
         else
-            startCurrentlTimer();
+            startCurrentTimer();
     });
 
     $('#navbar_timer_button').click(toggleCocusTimer);
@@ -162,7 +162,10 @@ function client_init() {
 }
 
 function setGlobalTimer() {
-    global_time = $('#timer_global').val();
+    var h = parseInt($('#timer_global_h').val())
+    var m = parseInt($('#timer_global_m').val())
+    var s = parseInt($('#timer_global_s').val())
+    global_time = h*3600 + m*60 + s;
     $(client_window.document.body)
             .find('#timer_global')
             .html(convertTime(global_time));
@@ -187,17 +190,13 @@ function stopGlobalTimer() {
 }
 
 function setCurrentTimer() {
-    current_time = $('#timer_current').val();
-    $(client_window.document.body)
-            .find('#timer_current')
-            .html(convertTime(current_time));
-}
-
-function setCurrentTimer(time) {
-    current_time = time;
-    $(client_window.document.body)
-            .find('#timer_current')
-            .html(convertTime(current_time));
+   var m = parseInt($('#timer_current_m').val())
+   var s = parseInt($('#timer_current_s').val())
+   current_time = m*60 + s;
+   console.log(m, s, current_time)
+   $(client_window.document.body)
+      .find('#timer_current')
+      .html(convertTime(current_time));
 }
 
 function startCurrentTimer() {

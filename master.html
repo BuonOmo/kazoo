@@ -102,17 +102,40 @@
         </div>
       </form>
       <!-- next form -->
-      <form class="form-group" id="timers">
+      <div id="timers">
         <h3 class="page-header">Timers</h3>
-        <div>
-          <label for="timer_global">Global</label><input class="form-control" id="timer_global" type="time"><em>en secondes pour l'instant</em><br>
-          <button class="btn btn-default" id="timer_global_set" type="button">Régler</button><button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
-        </div>
-        <div>
-          <label for="timer_current">Courant</label><input  class="form-control" id="timer_current" type="time"><em>en secondes pour l'instant</em><br>
-          <button class="btn btn-default" id="timer_current_set" type="button">Régler</button><button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
-        </div>
-      </form>
+         <h4>Global</h4>
+         <form class="form-inline">
+            <div class="input-group col-xs-2 col-lg-1">
+               <input class="form-control" id="timer_global_h" type="number" min="0" max="2" step="1" value="1">
+               <div class="input-group-addon">h</div>
+            </div>
+            <div class="input-group col-xs-2 col-lg-1">
+               <input class="form-control" id="timer_global_m" type="number" min="0" max="59" step="1" value="0">
+               <div class="input-group-addon">m</div>
+            </div>
+            <div class="input-group col-xs-2 col-lg-1">
+               <input class="form-control" id="timer_global_s" type="number" min="0" max="59" step="1" value="0">
+               <div class="input-group-addon">s</div>
+            </div>
+            <button class="btn btn-default" id="timer_global_set" type="button">Régler</button>
+            <button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
+         </form>
+         <h4>Courant</h4>
+         <form class="form-inline">
+            <div class="input-group col-xs-2 col-lg-1">
+               <input class="form-control" id="timer_current_m" type="number" min="0" max="59" step="1" value="5">
+               <div class="input-group-addon">m</div>
+            </div>
+            <div class="input-group col-xs-2 col-lg-1">
+               <input class="form-control" id="timer_current_s" type="number" min="0" max="59" step="1" value="0">
+               <div class="input-group-addon">s</div>
+            </div>
+            <button class="btn btn-default" id="timer_current_set" type="button">Régler</button>
+            <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
+         </form>
+      </div>
+
       <!-- next form -->
       <form class="form-group" id="window_size">
         <h3 class="page-header">Taille de la fenêtre</h3>
@@ -121,14 +144,12 @@
       </form>
     </div>
 
-
-    <!--  JS  -->
-
     <!--  JQuery -->
     <script src="js/jquery-2.2.0.min.js"></script>
     <!--  Bootstrap  -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
+    <!--  JS  -->
     <script src="js/team.js"></script>
     <script src="js/improvisation.js"></script>
     <script src="js/app.js"></script>
