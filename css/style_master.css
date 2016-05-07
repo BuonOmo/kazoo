@@ -3,19 +3,49 @@
   /**
    * Color of the title and brand :
    * - 581845 for the dark one
+   *   (palette :
+   *     #182559
+   *     #18592C
+   *     #594C18
+   *     #591846
+   *   )
    * - 900C3F for the light one
    * @type color
    ************************/
   --brand-color: #581845;
+  font-family: Quicksand;
+  --brand-ff:   Calligraffitti; /* TODO choose with Monoton */
 }
+
+.btn-primary:hover {
+  background-color: #182559;
+  border-color:     #273468;
+}
+.btn-primary {
+  background-color: #273468;
+  border-color:     #3E4B7F;
+}
+
+/*
+ * Removing spin-button from input number
+ */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 
 /********************************  Navbar ********************************/
 #navbar {
   font-size: 16px;
 }
 .navbar-brand {
-  font-size: 24px;
-  color: var(--brand-color) !important;
+  font-size:                            28px;
+  font-family: var(--brand-ff)    !important;
+  color:       var(--brand-color) !important;
 }
 #navbar_timer>.btn {
   background-color: var(--brand-color);
@@ -27,6 +57,7 @@
 /************************** Homepage / Jumbotron *************************/
 
 #jumbotron {
+  background: rgba(89, 76, 24, 0.2);
   margin:        10px;
 	text-align:  center;
   border-radius: 30px;
@@ -35,7 +66,8 @@
   }
 }
 #jumbotron>.title {
-  color: var(--brand-color) !important;
+  font-family: var(--brand-ff)    !important;
+  color:       var(--brand-color) !important;
 }
 
 /************************** principal container **************************/
@@ -45,6 +77,38 @@
   min-height: 2000px;
 }
 
-#teams_name {
+.circle {
+    margin-top:        3px;
+    width:            30px;
+    height:           30px;
+    border-radius:     50%;
+    background:      white;
+    border: 3px solid #333;
+}
+
+.circle.error {
+    background: #333;
+    animation: blink 0.2s alternate 5;fir
+}
+
+@keyframes blink {
+    0% {background: white}
+    60% {
+        background: white;
+    }
+  100% {
+    background: #333;
+  }
+}
+
+.confirm-btn {
   margin-top: 10px;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input {
+  margin-bottom: 4px;
 }

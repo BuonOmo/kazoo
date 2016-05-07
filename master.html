@@ -2,18 +2,25 @@
 <html>
   <head>
     <meta charset="UTF-8"/>
+    <!--  Font TODO remove non-used -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Monoton" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Calligraffitti" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Asset" />
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style_master.css" rel="stylesheet">
 
-    <title>Master</title>
+    <title>Kazoo Master</title>
   </head>
   <body  data-spy="scroll" data-target="#navbar" data-offset="75">
     <!--  Navbar  -->
     <nav class="navbar navbar-default navbar-fixed-top" id="navbar" hidden>
       <div class="container">
-        <div class="navbar-header"><a href="https://github.com/Ealhad/improvsc" class="navbar-brand">Kazoo</a></div>
+      <div class="navbar-header"><a href="#" class="navbar-brand">Kazoo</a></div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#teams">Equipes</a></li>
@@ -23,7 +30,7 @@
             <li><a href="#window_size">Parametrage</a></li>
           </ul>
           <div class="nav navbar-right" id="navbar_timer">
-            <button class="btn btn-default" id="navbar_timer_button" onclick="toggleCocusTimer()">
+            <button class="btn btn-default" type="button" id="navbar_timer_button">
               <!-- <div class="text">cocus</div> -->
               <strong id="navbar_timer_value">20</strong>
             </button>
@@ -34,11 +41,14 @@
     <!--  End of navbar  -->
 
     <!--  Jumbotron presentation -->
-    <div class="jumbotron" id="jumbotron">
-      <h1 class="title">Kazoo 2.0</h1>
-      <p> Application libre disponible sur <a href="https://github.com/Ealhad/improvsc">github</a>.</p>
-      <p> En cas de probleme ou de retour, vous pouvez envoyer un mail à <a href="mailto:buonomo.ulysse@gmail.com">buonomo.ulysse@gmail.com</a>.</p>
-      <button class="btn btn-primary btn-lg" type="button"  id="toggle_client">C’est parti !</button>
+    <div class="container">
+
+      <div class="jumbotron" id="jumbotron">
+        <h1 class="title">Kazoo 2 .0</h1>
+        <p> Application libre disponible sur <a href="https://github.com/Ealhad/improvsc">github</a>.</p>
+        <p> En cas de probleme ou de retour, vous pouvez envoyer un mail à <a href="mailto:buonomo.ulysse@gmail.com">buonomo.ulysse@gmail.com</a>.</p>
+        <button class="btn btn-primary btn-lg" type="button"  id="toggle_client">C’est parti !</button>
+      </div>
     </div>
     <!--  End of jumbotron  -->
 
@@ -46,19 +56,67 @@
       <form class="form-group" id="teams">
         <h3 class="page-header">Equipes</h3>
         <div class="row">
+
+          <!--  Team 1 -->
           <div class="col-xs-12 col-sm-6">
             <label for="team1_name">Equipe 1</label> <input class="form-control" id="team1_name" placeholder="Nom" type="text">
-            <input type="number" value="0" id="team1_score">
-            <button class="btn btn-default" id="team1_error" type="button">Faute !</button>
+
+            <!-- Score Button -->
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="team1_score_low"><span class="glyphicon glyphicon-minus"></span></button>
+              </span>
+              <input type="number" class="form-control text-center" min="0"  value=0 id="team1_score">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="team1_score_up"><span class="glyphicon glyphicon-plus"></span></button>
+              </span>
+            </div>
+            <!-- End Score Button -->
+
+            <!-- Error Button -->
+            <div class="row" style="margin-top: 4px" id="team1_errors">
+              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team1_error_down"></button></div>
+              <div class="col-xs-2"><div class="circle"></div></div>
+              <div class="col-xs-2"><div class="circle"></div></div>
+              <div class="col-xs-2"><div class="circle"></div></div>
+              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team1_error_up"></button></div>
+            </div>
+            <!-- End Error Button -->
+
           </div>
+          <!-- End Team 1 -->
+
+          <!--  Team 2 -->
           <div class="col-xs-12 col-sm-6">
             <label for="team2_name">Equipe 2</label> <input class="form-control" id="team2_name" placeholder="Nom" type="text">
-            <input type="number" value="0" id="team2_score">
-            <button class="btn btn-default" id="team2_error" type="button">Faute !</button>
+            <!-- Score Button -->
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="team2_score_low"><span class="glyphicon glyphicon-minus"></span></button>
+              </span>
+              <input type="number" class="form-control text-center" min="0"  value=0 id="team2_score">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="team2_score_up"><span class="glyphicon glyphicon-plus"></span></button>
+              </span>
+            </div>
+            <!-- End Score Button -->
+
+            <!-- Error Button -->
+            <div class="row" style="margin-top: 4px" id="team2_errors">
+              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team2_error_down"></button></div>
+              <div class="col-xs-2"><div class="circle"></div></div>
+              <div class="col-xs-2"><div class="circle"></div></div>
+              <div class="col-xs-2"><div class="circle"></div></div>
+              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team2_error_up"></button></div>
+            </div>
+            <!-- End Error Button -->
+
           </div>
+          <!-- End Team 2 -->
+
           <div class="col-xs-12">
             <center>
-              <button class="btn btn-default btn-lg" id='teams_name' type="button">Confirmer</button>
+              <button class="btn btn-default btn-lg confirm-btn" id='teams_name' type="button">Confirmer</button>
             </center>
           </div>
         </div>
@@ -67,7 +125,7 @@
       <form class="form-group" id="impro">
         <h3 class="page-header">Gestion de l’improvisation</h3>
         <div>
-          <label for="theme_title">Theme </label><input class="form-control" id="theme_title" placeholder="Nom" type="text">
+          <label for="theme_title">Thème </label><input class="form-control" id="theme_title" placeholder="Nom" type="text">
         </div>
         <div>
           <label for="category">Catégorie </label><input class="form-control" id="category" placeholder="Nom" type="text">
@@ -90,16 +148,24 @@
             <option value="mixte">mixte</option>
             <option value="comparée">comparée</option>
           </select>
-        </div><button class="btn btn-default" id='impro_name' type="button">Confirmer</button>
+        </div>
+        <div class="text-center btn-confirm">
+          <button class="btn btn-default btn-lg confirm-btn" id='impro_name' type="button">Confirmer</button>
+        </div>
       </form>
       <!-- next form -->
       <form class="form-group" id="impro_from_collection">
         <h3 class="page-header">Improvisations préparées</h3>
-        <div>
-          <input type="text" list="impro_list" id="select_impro">
+        <label for="select_impro">Thème</label>
+        <div class="input-group">
+          <input type="text" class="form-control" list="impro_list" id="select_impro" placeholder="thème de l’improvisation choisie">
           <datalist id="impro_list"></datalist>
-          <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirmer</button>
+          <span class="input-group-btn">
+            <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirmer</button>
+          </span>
         </div>
+        <label for="collection_input"><span class="glyphicon glyphicon-file"></span> Collection</label>
+        <input type="file" accept="application/json" id="collection_input">
       </form>
       <!-- next form -->
       <div id="timers">
@@ -148,8 +214,7 @@
     <script src="js/jquery-2.2.0.min.js"></script>
     <!--  Bootstrap  -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <!--  JS  -->
+    <!--  Project JS  -->
     <script src="js/team.js"></script>
     <script src="js/improvisation.js"></script>
     <script src="js/app.js"></script>
