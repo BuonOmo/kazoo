@@ -19,7 +19,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style_master.css" rel="stylesheet">
 
-    <title>Master</title>
+    <title>Kazoo Control</title>
   </head>
   <body  data-spy="scroll" data-target="#navbar" data-offset="75">
     <!--  Navbar  -->
@@ -70,7 +70,7 @@
           </div>
           <div class="col-xs-12">
             <center>
-              <button class="btn btn-default btn-lg" id='teams_name' type="button">Confirmer</button>
+              <button class="btn btn-default btn-lg confirm-btn" id='teams_name' type="button">Confirmer</button>
             </center>
           </div>
         </div>
@@ -102,16 +102,24 @@
             <option value="mixte">mixte</option>
             <option value="comparée">comparée</option>
           </select>
-        </div><button class="btn btn-default" id='impro_name' type="button">Confirmer</button>
+        </div>
+        <div class="text-center btn-confirm">
+          <button class="btn btn-default btn-lg confirm-btn" id='impro_name' type="button">Confirmer</button>
+        </div>
       </form>
       <!-- next form -->
       <form class="form-group" id="impro_from_collection">
         <h3 class="page-header">Improvisations préparées</h3>
-        <div>
-          <input type="text" list="impro_list" id="select_impro">
+        <label for="select_impro">Theme</label>
+        <div class="input-group">
+          <input type="text" class="form-control" list="impro_list" id="select_impro">
           <datalist id="impro_list"></datalist>
-          <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirmer</button>
+          <span class="input-group-btn">
+            <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirmer</button>
+          </span>
         </div>
+        <label for="collection_input">Collection</label>
+        <input type="file" accept="application/json" id="collection_input">
       </form>
       <!-- next form -->
       <form class="form-group" id="timers">
@@ -140,7 +148,7 @@
     <script src="js/jquery-2.2.0.min.js"></script>
     <!--  Bootstrap  -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
+    <!--  Project JS  -->
     <script src="js/team.js"></script>
     <script src="js/improvisation.js"></script>
     <script src="js/app.js"></script>

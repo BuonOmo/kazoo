@@ -3,12 +3,27 @@
   /**
    * Color of the title and brand :
    * - 581845 for the dark one
+   *   (palette :
+   *     #182559
+   *     #18592C
+   *     #594C18
+   *     #591846
+   *   )
    * - 900C3F for the light one
    * @type color
    ************************/
   --brand-color: #581845;
   font-family: Quicksand;
   --brand-ff:   Calligraffitti; /* TODO choose with Monoton */
+}
+
+.btn-primary {
+  background-color: #273468;
+  border-color:     #3E4B7F;
+}
+.btn-primary:hover {
+  background-color: #182559;
+  border-color:     #273468;
 }
 
 /********************************  Navbar ********************************/
@@ -49,6 +64,6 @@
   min-height: 2000px;
 }
 
-#teams_name {
+.confirm-btn {
   margin-top: 10px;
 }

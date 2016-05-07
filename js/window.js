@@ -19,6 +19,9 @@ var collection;
 function master_add_impro_list()
 {
     var impro_list = document.getElementById('impro_list');
+
+    // clear former content, to avoid reloading the app
+    impro_list.innerHTML = "";
     var newOption;
     for (var i in collection) {
         newOption = document.createElement('option');
@@ -32,11 +35,14 @@ function master_init() {
 
 
     // retrieves collection of improvisation from a json file
-    $.getJSON("js/collection.json", function(data) {
-        collection = data;
-        master_add_impro_list();
-    });
+    $('#collection_input').change( function (event) {
+      var tmppath = URL.createObjectURL(event.target.files[0]);
 
+      $.getJSON(tmppath, function(data) {
+          collection = data;
+          master_add_impro_list();
+      });
+    })
 
     $.get('client.html', function (html) {
         client_window.document.write(html);
