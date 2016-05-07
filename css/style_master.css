@@ -7,6 +7,8 @@
    * @type color
    ************************/
   --brand-color: #581845;
+  font-family: Quicksand;
+  --brand-ff:   Calligraffitti; /* TODO choose with Monoton */
 }
 
 /********************************  Navbar ********************************/
@@ -14,8 +16,9 @@
   font-size: 16px;
 }
 .navbar-brand {
-  font-size: 24px;
-  color: var(--brand-color) !important;
+  font-size:                            24px;
+  font-family: var(--brand-ff)    !important;
+  color:       var(--brand-color) !important;
 }
 #navbar_timer>.btn {
   background-color: var(--brand-color);
@@ -35,7 +38,8 @@
   }
 }
 #jumbotron>.title {
-  color: var(--brand-color) !important;
+  font-family: var(--brand-ff)    !important;
+  color:       var(--brand-color) !important;
 }
 
 /************************** principal container **************************/

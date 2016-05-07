@@ -26,6 +26,7 @@ function master_add_impro_list()
         impro_list.appendChild(newOption);
     }
 }
+
 function master_init() {
     client_window = window.open();
 
@@ -221,7 +222,7 @@ function stopCurrentTimer() {
 function resetCocusTimer() {
     cocus_time = 20;
     $('#navbar_timer_value').html(cocus_time);
-    $('#navbar_timer_button').css('width',"100%");
+    startCocusTimer();
 }
 
 function startCocusTimer() {
@@ -229,19 +230,21 @@ function startCocusTimer() {
     cocus_timer_interval = setInterval(function () {
         timer_cocus_running = true;
         $('#navbar_timer_value').html(--cocus_time);
-        $('#navbar_timer_button').css('width',(cocus_time*5)+"%");
+        if (cocus_time <= 5) {
+          $('#navbar_timer_button')
+            .css( 'background-color',
+                  cocus_time%2 ?
+                                '#182559' :
+                                'var(--brand-color)'
+                );
+        }
         if (cocus_time <= 0) {
             stopCocusTimer();
         }
     }, 1000);
 }
 function toggleCocusTimer() {
-  if (timer_cocus_running) {
-    stopCocusTimer();
-  } else {
-    resetCocusTimer();
-    startCocusTimer();
-  }
+  timer_cocus_running ? stopCocusTimer() : resetCocusTimer();
 }
 
 function stopCocusTimer() {
