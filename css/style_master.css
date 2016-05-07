@@ -17,22 +17,21 @@
   --brand-ff:   Calligraffitti; /* TODO choose with Monoton */
 }
 
-.btn-primary {
+.btn-primary:hover {
   background-color: #182559;
   border-color:     #273468;
 }
-.btn-primary:hover {
+.btn-primary {
   background-color: #273468;
   border-color:     #3E4B7F;
 }
 
 /*
- * Removing spin-button from input
+ * Removing spin-button from input number
  */
 input[type='number'] {
     -moz-appearance:textfield;
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -58,6 +57,7 @@ input::-webkit-inner-spin-button {
 /************************** Homepage / Jumbotron *************************/
 
 #jumbotron {
+  background: rgba(89, 76, 24, 0.2);
   margin:        10px;
 	text-align:  center;
   border-radius: 30px;

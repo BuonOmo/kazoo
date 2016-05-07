@@ -30,7 +30,7 @@
             <li><a href="#window_size">Parametrage</a></li>
           </ul>
           <div class="nav navbar-right" id="navbar_timer">
-            <button class="btn btn-default" id="navbar_timer_button">
+            <button class="btn btn-default" type="button" id="navbar_timer_button">
               <!-- <div class="text">cocus</div> -->
               <strong id="navbar_timer_value">20</strong>
             </button>
@@ -41,11 +41,14 @@
     <!--  End of navbar  -->
 
     <!--  Jumbotron presentation -->
-    <div class="jumbotron" id="jumbotron">
-      <h1 class="title">Kazoo 2 .0</h1>
-      <p> Application libre disponible sur <a href="https://github.com/Ealhad/improvsc">github</a>.</p>
-      <p> En cas de probleme ou de retour, vous pouvez envoyer un mail à <a href="mailto:buonomo.ulysse@gmail.com">buonomo.ulysse@gmail.com</a>.</p>
-      <button class="btn btn-primary btn-lg" type="button"  id="toggle_client">C’est parti !</button>
+    <div class="container">
+
+      <div class="jumbotron" id="jumbotron">
+        <h1 class="title">Kazoo 2 .0</h1>
+        <p> Application libre disponible sur <a href="https://github.com/Ealhad/improvsc">github</a>.</p>
+        <p> En cas de probleme ou de retour, vous pouvez envoyer un mail à <a href="mailto:buonomo.ulysse@gmail.com">buonomo.ulysse@gmail.com</a>.</p>
+        <button class="btn btn-primary btn-lg" type="button"  id="toggle_client">C’est parti !</button>
+      </div>
     </div>
     <!--  End of jumbotron  -->
 
@@ -61,22 +64,22 @@
             <!-- Score Button -->
             <div class="input-group">
               <span class="input-group-btn">
-                <button class="btn btn-primary" id="team1_score_low"><span class="glyphicon glyphicon-minus"></span></button>
+                <button class="btn btn-primary" type="button" id="team1_score_low"><span class="glyphicon glyphicon-minus"></span></button>
               </span>
               <input type="number" class="form-control text-center" min="0"  value=0 id="team1_score">
               <span class="input-group-btn">
-                <button class="btn btn-primary" id="team1_score_up"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-primary" type="button" id="team1_score_up"><span class="glyphicon glyphicon-plus"></span></button>
               </span>
             </div>
             <!-- End Score Button -->
 
             <!-- Error Button -->
             <div class="row" style="margin-top: 4px" id="team1_errors">
-              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" id="team1_error_down"></button></div>
+              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team1_error_down"></button></div>
               <div class="col-xs-2"><div class="circle"></div></div>
               <div class="col-xs-2"><div class="circle"></div></div>
               <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" id="team1_error_up"></button></div>
+              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team1_error_up"></button></div>
             </div>
             <!-- End Error Button -->
 
@@ -89,22 +92,22 @@
             <!-- Score Button -->
             <div class="input-group">
               <span class="input-group-btn">
-                <button class="btn btn-primary" id="team2_score_low"><span class="glyphicon glyphicon-minus"></span></button>
+                <button class="btn btn-primary" type="button" id="team2_score_low"><span class="glyphicon glyphicon-minus"></span></button>
               </span>
               <input type="number" class="form-control text-center" min="0"  value=0 id="team2_score">
               <span class="input-group-btn">
-                <button class="btn btn-primary" id="team2_score_up"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-primary" type="button" id="team2_score_up"><span class="glyphicon glyphicon-plus"></span></button>
               </span>
             </div>
             <!-- End Score Button -->
 
             <!-- Error Button -->
             <div class="row" style="margin-top: 4px" id="team2_errors">
-              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" id="team2_error_down"></button></div>
+              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team2_error_down"></button></div>
               <div class="col-xs-2"><div class="circle"></div></div>
               <div class="col-xs-2"><div class="circle"></div></div>
               <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" id="team2_error_up"></button></div>
+              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team2_error_up"></button></div>
             </div>
             <!-- End Error Button -->
 
