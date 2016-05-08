@@ -163,7 +163,7 @@ function master_init() {
       if (timer_current_running)
           stopCurrentTimer();
       else
-          startCurrentlTimer();
+          startCurrentTimer();
   });
 
   $('#navbar_timer_button').click(toggleCocusTimer);
@@ -220,6 +220,7 @@ function setGlobalTimer() {
     $(client_window.document.body)
             .find('#timer_global')
             .html(convertTime(global_time));
+    $('#timer_global_show').html("Global  — "+convertTime(global_time,false));
 }
 
 function startGlobalTimer() {
@@ -228,6 +229,7 @@ function startGlobalTimer() {
     $(client_window.document.body)
             .find('#timer_global')
             .html(convertTime(--global_time));
+  $('#timer_global_show').html("Global  — "+convertTime(global_time,false));
     if (global_time <= 0) {
         stopGlobalTimer();
     }
@@ -237,16 +239,28 @@ function startGlobalTimer() {
 function stopGlobalTimer() {
   clearInterval(global_timer_interval);
   timer_global_running = false;
+  if (global_time > 0) {
+    $('#timer_global_show').html("Global  — "+convertTime(global_time,false));
+  } else {
+    $('#timer_global_show').html("Global");
+  }
 }
 
-function setCurrentTimer() {
-   var m = parseInt($('#timer_current_m').val())
-   var s = parseInt($('#timer_current_s').val())
-   current_time = m*60 + s;
-   console.log(m, s, current_time)
-   $(client_window.document.body)
-      .find('#timer_current')
-      .html(convertTime(current_time));
+function setCurrentTimer(time) {
+  if (typeof(time) === 'string') {
+    console.log(typeof(time))
+    $('#timer_current_m').val((time-time%60)/60);
+    $('#timer_current_s').val(time%60);
+    current_time = time;
+  } else {
+    var m = parseInt($('#timer_current_m').val());
+    var s = parseInt($('#timer_current_s').val());
+    current_time = m*60 + s;
+  }
+  $(client_window.document.body)
+    .find('#timer_current')
+    .html(convertTime(current_time));
+  $('#timer_current_show').html("Courant — "+convertTime(current_time,false));
 }
 
 function startCurrentTimer() {
@@ -255,6 +269,7 @@ function startCurrentTimer() {
     $(client_window.document.body)
             .find('#timer_current')
             .html(convertTime(--current_time));
+    $('#timer_current_show').html("Courant — "+convertTime(current_time,false));
     if (current_time <= 0) {
         stopCurrentTimer();
     }
@@ -263,6 +278,11 @@ function startCurrentTimer() {
 
 function stopCurrentTimer() {
   clearInterval(current_timer_interval);
+  if (current_time > 0) {
+    $('#timer_current_show').html("Courant — "+convertTime(current_time,false));
+  } else {
+    $('#timer_current_show').html("Courant");
+  }
   timer_current_running = false;
 }
 
@@ -291,14 +311,24 @@ function stopCocusTimer() {
   timer_cocus_running = false;
 }
 
-function convertTime(time) {
+/**
+ * Convert seconds time to human readable time
+ * @param  number time       time in seconds
+ * @param  bool show_zeros   default value true, show unecessary zeros
+ * @return string            format mm:ss
+ */
+function convertTime(time, showZeros) {
+  var zeros   = (typeof(showZeros) === 'boolean') ? showZeros : true;
   var minutes = Math.floor(time / 60);
   var seconds = time % 60;
-  if (minutes < 10) {
+  if (minutes < 10 && zeros) {
       minutes = "0" + minutes;
   }
-  if (seconds < 10) {
+  if (seconds < 10 && (zeros || (!seconds && minutes) )) {
       seconds = "0" + seconds;
   }
-  return minutes + ':' + seconds;
+  if (zeros || minutes) {
+    return minutes + ':' + seconds;
+  }
+  return seconds;
 }
