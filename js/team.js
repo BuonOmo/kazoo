@@ -30,4 +30,9 @@ function Team(dom_name, dom_score, dom_error_circles) {
     this.error = function() {
         this.dom_error_circles.slice(0, ++this.errors).addClass('error');
     };
+
+    this.removeError = function() {
+      this.errors--;
+      this.dom_error_circles[this.errors%3].classList.remove('error');
+    }
 }

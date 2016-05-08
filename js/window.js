@@ -79,6 +79,14 @@ function master_init() {
     team1.error();
   });
 
+  $("#team1_error_down").click(function () {
+    $('#team1_errors').children()[(team1.errors-1)%3 + 1].firstChild.classList.remove("error");
+    team1.removeError();
+  });
+
+  /**
+   * reset on last error.
+   */
   $("#team1_errors>div>.circle:last").on('animationend', function (){
       $('#team1_errors>div>.error').removeClass('error');
   })
@@ -88,6 +96,14 @@ function master_init() {
     team2.error();
   });
 
+  $("#team2_error_down").click(function () {
+    $('#team2_errors').children()[(team2.errors-1)%3 + 1].firstChild.classList.remove("error");
+    team2.removeError();
+  });
+
+  /**
+   * reset on last error.
+   */
   $("#team2_errors>div>.circle:last").on('animationend', function (){
       $('#team2_errors>div>.error').removeClass('error');
   })
