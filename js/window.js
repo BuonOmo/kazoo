@@ -56,33 +56,41 @@ function master_init() {
 
   $('#team1_score_low').click(function () {
     team1.scoreLow();
-    $('#team1_score').html(team1.score);
+    $('#team1_score').val(team1.score);
   });
 
   $('#team1_score_up').click(function () {
     team1.scoreUp();
-    $('#team1_score').html(team1.score);
+    $('#team1_score').val(team1.score);
   });
 
   $('#team2_score_low').click(function () {
     team2.scoreLow();
-    $('#team2_score').html(team2.score);
+    $('#team2_score').val(team2.score);
   });
 
   $('#team2_score_up').click(function () {
     team2.scoreUp();
-    $('#team2_score').html(team2.score);
+    $('#team2_score').val(team2.score);
   });
 
   $('#team1_error_up').click(function () {
+    $('#team1_errors').children()[team1.errors%3+1].firstChild.classList.add('error');
     team1.error();
-    $('#team1_errors').slice(1, team1.errors+1).addClass('error');
   });
 
+  $("#team1_errors>div>.circle:last").on('animationend', function (){
+      $('#team1_errors>div>.error').removeClass('error');
+  })
+
   $('#team2_error_up').click(function () {
+    $('#team2_errors').children()[team2.errors%3+1].firstChild.classList.add('error');
     team2.error();
-    $('#team2_errors').slice(1, team2.errors+1).addClass('error');
   });
+
+  $("#team2_errors>div>.circle:last").on('animationend', function (){
+      $('#team2_errors>div>.error').removeClass('error');
+  })
 
   $('#impro_name').click(function () {
       impro.setTheme($('#theme_title').val());
@@ -91,8 +99,7 @@ function master_init() {
       impro.setNumberOfPlayers($('#number_of_players').val());
   });
 
-  $('#confirm_impro_from_list').click(function ()
-  {
+  $('#confirm_impro_from_list').click(function () {
       var theme = document.getElementById('select_impro').value;
       console.log(theme);
       var i;
