@@ -55,8 +55,11 @@ function master_init() {
   });
 
   $('#team1_score_low').click(function () {
-    team1.scoreLow();
-    $('#team1_score').val(team1.score);
+    if (team1.score > 0)
+    {
+      team1.scoreLow();
+      $('#team1_score').val(team1.score);
+    }
   });
 
   $('#team1_score_up').click(function () {
@@ -65,8 +68,11 @@ function master_init() {
   });
 
   $('#team2_score_low').click(function () {
-    team2.scoreLow();
-    $('#team2_score').val(team2.score);
+    if (team2.score > 0)
+    {
+      team2.scoreLow();
+      $('#team2_score').val(team2.score);
+    }
   });
 
   $('#team2_score_up').click(function () {
@@ -80,14 +86,17 @@ function master_init() {
   });
 
   $("#team1_error_down").click(function () {
-    $('#team1_errors').children()[(team1.errors-1)%3 + 1].firstChild.classList.remove("error");
-    team1.removeError();
+    if (team1.errors%3) {
+      team1.removeError();
+      $('#team1_errors').children()[team1.errors%3 + 1].firstChild.classList.remove("error");
+    }
   });
 
   /**
    * reset on last error.
    */
   $("#team1_errors>div>.circle:last").on('animationend', function (){
+      $('#team2_score').val(team2.score+1);
       $('#team1_errors>div>.error').removeClass('error');
   })
 
@@ -97,14 +106,17 @@ function master_init() {
   });
 
   $("#team2_error_down").click(function () {
-    $('#team2_errors').children()[(team2.errors-1)%3 + 1].firstChild.classList.remove("error");
-    team2.removeError();
+    if (team2.errors%3) {
+      team2.removeError();
+      $('#team2_errors').children()[team2.errors%3 + 1].firstChild.classList.remove("error");
+    }
   });
 
   /**
    * reset on last error.
    */
   $("#team2_errors>div>.circle:last").on('animationend', function (){
+      $('#team1_score').val(team1.score+1);
       $('#team2_errors>div>.error').removeClass('error');
   })
 

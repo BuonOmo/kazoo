@@ -89,6 +89,7 @@
           <!--  Team 2 -->
           <div class="col-xs-12 col-sm-6">
             <label for="team2_name">Equipe 2</label> <input class="form-control" id="team2_name" placeholder="Nom" type="text">
+
             <!-- Score Button -->
             <div class="input-group">
               <span class="input-group-btn">
@@ -140,14 +141,20 @@
             <option value="2 joueurs">
             <option value="3 joueurs">
             <option value="4 joueurs">
+            <option value="1 joueur par équipe">
+            <option value="2 joueurs par équipe">
+            <option value="3 joueurs par équipe">
+            <option value="4 joueurs par équipe">
           </datalist>
         </div>
         <div>
           <label for="impro_type">Type d’improvisation </label>
-          <select class="form-control" id="impro_type">
-            <option value="mixte">mixte</option>
-            <option value="comparée">comparée</option>
-          </select>
+          <input class="form-control" type="text" list="impro_type_value" id="impro_type">
+          <datalist id="impro_type_value">
+            <option value="mixte">
+            <option value="comparée">
+            <option value="fusillade">
+          </datalist>
         </div>
         <div class="text-center btn-confirm">
           <button class="btn btn-default btn-lg confirm-btn" id='impro_name' type="button">Confirmer</button>
