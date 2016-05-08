@@ -54,6 +54,24 @@ input::-webkit-inner-spin-button {
   font-size:                      20px;
   text-align:                   center;
 }
+#navbar_timer>.btn:hover {
+  animation: tossing 2s infinite;
+  animation-delay: 1s;
+}
+@keyframes tossing {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(-4deg);
+	}
+	75% {
+		transform: rotate(4deg);
+	}
+  100% {
+    transform: rotate(0deg);
+  }
+}
 /************************** Homepage / Jumbotron *************************/
 
 #jumbotron {
@@ -61,9 +79,6 @@ input::-webkit-inner-spin-button {
   margin:        10px;
 	text-align:  center;
   border-radius: 30px;
-  .title {
-    margin-bottom: 20px;
-  }
 }
 #jumbotron>.title {
   font-family: var(--brand-ff)    !important;
@@ -76,7 +91,10 @@ input::-webkit-inner-spin-button {
   padding-top:  70px;
   min-height: 2000px;
 }
-
+#team1_score,#team2_score {
+  font-weight: bold;
+  font-size: 18px;
+}
 .circle {
     margin-top:        3px;
     width:            30px;
@@ -88,7 +106,7 @@ input::-webkit-inner-spin-button {
 
 .circle.error {
     background: #333;
-    animation: blink 0.2s alternate 5;fir
+    animation: blink 0.2s alternate 3;fir
 }
 
 @keyframes blink {
@@ -111,4 +129,49 @@ label {
 
 input {
   margin-bottom: 4px;
+}
+
+/***************************  A Few Animations ***************************/
+
+#jumbotron {
+	animation-name: slideExpandUp;
+	-webkit-animation-name: slideExpandUp;
+
+	animation-duration: 1.6s;
+	-webkit-animation-duration: 1.6s;
+
+	animation-timing-function: ease-out;
+	-webkit-animation-timing-function: ease -out;
+
+	visibility: visible !important;
+}
+
+@keyframes slideExpandUp {
+	0% {
+		transform: translateY(100%) scaleX(0.5);
+	}
+	30%{
+		transform: translateY(-8%) scaleX(0.5);
+	}
+	40%{
+		transform: translateY(2%) scaleX(0.5);
+	}
+	50%{
+		transform: translateY(0%) scaleX(1.1);
+	}
+	60%{
+		transform: translateY(0%) scaleX(0.9);
+	}
+	70% {
+		transform: translateY(0%) scaleX(1.05);
+	}
+	80%{
+		transform: translateY(0%) scaleX(0.95);
+	}
+	90% {
+		transform: translateY(0%) scaleX(1.02);
+	}
+	100%{
+		transform: translateY(0%) scaleX(1);
+	}
 }
