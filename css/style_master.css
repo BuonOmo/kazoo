@@ -14,7 +14,7 @@
    ************************/
   --brand-color: #581845;
   font-family: Quicksand;
-  --brand-ff:   Calligraffitti; /* TODO choose with Monoton */
+  --brand-ff:   Calligraffitti;
 }
 
 .btn-primary:hover {
