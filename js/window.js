@@ -15,6 +15,7 @@ var timer_cocus_running = false;
 var cocus_timer_interval;
 var team1, team2;
 var collection;
+var preview_interval;
 
 function master_add_impro_list()
 {
@@ -53,7 +54,7 @@ function master_init() {
     team1.setName($('#team1_name').val());
     team2.setName($('#team2_name').val());
   });
-
+  /*
   $('#teams_mirror').click(function () {
       var mirror = true;
       return function(e) {
@@ -64,7 +65,7 @@ function master_init() {
         }
         mirror = !mirror;
       };
-  }());
+  }());*/
 
   $('#team1_score_low').click(function () {
     if (team1.score > 0)
@@ -332,6 +333,12 @@ function toggleCocusTimer() {
 function stopCocusTimer() {
   clearInterval(cocus_timer_interval);
   timer_cocus_running = false;
+}
+
+function togglePreview() {
+  preview_interval = setInterval(function () {
+    $('#preview').html($(client_window.document.body).find('#content')[0]);
+  },1000);
 }
 
 /**
