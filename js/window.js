@@ -193,10 +193,14 @@ function master_init() {
   $('#height_slider').change(function () {
       $(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
   });
+  $('#set_mirror_mode').click(function () {
+    var order = this.checked ? 3 : 1;
+    $(client_window.document.body).find('#team1').css('order',order);
+    $(client_window.document.body).find('#team2').css('order',3 - order);
+  });
 }
 
 function client_init() {
-
   team1 = new Team(
           $(client_window.document.body).find('#team1_name'),
           $(client_window.document.body).find('#team1_score'),
