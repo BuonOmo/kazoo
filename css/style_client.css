@@ -24,6 +24,22 @@ body {
     box-sizing: border-box;
 }
 
+/*
+        MIRROR MODE
+ */
+#team1 {
+  order: 3
+}
+#timer {
+  order: 2
+}
+#team2 {
+  order: 1
+}
+#theme {
+  order: 4
+}
+
 #team1, #team2 {
     width: 25%;
     border: 4px solid white;

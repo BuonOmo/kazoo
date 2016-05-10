@@ -23,7 +23,7 @@
             <li><a href="#impro">Gestion</a></li>
             <li><a href="#impro_from_collection">Selection</a></li>
             <li><a href="#timers">Timer</a></li>
-            <li><a href="#window_size">Parametrage</a></li>
+            <li><a href="#parameters">Parametrage</a></li>
           </ul>
           <div class="nav navbar-right" id="navbar_timer">
             <button class="btn btn-default" type="button" id="navbar_timer_button">
@@ -206,10 +206,15 @@
       </div>
 
       <!-- next form -->
-      <form class="form-group" id="window_size">
-        <h3 class="page-header">Taille de la fenêtre</h3>
-        <label for="width_slider">Largeur</label><input type="range" id="width_slider" min="40" max="100" value="80"/><br>
+      <form class="form-group" id="parameters">
+        <h3 class="page-header">Paramètres</h3>
+        <label for="width_slider">Largeur</label><input type="range" id="width_slider" min="40" max="100" value="80"/>
         <label for="height_slider">Hauteur</label><input type="range" id="height_slider" min="40" max="100" value="80"/>
+        <div class="checkbox">
+          <label for="set_mirror_mode">
+            <input type="checkbox" checked id="set_mirror_mode"> Activer le mode mirroir
+          </label>
+        </div>
       </form>
     </div>
 
