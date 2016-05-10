@@ -15,6 +15,7 @@ var timer_cocus_running = false;
 var cocus_timer_interval;
 var team1, team2;
 var collection;
+var mirror = false;
 
 function master_add_impro_list()
 {
@@ -53,6 +54,12 @@ function master_init() {
     team1.setName($('#team1_name').val());
     team2.setName($('#team2_name').val());
   });
+
+    $('#teams_mirror').click(function () {
+        if(mirror) $('#team1').insertAfter('#team2')
+        else $('#team2').insertAfter('#team1')
+        mirror = !mirror
+    });
 
   $('#team1_score_low').click(function () {
     if (team1.score > 0)
@@ -119,6 +126,13 @@ function master_init() {
       $('#team1_score').val(team1.score+1);
       $('#team2_errors>div>.error').removeClass('error');
   })
+
+    $('#impro_reset').click(function () {
+        $('#theme_title').val('');
+        $('#category').val('');
+        $('#impro_type').val('');
+        $('#number_of_players').val('');
+    });
 
   $('#impro_name').click(function () {
       impro.setTheme($('#theme_title').val());
