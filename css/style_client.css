@@ -24,13 +24,6 @@ body {
     box-sizing: border-box;
 }
 
-#timer {
-    width: 40%;
-    border: 4px solid white;
-    padding: 5px;
-    box-sizing: border-box;
-}
-
 #team1, #team2 {
     width: 25%;
     border: 4px solid white;
@@ -39,6 +32,12 @@ body {
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 10px;
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #theme {
@@ -54,6 +53,10 @@ body {
 }
 
 #theme_title {
+    width: 90%;
+}
+
+#timer_current {
     width: 90%;
 }
 
