@@ -120,6 +120,13 @@ function master_init() {
       $('#team2_errors>div>.error').removeClass('error');
   })
 
+    $('#impro_reset').click(function () {
+        $('#theme_title').val('');
+        $('#category').val('');
+        $('#impro_type').val('');
+        $('#number_of_players').val('');
+    });
+
   $('#impro_name').click(function () {
       impro.setTheme($('#theme_title').val());
       impro.setCategory($('#category').val());
