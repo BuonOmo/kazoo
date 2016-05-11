@@ -53,8 +53,10 @@ function master_init() {
   $('#teams_confirm').click(function () {
     team1.setName($('#team1_name').val());
     team2.setName($('#team2_name').val());
-    team1.setBackground($('#team1_color').val());
-    team2.setBackground($('#team2_color').val());
+    team1.setBackground($('#team1_color_bg').val());
+    team1.setBorder($('#team1_color_border').val());
+    team2.setBackground($('#team2_color_bg').val());
+    team2.setBorder($('#team2_color_border').val());
   });
   /*
   $('#teams_mirror').click(function () {

@@ -19,6 +19,12 @@ function Team(dom_name, dom_score, dom_error_circles) {
       this.dom_score.css('background-color',color);
     }
 
+    this.setBorder = function(color) {
+      console.log(color);
+      this.dom_score.css('border','4px solid'+color);
+      this.dom_score.css('color',color);
+    }
+
     this.scoreUp = function() {
         this.dom_score.html(++this.score);
     };
