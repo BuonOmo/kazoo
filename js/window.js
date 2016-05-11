@@ -163,11 +163,14 @@ function master_init() {
     impro.setCategory       (collection[i].category);
     impro.setType           (collection[i].impro_type);
     impro.setNumberOfPlayers(collection[i].number_of_players);
-    setCurrentTimer         (collection[i].duration);
     $('#number_of_players').val(collection[i].number_of_players);
     $('#theme_title').val(collection[i].theme);
     $('#category').val(collection[i].category);
     $('#impro_type').val(collection[i].impro_type);
+    $('#timer_current_m').val(Math.floor(collection[i].duration/60));
+    $('#timer_current_s').val(collection[i].duration%60);
+    setCurrentTimer(collection[i].duration);
+    //$('#timer_current_show').html("Courant — "+convertTime(current_time,false));
   });
 
   $('#timer_global_set').click(setGlobalTimer);
@@ -276,7 +279,6 @@ function stopGlobalTimer() {
 
 function setCurrentTimer(time) {
   if (typeof(time) === 'string') {
-    console.log(typeof(time))
     $('#timer_current_m').val((time-time%60)/60);
     $('#timer_current_s').val(time%60);
     current_time = time;
@@ -359,7 +361,7 @@ function convertTime(time, showZeros) {
   if (minutes < 10 && (zeros || hours)) {
       minutes = "0" + minutes;
   }
-  if (seconds < 10 && (zeros || (!seconds && minutes) || hours )) {
+  if (seconds < 10 && (zeros || minutes || hours )) {
       seconds = "0" + seconds;
   }
   if (hours) {
