@@ -2,14 +2,13 @@
  * team object
  */
 
-function Team(dom_name, dom_score, dom_error_circles, dom_bg_color) {
+function Team(dom_name, dom_score, dom_error_circles) {
     this.score = 0;
     this.errors = 0;
 
     this.dom_name = dom_name;
     this.dom_score = dom_score;
     this.dom_error_circles = dom_error_circles;
-    this.dom_bg_color = dom_bg_color;
 
     this.setName = function(name) {
         this.dom_name.html(name);
@@ -17,7 +16,7 @@ function Team(dom_name, dom_score, dom_error_circles, dom_bg_color) {
 
     this.setBackground = function(color) {
       console.log(color);
-      this.dom_bg_color.css('background-color',color);
+      this.dom_score.css('background-color',color);
     }
 
     this.scoreUp = function() {

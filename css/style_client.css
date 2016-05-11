@@ -1,12 +1,12 @@
 * {
     box-sizing: border-box;
-    font-family: serif; /* TODO does it work ? */
+    font-family: arial; /* TODO add dynamic font */
 }
 
 body {
     background-color: black;
     color: white;
-    height: 98vh;
+    height: 97vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    align-content: space-around;
+    /*align-content: space-around;*/
     border: 4px solid white;
     border-radius: 15px;
     padding: 10px;
@@ -40,19 +40,25 @@ body {
   order: 4
 }
 
-#team1, #team2 {
-    width: 25%;
-    border: 4px solid white;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 10px;
+#team1_score,#team2_score {
+  padding-top: 12%;
+  margin-bottom: 1vh;
+  font-size: 20vh;
+  font-weight: bold;
+  height: 28vh;
+  width: 28vh;
+  border: 4px solid white;
+  border-radius: 15px;
+}
+
+#team1_name,#team2_name {
+  margin-bottom: 1vh;
+  font-size: 1.5em;
 }
 
 #theme {
-    margin-top: 10px;
-    width: 80%;
+    margin-top: 3vh;
+    width: 85%;
     border: 4px solid white;
     border-radius: 15px;
     padding: 5px;
@@ -75,13 +81,26 @@ body {
     justify-content: space-around;
 }
 
+#timer_current {
+  margin-top: 9vh;
+  font-size: 3.5em;
+  background: #333;
+  border: 4px solid white;
+  border-radius: 15px;
+  padding: 2vh;
+}
+
+#timer_global {
+  margin-top: 3vh;
+  font-size:2em;
+}
 .circle {
-    width: 30px;
-    height: 30px;
+    width: 8vh;
+    height: 8vh;
     border-radius: 50%;
     background: black;
-    border: 2px solid white;
-    margin-bottom: 4px;
+    border: 4px solid white;
+    margin-top: 0vh;
 }
 
 @keyframes blink {

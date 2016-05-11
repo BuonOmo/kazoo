@@ -170,7 +170,7 @@ function master_init() {
     $('#timer_current_m').val(Math.floor(collection[i].duration/60));
     $('#timer_current_s').val(collection[i].duration%60);
     setCurrentTimer(collection[i].duration);
-    //$('#timer_current_show').html("Courant — "+convertTime(current_time,false));
+    //$('#timer_current_show').html("Durée — "+convertTime(current_time,false));
   });
 
   $('#timer_global_set').click(setGlobalTimer);
@@ -194,10 +194,10 @@ function master_init() {
   $('#navbar_timer_button').click(toggleCocusTimer);
 
   $('#width_slider').change(function () {
-      $(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
+      //$(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
   });
   $('#height_slider').change(function () {
-      $(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
+      //$(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
   });
   $('#set_mirror_mode').click(function () {
     var order = this.checked ? 3 : 1;
@@ -210,14 +210,12 @@ function client_init() {
   team1 = new Team(
           $(client_window.document.body).find('#team1_name'),
           $(client_window.document.body).find('#team1_score'),
-          $(client_window.document.body).find('#team1_errors .circle'),
-          $(client_window.document.body).find('#team1')
+          $(client_window.document.body).find('#team1_errors .circle')
           );
   team2 = new Team(
           $(client_window.document.body).find('#team2_name'),
           $(client_window.document.body).find('#team2_score'),
-          $(client_window.document.body).find('#team2_errors .circle'),
-          $(client_window.document.body).find('#team2')
+          $(client_window.document.body).find('#team2_errors .circle')
           );
 
   impro = new Impro(
@@ -290,7 +288,7 @@ function setCurrentTimer(time) {
   $(client_window.document.body)
     .find('#timer_current')
     .html(convertTime(current_time));
-  $('#timer_current_show').html("Courant — "+convertTime(current_time,false));
+  $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
 }
 
 function startCurrentTimer() {
@@ -299,7 +297,7 @@ function startCurrentTimer() {
     $(client_window.document.body)
             .find('#timer_current')
             .html(convertTime(--current_time));
-    $('#timer_current_show').html("Courant — "+convertTime(current_time,false));
+    $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
     if (current_time <= 0) {
         stopCurrentTimer();
     }
@@ -309,7 +307,7 @@ function startCurrentTimer() {
 function stopCurrentTimer() {
   clearInterval(current_timer_interval);
   if (current_time > 0) {
-    $('#timer_current_show').html("Courant — "+convertTime(current_time,false));
+    $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
   } else {
     $('#timer_current_show').html("Courant");
   }
