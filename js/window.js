@@ -150,24 +150,24 @@ function master_init() {
   });
 
   $('#confirm_impro_from_list').click(function () {
-      var theme = document.getElementById('select_impro').value;
-      console.log(theme);
-      var i;
-      for (i = 0; i < collection.length; i++) {
-          if (collection[i].theme == theme)
-          {
-              break;
-          }
-      }
-      impro.setTheme          (collection[i].theme);
-      impro.setCategory       (collection[i].category);
-      impro.setType           (collection[i].impro_type);
-      impro.setNumberOfPlayers(collection[i].number_of_players);
-      setCurrentTimer         (collection[i].duration);
-      document.getElementById('number_of_players').value = collection[i].number_of_players;
-      document.getElementById('theme_title').value       = collection[i].theme;
-      document.getElementById('category').value          = collection[i].category;
-      document.getElementById('impro_type').value        = collection[i].impro_type;
+    var theme = document.getElementById('select_impro').value;
+    console.log(theme);
+    var i;
+    for (i = 0; i < collection.length; i++) {
+        if (collection[i].theme == theme)
+        {
+            break;
+        }
+    }
+    impro.setTheme          (collection[i].theme);
+    impro.setCategory       (collection[i].category);
+    impro.setType           (collection[i].impro_type);
+    impro.setNumberOfPlayers(collection[i].number_of_players);
+    setCurrentTimer         (collection[i].duration);
+    $('#number_of_players').val(collection[i].number_of_players);
+    $('#theme_title').val(collection[i].theme);
+    $('#category').val(collection[i].category);
+    $('#impro_type').val(collection[i].impro_type);
   });
 
   $('#timer_global_set').click(setGlobalTimer);
