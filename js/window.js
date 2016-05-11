@@ -4,7 +4,7 @@
 
 var client_window;
 
-var global_time = 60*60; // in seconds
+var global_time = 90*60; // in seconds
 var timer_global_running = false;
 var global_timer_interval;
 var current_time = 5*60;
@@ -353,13 +353,17 @@ function togglePreview() {
  */
 function convertTime(time, showZeros) {
   var zeros   = (typeof(showZeros) === 'boolean') ? showZeros : true;
-  var minutes = Math.floor(time / 60);
+  var hours   = Math.floor(time / 3600);
+  var minutes = Math.floor(time / 60) - 60*hours;
   var seconds = time % 60;
-  if (minutes < 10 && zeros) {
+  if (minutes < 10 && (zeros || hours)) {
       minutes = "0" + minutes;
   }
-  if (seconds < 10 && (zeros || (!seconds && minutes) )) {
+  if (seconds < 10 && (zeros || (!seconds && minutes) || hours )) {
       seconds = "0" + seconds;
+  }
+  if (hours) {
+    return hours + ':' + minutes + ':' + seconds;
   }
   if (zeros || minutes) {
     return minutes + ':' + seconds;
