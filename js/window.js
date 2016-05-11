@@ -4,10 +4,10 @@
 
 var client_window;
 
-var global_time; // in seconds
+var global_time = 60*60; // in seconds
 var timer_global_running = false;
 var global_timer_interval;
-var current_time;
+var current_time = 5*60;
 var timer_current_running = false;
 var current_timer_interval;
 var cocus_time;
