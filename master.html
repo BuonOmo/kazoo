@@ -163,6 +163,21 @@
             <option value="fusillade">
           </datalist>
         </div>
+        <div>
+          <h4 id="timer_current_show">Courant — 5:00</h4>
+          <div class="form-inline">
+            <div class="input-group col-xs-2 col-lg-1">
+              <input class="form-control" id="timer_current_m" type="number" min="0" max="59" step="1" value="5">
+              <div class="input-group-addon">m</div>
+            </div>
+            <div class="input-group col-xs-2 col-lg-1">
+              <input class="form-control" id="timer_current_s" type="number" min="0" max="59" step="1" value="0">
+              <div class="input-group-addon">s</div>
+            </div>
+            <button class="btn btn-default" id="timer_current_set" type="button">Régler</button>
+            <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
+          </div>
+        </div>
         <div class="text-center btn-confirm">
           <button class="btn btn-default btn-lg confirm-btn" id="impro_reset" type="button">Reset</button>
           <button class="btn btn-default btn-lg confirm-btn" id="impro_name" type="button">Confirmer</button>
@@ -184,7 +199,7 @@
       </form>
       <!-- next form -->
       <div id="timers">
-        <h3 class="page-header">Timers</h3>
+        <h3 class="page-header">Timer</h3>
          <h4 id="timer_global_show">Global — 1:30:00</h4>
          <form class="form-inline">
             <div class="input-group col-xs-2 col-lg-1">
@@ -201,19 +216,6 @@
             </div>
             <button class="btn btn-default" id="timer_global_set" type="button">Régler</button>
             <button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
-         </form>
-         <h4 id="timer_current_show">Courant — 5:00</h4>
-         <form class="form-inline">
-            <div class="input-group col-xs-2 col-lg-1">
-               <input class="form-control" id="timer_current_m" type="number" min="0" max="59" step="1" value="5">
-               <div class="input-group-addon">m</div>
-            </div>
-            <div class="input-group col-xs-2 col-lg-1">
-               <input class="form-control" id="timer_current_s" type="number" min="0" max="59" step="1" value="0">
-               <div class="input-group-addon">s</div>
-            </div>
-            <button class="btn btn-default" id="timer_current_set" type="button">Régler</button>
-            <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
          </form>
       </div>
 
