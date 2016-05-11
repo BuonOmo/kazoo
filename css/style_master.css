@@ -110,7 +110,7 @@ input::-webkit-inner-spin-button {
 
 .circle.error {
     background: #333;
-    animation: blink 0.2s alternate 3;fir
+    animation: blink 0.2s alternate 3;
 }
 
 @keyframes blink {
@@ -145,7 +145,7 @@ input {
 	-webkit-animation-duration: 1.6s;
 
 	animation-timing-function: ease-out;
-	-webkit-animation-timing-function: ease -out;
+	-webkit-animation-timing-function: ease-out;
 
 	visibility: visible !important;
 }
