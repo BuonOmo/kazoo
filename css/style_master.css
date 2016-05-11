@@ -91,6 +91,10 @@ input::-webkit-inner-spin-button {
   padding-top:  70px;
   min-height: 2000px;
 }
+#team1_color,#team2_color {
+  margin-left: 10%;
+  min-width: 100px;
+}
 #team1_score,#team2_score {
   font-weight: bold;
   font-size: 18px;

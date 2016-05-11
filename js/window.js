@@ -50,9 +50,11 @@ function master_init() {
       client_init(client_window);
   }, 'html');
 
-  $('#teams_name').click(function () {
+  $('#teams_confirm').click(function () {
     team1.setName($('#team1_name').val());
     team2.setName($('#team2_name').val());
+    team1.setBackground($('#team1_color').val());
+    team2.setBackground($('#team2_color').val());
   });
   /*
   $('#teams_mirror').click(function () {
@@ -205,12 +207,14 @@ function client_init() {
   team1 = new Team(
           $(client_window.document.body).find('#team1_name'),
           $(client_window.document.body).find('#team1_score'),
-          $(client_window.document.body).find('#team1_errors .circle')
+          $(client_window.document.body).find('#team1_errors .circle'),
+          $(client_window.document.body).find('#team1')
           );
   team2 = new Team(
           $(client_window.document.body).find('#team2_name'),
           $(client_window.document.body).find('#team2_score'),
-          $(client_window.document.body).find('#team2_errors .circle')
+          $(client_window.document.body).find('#team2_errors .circle'),
+          $(client_window.document.body).find('#team2')
           );
 
   impro = new Impro(

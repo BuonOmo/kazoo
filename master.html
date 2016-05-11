@@ -57,7 +57,11 @@
 
           <!--  Team 1 -->
           <div class="col-xs-12 col-sm-6" id="team1">
-            <label for="team1_name">Equipe 1</label> <input class="form-control" id="team1_name" placeholder="Nom" type="text">
+            <div class="form-inline">
+              <label for="team1_color">Equipe 1</label>
+              <input type="color" class="form-control" id="team1_color">
+            </div>
+            <input class="form-control" id="team1_name" placeholder="Nom" type="text">
 
             <!-- Score Button -->
             <div class="input-group">
@@ -86,7 +90,11 @@
 
           <!--  Team 2 -->
           <div class="col-xs-12 col-sm-6" id="team2">
-            <label for="team2_name">Equipe 2</label> <input class="form-control" id="team2_name" placeholder="Nom" type="text">
+            <div class="form-inline">
+              <label for="team2_color">Equipe 2</label>
+              <input type="color" class="form-control" id="team2_color">
+            </div>
+            <input class="form-control" id="team2_name" placeholder="Nom" type="text">
 
             <!-- Score Button -->
             <div class="input-group">
@@ -117,7 +125,7 @@
             <!-- <button class="btn btn-default btn-lg confirm-btn" id='teams_mirror' type="button">
               <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Retourner !
             </button> -->
-            <button class="btn btn-default btn-lg confirm-btn" id='teams_name' type="button">Confirmer</button>
+            <button class="btn btn-default btn-lg confirm-btn" id='teams_confirm' type="button">Confirmer</button>
           </div>
         </div>
       </form>
