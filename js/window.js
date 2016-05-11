@@ -204,6 +204,20 @@ function master_init() {
     $(client_window.document.body).find('#team1').css('order',order);
     $(client_window.document.body).find('#team2').css('order',3 - order);
   });
+  $('#set_preview').click(function () {
+    if (this.checked) {
+      preview_interval = setInterval(function () {
+        html2canvas(client_window.document.body, {
+          onrendered: function (canvas) {
+            $('#preview').html(canvas);
+          }
+        });
+      },1000);
+    } else {
+      clearInterval(preview_interval);
+      $('#preview').html("Cochez la prévisualisation dans les paramètres");
+    }
+  })
 }
 
 function client_init() {
