@@ -30,7 +30,7 @@ body {
 #team1 {
   order: 3
 }
-#timer {
+#timers {
   order: 2
 }
 #team2 {
@@ -50,12 +50,6 @@ body {
     margin-bottom: 10px;
 }
 
-#timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #theme {
     margin-top: 10px;
     width: 80%;
@@ -69,10 +63,6 @@ body {
 }
 
 #theme_title {
-    width: 90%;
-}
-
-#timer_current {
     width: 90%;
 }
 
