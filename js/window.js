@@ -34,7 +34,6 @@ function master_add_impro_list()
 function master_init() {
   client_window = window.open();
 
-
   // retrieves collection of improvisation from a json file
   $('#collection_input').change( function (event) {
     var tmppath = URL.createObjectURL(event.target.files[0]);

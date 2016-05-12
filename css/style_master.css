@@ -37,6 +37,58 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
+/******************************** Sidebar ********************************/
+#wrapper {
+  padding-left: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {;
+  margin-left: -250px;
+  left: 250px;
+  width: 250px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+  background-color: #f8f8f8;
+  border-right: 1px solid #e7e7e7;
+}
+.nav>li.active {
+  color: #555;
+  background-color: #e7e7e7;
+}
+.nav>li:hover {
+  color: #555;
+}
+.nav>li>a {
+  color: #777;
+}
+
+#wrapper.active {
+  padding-left: 0;
+}
+
+#wrapper.active #sidebar-wrapper {
+  left: 0;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 
 /********************************  Navbar ********************************/
 #navbar {
@@ -88,7 +140,6 @@ input::-webkit-inner-spin-button {
 /************************** principal container **************************/
 #client_controls {
   position: relative;
-  padding-top:  70px;
   min-height: 2000px;
 }
 .color {

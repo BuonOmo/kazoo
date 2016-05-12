@@ -12,31 +12,7 @@
 
     <title>Kazoo Master</title>
   </head>
-  <body  data-spy="scroll" data-target="#navbar" data-offset="75">
-    <!--  Navbar  -->
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbar" hidden>
-      <div class="container">
-      <div class="navbar-header"><a href="master.html" class="navbar-brand">Kazoo</a></div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#visuel">Visuel</a></li>
-            <li><a href="#teams">Equipes</a></li>
-            <li><a href="#impro">Gestion</a></li>
-            <li><a href="#impro_from_collection">Selection</a></li>
-            <li><a href="#timers">Timer</a></li>
-            <li><a href="#parameters">Parametrage</a></li>
-          </ul>
-          <div class="nav navbar-right" id="navbar_timer">
-            <button class="btn btn-default" type="button" id="navbar_timer_button">
-              <!-- <div class="text">cocus</div> -->
-              <strong id="navbar_timer_value">20</strong>
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!--  End of navbar  -->
-
+  <body>
     <!--  Jumbotron presentation -->
     <div class="container">
       <div class="jumbotron" id="jumbotron">
@@ -47,217 +23,241 @@
       </div>
     </div>
     <!--  End of jumbotron  -->
-
-    <div id="client_controls" class="container" hidden>
-      <h3 class="page-header" id="visuel">Visuel</h3>
-      <div id="preview">Cochez la prévisualisation dans les paramètres</div>
-      <!-- <button type="button" class="btn btn-primary btn-lg" id="preview"></button>
-      <div class="modal fade" id="preview_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body" id="preview_modal_body">
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <form class="form-group" id="teams">
-        <h3 class="page-header">Equipes</h3>
-        <div class="row">
-
-          <!--  Team 1 -->
-          <div class="col-xs-12 col-sm-6" id="team1">
-            <div class="form-inline">
-              <label for="team1_color_bg">Equipe 1</label>
-              <input type="color" class="form-control color" id="team1_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
-              <input type="color" class="form-control color" id="team1_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
-            </div>
-            <input class="form-control" id="team1_name" placeholder="Nom" type="text">
-
-            <!-- Score Button -->
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="team1_score_low"><span class="glyphicon glyphicon-minus"></span></button>
-              </span>
-              <input type="number" class="form-control text-center" min="0"  value="0" id="team1_score">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="team1_score_up"><span class="glyphicon glyphicon-plus"></span></button>
-              </span>
-            </div>
-            <!-- End Score Button -->
-
-            <!-- Error Button -->
-            <div class="row" style="margin-top: 4px" id="team1_errors">
-              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team1_error_down"></button></div>
-              <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team1_error_up"></button></div>
-            </div>
-            <!-- End Error Button -->
-
-          </div>
-          <!-- End Team 1 -->
-
-          <!--  Team 2 -->
-          <div class="col-xs-12 col-sm-6" id="team2">
-            <div class="form-inline">
-              <label for="team2_color_bg">Equipe 2</label>
-              <input type="color" class="form-control color" id="team2_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
-              <input type="color" class="form-control color" id="team2_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
-            </div>
-            <input class="form-control" id="team2_name" placeholder="Nom" type="text">
-
-            <!-- Score Button -->
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="team2_score_low"><span class="glyphicon glyphicon-minus"></span></button>
-              </span>
-              <input type="number" class="form-control text-center" min="0"  value="0" id="team2_score">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="team2_score_up"><span class="glyphicon glyphicon-plus"></span></button>
-              </span>
-            </div>
-            <!-- End Score Button -->
-
-            <!-- Error Button -->
-            <div class="row" style="margin-top: 4px" id="team2_errors">
-              <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team2_error_down"></button></div>
-              <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><div class="circle"></div></div>
-              <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team2_error_up"></button></div>
-            </div>
-            <!-- End Error Button -->
-
-          </div>
-          <!-- End Team 2 -->
-
-          <div class="col-xs-12 text-center">
-            <!-- <button class="btn btn-default btn-lg confirm-btn" id='teams_mirror' type="button">
-              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Retourner !
-            </button> -->
-            <button class="btn btn-default btn-lg confirm-btn" id='teams_confirm' type="button">Confirmer</button>
-          </div>
-        </div>
-      </form>
-      <!-- next form -->
-      <form class="form-group" id="impro">
-        <h3 class="page-header">Gestion de l’improvisation</h3>
-        <div>
-          <label for="theme_title">Thème </label><input class="form-control" id="theme_title" placeholder="Nom" type="text">
-        </div>
-        <div>
-          <label for="category">Catégorie </label><input class="form-control" id="category" placeholder="Nom" type="text">
-        </div>
-        <div>
-          <label for="number_of_players">Nombre de joueurs </label>
-          <input class="form-control" type="text" list="number_of_players_value" id="number_of_players">
-          <datalist id="number_of_players_value">
-            <option value="illimité">
-            <option value="tous">
-            <option value="1 joueur">
-            <option value="2 joueurs">
-            <option value="3 joueurs">
-            <option value="4 joueurs">
-            <option value="1 joueur par équipe">
-            <option value="2 joueurs par équipe">
-            <option value="3 joueurs par équipe">
-            <option value="4 joueurs par équipe">
-          </datalist>
-        </div>
-        <div>
-          <label for="impro_type">Type d’improvisation </label>
-          <input class="form-control" type="text" list="impro_type_value" id="impro_type">
-          <datalist id="impro_type_value">
-            <option value="mixte">
-            <option value="comparée">
-            <option value="fusillade">
-          </datalist>
-        </div>
-        <div>
-          <label id="timer_current_show">Durée — 5:00</label>
-          <div class="form-inline">
-            <div class="input-group col-xs-2 col-lg-1">
-              <input class="form-control" id="timer_current_m" type="number" min="0" max="59" step="1" value="5">
-              <div class="input-group-addon">m</div>
-            </div>
-            <div class="input-group col-xs-2 col-lg-1">
-              <input class="form-control" id="timer_current_s" type="number" min="0" max="59" step="1" value="0">
-              <div class="input-group-addon">s</div>
-            </div>
-            <button class="btn btn-default" id="timer_current_set" type="button">Régler</button>
-            <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
-          </div>
-        </div>
-        <div class="text-center btn-confirm">
-          <button class="btn btn-default btn-lg confirm-btn" id="impro_reset" type="button">Reset</button>
-          <button class="btn btn-default btn-lg confirm-btn" id="impro_name" type="button">Confirmer</button>
-        </div>
-      </form>
-      <!-- next form -->
-      <form class="form-group" id="impro_from_collection">
-        <h3 class="page-header">Improvisations préparées</h3>
-        <label for="select_impro">Thème</label>
-        <div class="input-group">
-          <input type="text" class="form-control" list="impro_list" id="select_impro" placeholder="thème de l’improvisation choisie">
-          <datalist id="impro_list"></datalist>
-          <span class="input-group-btn">
-            <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirmer</button>
-          </span>
-        </div>
-        <label for="collection_input"><span class="glyphicon glyphicon-file"></span> Collection</label>
-        <input type="file" accept="application/json" id="collection_input">
-      </form>
-      <!-- next form -->
-      <div id="timers">
-        <h3 class="page-header">Timer</h3>
-         <h4 id="timer_global_show">Global — 1:30:00</h4>
-         <form class="form-inline">
-            <div class="input-group col-xs-2 col-lg-1">
-               <input class="form-control" id="timer_global_h" type="number" min="0" max="2" step="1" value="1">
-               <div class="input-group-addon">h</div>
-            </div>
-            <div class="input-group col-xs-2 col-lg-1">
-               <input class="form-control" id="timer_global_m" type="number" min="0" max="59" step="1" value="30">
-               <div class="input-group-addon">m</div>
-            </div>
-            <div class="input-group col-xs-2 col-lg-1">
-               <input class="form-control" id="timer_global_s" type="number" min="0" max="59" step="1" value="0">
-               <div class="input-group-addon">s</div>
-            </div>
-            <button class="btn btn-default" id="timer_global_set" type="button">Régler</button>
-            <button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
-         </form>
+    <div class="active" data-spy="scroll" data-target="#spy" data-offset="80" id="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+          <nav id="spy">
+              <ul class="sidebar-nav nav">
+                <li class="active"><a href="#visuel">Visuel</a></li>
+                <li><a href="#teams">Equipes</a></li>
+                <li><a href="#impro">Gestion</a></li>
+                <li><a href="#impro_from_collection">Selection</a></li>
+                <li><a href="#timers">Timer</a></li>
+                <li><a href="#parameters">Parametrage</a></li>
+                <li>
+                  <center id="navbar_timer">
+                    <button class="btn btn-default" type="button" id="navbar_timer_button">
+                      <strong id="navbar_timer_value">20</strong>
+                    </button>
+                  </center>
+                </li>
+              </ul>
+          </nav>
       </div>
+      <!-- End of sidebar -->
 
-      <!-- next form -->
-      <form class="form-group" id="parameters">
-        <h3 class="page-header">Paramètres</h3>
-        <label for="width_slider">Largeur</label><input disabled type="range" id="width_slider" min="40" max="100" value="80"/>
-        <label for="height_slider">Hauteur</label><input disabled type="range" id="height_slider" min="40" max="100" value="80"/>
-        <div class="checkbox">
-          <label for="set_mirror_mode">
-            <input type="checkbox" checked id="set_mirror_mode"> Activer le mode mirroir
-          </label>
+
+      <div id="client_controls" class="container" hidden>
+        <h3 class="page-header" id="visuel">Visuel</h3>
+        <div id="preview">Cochez la prévisualisation dans les paramètres</div>
+        <!-- <button type="button" class="btn btn-primary btn-lg" id="preview"></button>
+        <div class="modal fade" id="preview_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body" id="preview_modal_body">
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <form class="form-group" id="teams">
+          <h3 class="page-header">Equipes</h3>
+          <div class="row">
+
+            <!--  Team 1 -->
+            <div class="col-xs-12 col-sm-6" id="team1">
+              <div class="form-inline">
+                <label for="team1_color_bg">Equipe 1</label>
+                <input type="color" class="form-control color" id="team1_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
+                <input type="color" class="form-control color" id="team1_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
+              </div>
+              <input class="form-control" id="team1_name" placeholder="Nom" type="text">
+
+              <!-- Score Button -->
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button" id="team1_score_low"><span class="glyphicon glyphicon-minus"></span></button>
+                </span>
+                <input type="number" class="form-control text-center" min="0"  value="0" id="team1_score">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button" id="team1_score_up"><span class="glyphicon glyphicon-plus"></span></button>
+                </span>
+              </div>
+              <!-- End Score Button -->
+
+              <!-- Error Button -->
+              <div class="row" style="margin-top: 4px" id="team1_errors">
+                <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team1_error_down"></button></div>
+                <div class="col-xs-2"><div class="circle"></div></div>
+                <div class="col-xs-2"><div class="circle"></div></div>
+                <div class="col-xs-2"><div class="circle"></div></div>
+                <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team1_error_up"></button></div>
+              </div>
+              <!-- End Error Button -->
+
+            </div>
+            <!-- End Team 1 -->
+
+            <!--  Team 2 -->
+            <div class="col-xs-12 col-sm-6" id="team2">
+              <div class="form-inline">
+                <label for="team2_color_bg">Equipe 2</label>
+                <input type="color" class="form-control color" id="team2_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
+                <input type="color" class="form-control color" id="team2_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
+              </div>
+              <input class="form-control" id="team2_name" placeholder="Nom" type="text">
+
+              <!-- Score Button -->
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button" id="team2_score_low"><span class="glyphicon glyphicon-minus"></span></button>
+                </span>
+                <input type="number" class="form-control text-center" min="0"  value="0" id="team2_score">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button" id="team2_score_up"><span class="glyphicon glyphicon-plus"></span></button>
+                </span>
+              </div>
+              <!-- End Score Button -->
+
+              <!-- Error Button -->
+              <div class="row" style="margin-top: 4px" id="team2_errors">
+                <div class="col-xs-2 col-xs-offset-1"><button class="glyphicon glyphicon-minus btn btn-default" type="button" id="team2_error_down"></button></div>
+                <div class="col-xs-2"><div class="circle"></div></div>
+                <div class="col-xs-2"><div class="circle"></div></div>
+                <div class="col-xs-2"><div class="circle"></div></div>
+                <div class="col-xs-2"><button class="glyphicon glyphicon-plus btn btn-default" type="button" id="team2_error_up"></button></div>
+              </div>
+              <!-- End Error Button -->
+
+            </div>
+            <!-- End Team 2 -->
+
+            <div class="col-xs-12 text-center">
+              <!-- <button class="btn btn-default btn-lg confirm-btn" id='teams_mirror' type="button">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Retourner !
+              </button> -->
+              <button class="btn btn-default btn-lg confirm-btn" id='teams_confirm' type="button">Confirmer</button>
+            </div>
+          </div>
+        </form>
+        <!-- next form -->
+        <form class="form-group" id="impro">
+          <h3 class="page-header">Gestion de l’improvisation</h3>
+          <div>
+            <label for="theme_title">Thème </label><input class="form-control" id="theme_title" placeholder="Nom" type="text">
+          </div>
+          <div>
+            <label for="category">Catégorie </label><input class="form-control" id="category" placeholder="Nom" type="text">
+          </div>
+          <div>
+            <label for="number_of_players">Nombre de joueurs </label>
+            <input class="form-control" type="text" list="number_of_players_value" id="number_of_players">
+            <datalist id="number_of_players_value">
+              <option value="illimité">
+              <option value="tous">
+              <option value="1 joueur">
+              <option value="2 joueurs">
+              <option value="3 joueurs">
+              <option value="4 joueurs">
+              <option value="1 joueur par équipe">
+              <option value="2 joueurs par équipe">
+              <option value="3 joueurs par équipe">
+              <option value="4 joueurs par équipe">
+            </datalist>
+          </div>
+          <div>
+            <label for="impro_type">Type d’improvisation </label>
+            <input class="form-control" type="text" list="impro_type_value" id="impro_type">
+            <datalist id="impro_type_value">
+              <option value="mixte">
+              <option value="comparée">
+              <option value="fusillade">
+            </datalist>
+          </div>
+          <div>
+            <label id="timer_current_show">Durée — 5:00</label>
+            <div class="form-inline">
+              <div class="input-group col-xs-2 col-lg-1">
+                <input class="form-control" id="timer_current_m" type="number" min="0" max="59" step="1" value="5">
+                <div class="input-group-addon">m</div>
+              </div>
+              <div class="input-group col-xs-2 col-lg-1">
+                <input class="form-control" id="timer_current_s" type="number" min="0" max="59" step="1" value="0">
+                <div class="input-group-addon">s</div>
+              </div>
+              <button class="btn btn-default" id="timer_current_set" type="button">Régler</button>
+              <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
+            </div>
+          </div>
+          <div class="text-center btn-confirm">
+            <button class="btn btn-default btn-lg confirm-btn" id="impro_reset" type="button">Reset</button>
+            <button class="btn btn-default btn-lg confirm-btn" id="impro_name" type="button">Confirmer</button>
+          </div>
+        </form>
+        <!-- next form -->
+        <form class="form-group" id="impro_from_collection">
+          <h3 class="page-header">Improvisations préparées</h3>
+          <label for="select_impro">Thème</label>
+          <div class="input-group">
+            <input type="text" class="form-control" list="impro_list" id="select_impro" placeholder="thème de l’improvisation choisie">
+            <datalist id="impro_list"></datalist>
+            <span class="input-group-btn">
+              <button class="btn btn-default" id="confirm_impro_from_list" type="button">Confirmer</button>
+            </span>
+          </div>
+          <label for="collection_input"><span class="glyphicon glyphicon-file"></span> Collection</label>
+          <input type="file" accept="application/json" id="collection_input">
+        </form>
+        <!-- next form -->
+        <div id="timers">
+          <h3 class="page-header">Timer</h3>
+           <h4 id="timer_global_show">Global — 1:30:00</h4>
+           <form class="form-inline">
+              <div class="input-group col-xs-2 col-lg-1">
+                 <input class="form-control" id="timer_global_h" type="number" min="0" max="2" step="1" value="1">
+                 <div class="input-group-addon">h</div>
+              </div>
+              <div class="input-group col-xs-2 col-lg-1">
+                 <input class="form-control" id="timer_global_m" type="number" min="0" max="59" step="1" value="30">
+                 <div class="input-group-addon">m</div>
+              </div>
+              <div class="input-group col-xs-2 col-lg-1">
+                 <input class="form-control" id="timer_global_s" type="number" min="0" max="59" step="1" value="0">
+                 <div class="input-group-addon">s</div>
+              </div>
+              <button class="btn btn-default" id="timer_global_set" type="button">Régler</button>
+              <button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
+           </form>
         </div>
-        <div class="checkbox">
-          <label for="set_preview">
-            <input type="checkbox" id="set_preview"> Activer la prévisualisation
-          </label>
-        </div>
-      </form>
+
+        <!-- next form -->
+        <form class="form-group" id="parameters">
+          <h3 class="page-header">Paramètres</h3>
+          <label for="width_slider">Largeur</label><input disabled type="range" id="width_slider" min="40" max="100" value="80"/>
+          <label for="height_slider">Hauteur</label><input disabled type="range" id="height_slider" min="40" max="100" value="80"/>
+          <div class="checkbox">
+            <label for="set_mirror_mode">
+              <input type="checkbox" checked id="set_mirror_mode"> Activer le mode mirroir
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="set_preview">
+              <input type="checkbox" id="set_preview"> Activer la prévisualisation
+            </label>
+          </div>
+        </form>
+      </div>
     </div>
-
-    <!--  JQuery -->
-    <script src="js/jquery-2.2.0.min.js"></script>
-    <!--  Bootstrap  -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- Html2canvas -->
-    <script src="js/html2canvas.js"></script>
-    <!--  Project JS  -->
-    <script src="js/team.js"></script>
-    <script src="js/improvisation.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/window.js"></script>
+    
+      <!--  JQuery -->
+      <script src="js/jquery-2.2.0.min.js"></script>
+      <!--  Bootstrap  -->
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+      <!-- Html2canvas -->
+      <script src="js/html2canvas.js"></script>
+      <!--  Project JS  -->
+      <script src="js/team.js"></script>
+      <script src="js/improvisation.js"></script>
+      <script src="js/app.js"></script>
+      <script src="js/window.js"></script>
   </body>
 </html>
