@@ -210,7 +210,15 @@ function master_init() {
       preview_interval = setInterval(function () {
         html2canvas(client_window.document.body, {
           onrendered: function (canvas) {
-            $('#preview').html(canvas);
+            /*canvas.height = (3/4) * $('#sidebar-wrapper').width()*/;
+            var oldCanvas = canvas.toDataURL("image/png");
+            var img = new Image();
+            img.src = oldCanvas;
+            // img.style.width = $('#sidebar-wrapper').width();
+            img.onload = function (){
+              canvas.getContext('2d').drawImage(img, 0, 0);
+            }
+            $('#preview').html(img);
           }
         });
       },1000);
