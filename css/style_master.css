@@ -61,6 +61,7 @@ input::-webkit-inner-spin-button {
 }
 .nav>li:hover {
   color: #555;
+  background-color: #e7e7e7;
 }
 .nav>li>a {
   color: #777;

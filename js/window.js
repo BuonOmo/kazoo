@@ -16,6 +16,8 @@ var cocus_timer_interval;
 var team1, team2;
 var collection;
 var preview_interval;
+var teams; // set of all teams and colors
+
 
 function master_add_impro_list()
 {
@@ -48,6 +50,24 @@ function master_init() {
       client_window.document.write(html);
       client_init(client_window);
   }, 'html');
+
+  $.getJSON('data/teams.json', function (data) {
+    teams = data;
+    for (var i in teams) {
+      $('#team_name_list').append('<option value="'+i+'">');
+    }
+  });
+
+  $('#team1_name').change(function () {
+    console.log();
+    $('#team1_color_bg').val(teams[this.value].background);
+    $('#team1_color_border').val(teams[this.value].border);
+  })
+
+  $('#team2_name').change(function () {
+    $('#team2_color_bg').val(teams[this.value].background);
+    $('#team2_color_border').val(teams[this.value].border);
+  })
 
   $('#teams_confirm').click(function () {
     team1.setName($('#team1_name').val());
@@ -195,10 +215,10 @@ function master_init() {
   $('#navbar_timer_button').click(toggleCocusTimer);
 
   $('#width_slider').change(function () {
-      //$(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
+    $(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
   });
   $('#height_slider').change(function () {
-      //$(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
+    $(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
   });
   $('#set_mirror_mode').click(function () {
     var order = this.checked ? 3 : 1;
@@ -217,8 +237,8 @@ function master_init() {
             // img.style.width = $('#sidebar-wrapper').width();
             img.onload = function (){
               canvas.getContext('2d').drawImage(img, 0, 0);
+              $('#preview').html(img);
             }
-            $('#preview').html(img);
           }
         });
       },1000);

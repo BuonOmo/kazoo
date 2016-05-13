@@ -1,0 +1,30 @@
+{
+  "Ludi" : {
+    "background" : "#191970",
+    "border"     : "#cc0609"
+  },
+  "Impropotame" : {
+    "background" : "#000000",
+    "border"     : "#ffffff"
+  },
+  "Lila" : {
+    "background" : "#000000",
+    "border"     : "#cc0609"
+  },
+  "Zootres" : {
+    "background" : "#cc0609",
+    "border"     : "#ffffff"
+  },
+  "Libido" : {
+    "background" : "#eeaacc",
+    "border"     : "#ffffff"
+  },
+  "MF" : {
+    "background" : "#000000",
+    "border"     : "#ffffff"
+  },
+  "TTI" : {
+    "background" : "#cc0609",
+    "border"     : "#ffffff"
+  }
+}

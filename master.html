@@ -12,7 +12,7 @@
 
     <title>Kazoo Master</title>
   </head>
-  <body>
+  <body data-spy="scroll" data-target="#spy" data-offset="20">
 
     <!--  Jumbotron presentation -->
     <div class="container">
@@ -25,7 +25,7 @@
     </div>
     <!--  End of jumbotron  -->
 
-    <div class="active" data-spy="scroll" data-target="#spy" data-offset="80" id="wrapper">
+    <div class="active" id="wrapper">
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
           <nav id="spy">
@@ -35,13 +35,11 @@
                 <li><a href="#impro_from_collection">Selection</a></li>
                 <li><a href="#timers">Timer</a></li>
                 <li><a href="#parameters">Parametrage</a></li>
-                <li>
-                  <center id="navbar_timer">
-                    <button class="btn btn-default btn-lg" type="button" id="navbar_timer_button">
-                      Cocus : <strong id="navbar_timer_value">20</strong>
-                    </button>
-                  </center>
-                </li>
+                <center id="navbar_timer">
+                  <button class="btn btn-default btn-lg" type="button" id="navbar_timer_button">
+                    Cocus : <strong id="navbar_timer_value">20</strong>
+                  </button>
+                </center>
               </ul>
               <div class="sidebar-bottom" id="preview">
               </div>
@@ -62,8 +60,7 @@
                 <input type="color" class="form-control color" id="team1_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
                 <input type="color" class="form-control color" id="team1_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
               </div>
-              <input class="form-control" id="team1_name" placeholder="Nom" type="text">
-
+              <input class="form-control" id="team1_name" list="team_name_list" placeholder="nom de l’équipe" type="text">
               <!-- Score Button -->
               <div class="input-group">
                 <span class="input-group-btn">
@@ -96,8 +93,8 @@
                 <input type="color" class="form-control color" id="team2_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
                 <input type="color" class="form-control color" id="team2_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
               </div>
-              <input class="form-control" id="team2_name" placeholder="Nom" type="text">
-
+              <input class="form-control" id="team2_name" list="team_name_list" placeholder="nom de l’équipe" type="text">
+              <datalist id="team_name_list"></datalist>
               <!-- Score Button -->
               <div class="input-group">
                 <span class="input-group-btn">
@@ -233,7 +230,7 @@
           </div>
           <div class="checkbox">
             <label for="set_preview">
-              <input type="checkbox" id="set_preview"> Activer la prévisualisation
+              <input type="checkbox" id="set_preview"> Activer le retour écran
             </label>
           </div>
         </form>
