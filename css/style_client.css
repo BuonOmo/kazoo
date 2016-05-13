@@ -41,7 +41,7 @@ body {
 }
 
 #team1_score,#team2_score {
-  padding-top: 12%;
+  padding-top: 2vh;
   margin-bottom: 1vh;
   font-size: 20vh;
   font-weight: bold;
@@ -77,6 +77,7 @@ body {
 }
 
 #team1_errors, #team2_errors {
+    width: 28vh;
     display: flex;
     justify-content: space-around;
 }
