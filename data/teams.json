@@ -1,30 +1,30 @@
 {
-  "Ludi" : {
-    "background" : "#191970",
-    "border"     : "#cc0609"
-  },
-  "Impropotame" : {
-    "background" : "#000000",
+  "LUDI" : {
+    "background" : "#fbdb17",
     "border"     : "#ffffff"
   },
-  "Lila" : {
-    "background" : "#000000",
-    "border"     : "#cc0609"
-  },
-  "Zootres" : {
-    "background" : "#cc0609",
+  "IMPROPOTAMMES" : {
+    "background" : "#7ab041",
     "border"     : "#ffffff"
   },
-  "Libido" : {
-    "background" : "#eeaacc",
+  "LILA" : {
+    "background" : "#92499b",
     "border"     : "#ffffff"
   },
-  "MF" : {
-    "background" : "#000000",
+  "ZOOTRES" : {
+    "background" : "#f17223",
+    "border"     : "#ffffff"
+  },
+  "LIBIDO" : {
+    "background" : "#77cfe7",
+    "border"     : "#ffffff"
+  },
+  "MANNEKEN FRITES" : {
+    "background" : "#1b2855",
     "border"     : "#ffffff"
   },
   "TTI" : {
-    "background" : "#cc0609",
+    "background" : "#ed2225",
     "border"     : "#ffffff"
   }
 }
