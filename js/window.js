@@ -59,7 +59,6 @@ function master_init() {
   });
 
   $('#team1_name').change(function () {
-    console.log();
     $('#team1_color_bg').val(teams[this.value].background);
     $('#team1_color_border').val(teams[this.value].border);
   })
@@ -172,7 +171,6 @@ function master_init() {
 
   $('#confirm_impro_from_list').click(function () {
     var theme = document.getElementById('select_impro').value;
-    console.log(theme);
     var i;
     for (i = 0; i < collection.length; i++) {
         if (collection[i].theme == theme)
@@ -225,7 +223,7 @@ function master_init() {
     $(client_window.document.body).find('#team1').css('order',order);
     $(client_window.document.body).find('#team2').css('order',3 - order);
   });
-  $('#set_preview').click(function () {
+  $('#toggle_preview').click(function () {
     if (this.checked) {
       preview_interval = setInterval(function () {
         html2canvas(client_window.document.body, {
@@ -246,7 +244,12 @@ function master_init() {
       clearInterval(preview_interval);
       $('#preview').html("Cochez la prévisualisation dans les paramètres");
     }
-  })
+  });
+  
+  $("#toggle_sidebar").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("active");
+  });
 }
 
 function client_init() {
