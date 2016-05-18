@@ -1,18 +1,22 @@
 * {
     box-sizing: border-box;
     font-family: arial; /* TODO add dynamic font */
+    font-variant: small-caps;
+    font-weight: bold;
 }
 
 body {
     background-color: black;
     color: white;
-    height: 97vh;
+    height: 75vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 30vh;
 }
 
 #content {
+    width: 90vw;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -57,11 +61,12 @@ body {
 }
 
 #theme {
+    height: 60%;
     margin-top: 3vh;
     width: 85%;
     border: 4px solid white;
     border-radius: 15px;
-    padding: 5px;
+    padding: 2px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -69,7 +74,15 @@ body {
 }
 
 #theme_title {
-    width: 90%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    width: 80%;
+    font-variant: normal;
+}
+
+#impro_type {
+  /*margin-top: 2px;*/
+  margin-right: 20%;
 }
 
 #category {
