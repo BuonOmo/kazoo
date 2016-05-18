@@ -198,7 +198,8 @@ function master_init() {
       if (timer_global_running)
           stopGlobalTimer();
       else
-          startGlobalTimer();
+          if(global_time > 0)
+              startGlobalTimer();
   });
 
   $('#timer_current_set').click(setCurrentTimer);
@@ -207,7 +208,8 @@ function master_init() {
       if (timer_current_running)
           stopCurrentTimer();
       else
-          startCurrentTimer();
+          if(current_time > 0)
+              startCurrentTimer();
   });
 
   $('#navbar_timer_button').click(toggleCocusTimer);
@@ -245,11 +247,17 @@ function master_init() {
       $('#preview').html("Cochez la prévisualisation dans les paramètres");
     }
   });
-  
+
   $("#toggle_sidebar").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("active");
   });
+
+  $('#font_size').change(function () {
+    console.log(this);
+    console.log(this.value);
+    impro.dom_theme.css('font-size', this.value+"em");
+  })
 }
 
 function client_init() {
@@ -339,11 +347,16 @@ function setCurrentTimer(time) {
 
 function startCurrentTimer() {
   current_timer_interval = setInterval(function () {
-    timer_current_running = true;
-    $(client_window.document.body)
-            .find('#timer_current')
-            .html(convertTime(--current_time));
-    $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
+    // Only start current_timer if there is time left
+    if(current_time > 0) {
+      timer_current_running = true;
+      $(client_window.document.body)
+              .find('#timer_current')
+              .html(convertTime(--current_time));
+      $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
+    }
+
+    // Once the current timer is over, stop it
     if (current_time <= 0) {
         stopCurrentTimer();
     }
