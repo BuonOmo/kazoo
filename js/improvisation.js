@@ -18,6 +18,10 @@ function Impro(dom_category, dom_number_of_players, dom_theme, dom_type) {
     };
 
     this.setTheme = function(theme) {
+        var more = 18;
+        var fontSize = (2 * (18 + more) / (theme.length + more)); // 18 caractèrs
+        fontSize = (fontSize > 2) ? "2em" : fontSize + "em";
+        this.dom_theme.css('font-size', fontSize);
         this.dom_theme.html(theme);
     };
 

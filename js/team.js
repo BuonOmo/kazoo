@@ -14,7 +14,7 @@ function Team(dom_name, dom_score, dom_error_circles) {
         this.dom_name.html(name);
         var fontSize = (1.5 * 16 / (name.length + 8));
         fontSize = (fontSize > 1.7) ? "1.7em" : fontSize + "em";
-        this.dom_name.css('font-size', fontSize)
+        this.dom_name.css('font-size', fontSize);
     };
 
     this.setBackground = function(color) {
