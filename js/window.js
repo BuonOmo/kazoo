@@ -36,6 +36,12 @@ function master_add_impro_list()
 function master_init() {
   client_window = window.open();
 
+  // Ask confirm before leaving the page
+  $(window).bind('beforeunload', function(){
+    return 'Vous risquez de perdre la connection avec la fenêtre client';
+  });
+
+
   // retrieves collection of improvisation from a json file
   $('#collection_input').change( function (event) {
     var tmppath = URL.createObjectURL(event.target.files[0]);
@@ -248,8 +254,7 @@ function master_init() {
     }
   });
 
-  $("#toggle_sidebar").click(function(e) {
-      e.preventDefault();
+  $("#toggle_sidebar").click(function() {
       $("#wrapper").toggleClass("active");
   });
 
