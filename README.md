@@ -11,7 +11,7 @@ You can find kazoo [here](http://tti.insa-lyon.fr/kazoo/master.html). Along with
 
 ## Local version
 
-It doesn't work in Google Chrome or any chromium based browser due to "Cross origin requests" policy.
+Kazoo doesn't work on Google Chrome or any chromium based browser due to "Cross origin requests" policy.
 
 With firefox :
 
