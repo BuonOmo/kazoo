@@ -173,6 +173,7 @@ function master_init() {
       impro.setCategory($('#category').val());
       impro.setType($('#impro_type').val());
       impro.setNumberOfPlayers($('#number_of_players').val());
+      setCurrentTimer();
   });
 
   $('#confirm_impro_from_list').click(function () {
@@ -200,7 +201,7 @@ function master_init() {
 
   $('#timer_global_set').click(setGlobalTimer);
 
-  $('#timer_global_start').click(function () {
+  $('.timer_global_start').click(function () {
       if (timer_global_running)
           stopGlobalTimer();
       else
@@ -208,16 +209,16 @@ function master_init() {
               startGlobalTimer();
   });
 
-  $('#timer_current_set').click(setCurrentTimer);
-
   $('#timer_current_start').click(function () {
-      if (!timer_global_running)
-        $('#timer_alert').slideDown();
       if (timer_current_running)
-          stopCurrentTimer();
-      else
-          if(current_time > 0)
-              startCurrentTimer();
+        stopCurrentTimer();
+      else {
+        if(current_time > 0) {
+          if (!timer_global_running)
+            $('#timer_alert').slideDown();
+          startCurrentTimer();
+        }
+      }
   });
 
   $('#navbar_timer_button').click(toggleCocusTimer);
@@ -310,7 +311,7 @@ function setGlobalTimer() {
     $(client_window.document.body)
             .find('#timer_global')
             .html(convertTime(global_time));
-    $('#timer_global_show').html("Global  — "+convertTime(global_time,false));
+    $('#timer_global_show').html("Timer global  — "+convertTime(global_time,false));
 }
 
 function startGlobalTimer() {
@@ -319,7 +320,7 @@ function startGlobalTimer() {
     $(client_window.document.body)
             .find('#timer_global')
             .html(convertTime(--global_time));
-  $('#timer_global_show').html("Global  — "+convertTime(global_time,false));
+  $('#timer_global_show').html("Timer global  — "+convertTime(global_time,false));
     if (global_time <= 0) {
         stopGlobalTimer();
     }
@@ -330,9 +331,9 @@ function stopGlobalTimer() {
   clearInterval(global_timer_interval);
   timer_global_running = false;
   if (global_time > 0) {
-    $('#timer_global_show').html("Global  — "+convertTime(global_time,false));
+    $('#timer_global_show').html("Timer global  — "+convertTime(global_time,false));
   } else {
-    $('#timer_global_show').html("Global");
+    $('#timer_global_show').html("Timer global");
   }
 }
 

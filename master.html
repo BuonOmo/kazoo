@@ -31,9 +31,9 @@
           <nav id="spy">
               <ul class="sidebar-nav nav">
                 <li class="active"><a href="#teams">Equipes</a></li>
-                <li><a href="#impro">Gestion</a></li>
-                <li><a href="#impro_from_collection">Selection</a></li>
-                <li><a href="#timers">Timer</a></li>
+                <li><a href="#timers">Durée du match</a></li>
+                <li><a href="#impro">Gestion des impros</a></li>
+                <li><a href="#impro_from_collection">Selection d’une impro</a></li>
                 <li><a href="#parameters">Parametrage</a></li>
                 <center id="navbar_timer">
                   <button class="btn btn-default btn-lg" type="button" id="navbar_timer_button">
@@ -129,6 +129,26 @@
           </div>
         </form>
         <!-- next form -->
+        <div id="timers">
+          <h3 class="page-header" id="timer_global_show">Timer global — 1:30:00</h4>
+           <form class="form-inline">
+              <div class="input-group col-xs-2 col-lg-1">
+                 <input class="form-control" id="timer_global_h" type="number" min="0" max="2" step="1" value="1">
+                 <div class="input-group-addon">h</div>
+              </div>
+              <div class="input-group col-xs-2 col-lg-1">
+                 <input class="form-control" id="timer_global_m" type="number" min="0" max="59" step="1" value="30">
+                 <div class="input-group-addon">m</div>
+              </div>
+              <div class="input-group col-xs-2 col-lg-1">
+                 <input class="form-control" id="timer_global_s" type="number" min="0" max="59" step="1" value="0">
+                 <div class="input-group-addon">s</div>
+              </div>
+              <button class="btn btn-default" id="timer_global_set" type="button">Régler</button>
+              <button class="btn btn-default timer_global_start" type="button">Start/Stop</button>
+           </form>
+        </div>
+        <!-- next form -->
         <form class="form-group" id="impro">
           <h3 class="page-header">Gestion de l’improvisation</h3>
           <div>
@@ -173,8 +193,8 @@
                 <input class="form-control" id="timer_current_s" type="number" min="0" max="59" step="1" value="0">
                 <div class="input-group-addon">s</div>
               </div>
-              <button class="btn btn-default" id="timer_current_set" type="button">Régler</button>
-              <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button>
+              <!-- <button class="btn btn-default" id="timer_current_set" type="button">Régler</button> -->
+              <!-- <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button> -->
               <div id="timer_alert" class="alert alert-warning alert-dismissible fade in" style="margin-top:4px" hidden>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">×</span>
@@ -183,7 +203,7 @@
                   <strong>Attention !</strong> Vous n’avez pas lancé le timer global...
                 </p>
                 <p>
-                  <button id="timer_global_start" type="button" class="btn btn-default">Lancer le timer</button>
+                  <button type="button" class="btn btn-default timer_global_start">Lancer le timer</button>
                 </p>
               </div>
             </div>
@@ -193,6 +213,7 @@
           </div>
           <div class="text-center btn-confirm">
             <button class="btn btn-default btn-lg confirm-btn" id="impro_name" type="button">Confirmer</button>
+            <button class="btn btn-default btn-lg confirm-btn" id="timer_current_start" type="button">Lancer</button>
             <button class="btn btn-default btn-lg confirm-btn" id="impro_reset" type="button">Reset</button>
           </div>
         </form>
@@ -210,27 +231,6 @@
           <label for="collection_input"><span class="glyphicon glyphicon-file"></span> Collection</label>
           <input type="file" accept="application/json" id="collection_input">
         </form>
-        <!-- next form -->
-        <div id="timers">
-          <h3 class="page-header">Timer</h3>
-           <h4 id="timer_global_show">Global — 1:30:00</h4>
-           <form class="form-inline">
-              <div class="input-group col-xs-2 col-lg-1">
-                 <input class="form-control" id="timer_global_h" type="number" min="0" max="2" step="1" value="1">
-                 <div class="input-group-addon">h</div>
-              </div>
-              <div class="input-group col-xs-2 col-lg-1">
-                 <input class="form-control" id="timer_global_m" type="number" min="0" max="59" step="1" value="30">
-                 <div class="input-group-addon">m</div>
-              </div>
-              <div class="input-group col-xs-2 col-lg-1">
-                 <input class="form-control" id="timer_global_s" type="number" min="0" max="59" step="1" value="0">
-                 <div class="input-group-addon">s</div>
-              </div>
-              <button class="btn btn-default" id="timer_global_set" type="button">Régler</button>
-              <button class="btn btn-default" id="timer_global_start" type="button">Start/Stop</button>
-           </form>
-        </div>
 
         <!-- next form -->
         <form class="form-group" id="parameters">
