@@ -211,6 +211,8 @@ function master_init() {
   $('#timer_current_set').click(setCurrentTimer);
 
   $('#timer_current_start').click(function () {
+      if (!timer_global_running)
+        $('#timer_alert').slideDown();
       if (timer_current_running)
           stopCurrentTimer();
       else
