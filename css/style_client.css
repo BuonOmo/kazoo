@@ -8,14 +8,13 @@
 body {
     background-color: black;
     color: white;
-    height: 75vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 30vh;
 }
 
 #content {
+    margin-top: 3vh;
     width: 90vw;
     display: flex;
     justify-content: space-around;
