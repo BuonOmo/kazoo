@@ -162,18 +162,19 @@ function master_init() {
   })
 
     $('#impro_reset').click(function () {
-        $('#theme_title').val('');
-        $('#category').val('');
-        $('#impro_type').val('');
-        $('#number_of_players').val('');
+      $('#theme_title').val('');
+      $('#category').val('');
+      $('#impro_type').val('');
+      $('#number_of_players').val('');
     });
 
   $('#impro_name').click(function () {
-      impro.setTheme($('#theme_title').val());
-      impro.setCategory($('#category').val());
-      impro.setType($('#impro_type').val());
-      impro.setNumberOfPlayers($('#number_of_players').val());
-      setCurrentTimer();
+    $('#font_size').val(Math.round(10*impro.setTheme($('#theme_title').val()))/10);
+    // document.getElementById('font_size').value = Math.round(10*impro.setTheme($('#theme_title').val()))/10 ;
+    impro.setCategory($('#category').val());
+    impro.setType($('#impro_type').val());
+    impro.setNumberOfPlayers($('#number_of_players').val());
+    setCurrentTimer();
   });
 
   $('#confirm_impro_from_list').click(function () {
