@@ -210,14 +210,16 @@ function master_init() {
               startGlobalTimer();
   });
 
-  $('#timer_current_start').click(function () {
-      if (timer_current_running)
+  $('#timer_current_toggle').click(function () {
+      if (timer_current_running) {
         stopCurrentTimer();
-      else {
+        $(this).html("Lancer");
+      } else {
         if(current_time > 0) {
           if (!timer_global_running)
             $('#timer_alert').slideDown();
           startCurrentTimer();
+          $(this).html("Pause");
         }
       }
   });

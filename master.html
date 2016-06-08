@@ -10,7 +10,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style_master.css" rel="stylesheet">
 
-    <title>Kazoo Master</title>
+    <title>Master - Kazoo 2.0</title>
   </head>
   <body data-spy="scroll" data-target="#spy" data-offset="20">
 
@@ -57,8 +57,8 @@
             <div class="col-xs-12 col-sm-6" id="team1">
               <div class="form-inline">
                 <label for="team1_color_bg">Equipe 1</label>
-                <input type="color" class="form-control color" id="team1_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
-                <input type="color" class="form-control color" id="team1_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
+                <input type="color" class="form-control color" id="team1_color_bg" title="couleur du fond">
+                <input type="color" class="form-control color" id="team1_color_border" value="#ffffff" title="couleur du cadre">
               </div>
               <input class="form-control" id="team1_name" list="team_name_list" placeholder="nom de l’équipe" type="text">
               <!-- Score Button -->
@@ -90,8 +90,8 @@
             <div class="col-xs-12 col-sm-6" id="team2">
               <div class="form-inline">
                 <label for="team2_color_bg">Equipe 2</label>
-                <input type="color" class="form-control color" id="team2_color_bg" data-toggle="tooltip" data-placement="bottom" title="couleur du fond">
-                <input type="color" class="form-control color" id="team2_color_border" value="#ffffff" data-toggle="tooltip" data-placement="bottom" title="couleur du cadre">
+                <input type="color" class="form-control color" id="team2_color_bg" title="couleur du fond">
+                <input type="color" class="form-control color" id="team2_color_border" value="#ffffff" title="couleur du cadre">
               </div>
               <input class="form-control" id="team2_name" list="team_name_list" placeholder="nom de l’équipe" type="text">
               <datalist id="team_name_list"></datalist>
@@ -193,8 +193,6 @@
                 <input class="form-control" id="timer_current_s" type="number" min="0" max="59" step="1" value="0">
                 <div class="input-group-addon">s</div>
               </div>
-              <!-- <button class="btn btn-default" id="timer_current_set" type="button">Régler</button> -->
-              <!-- <button class="btn btn-default" id="timer_current_start" type="button">Start/Stop</button> -->
               <div id="timer_alert" class="alert alert-warning alert-dismissible fade in" style="margin-top:4px" hidden>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">×</span>
@@ -213,7 +211,7 @@
           </div>
           <div class="text-center btn-confirm">
             <button class="btn btn-default btn-lg confirm-btn" id="impro_name" type="button">Confirmer</button>
-            <button class="btn btn-default btn-lg confirm-btn" id="timer_current_start" type="button">Lancer</button>
+            <button class="btn btn-default btn-lg confirm-btn" id="timer_current_toggle" type="button">Lancer</button>
             <button class="btn btn-default btn-lg confirm-btn" id="impro_reset" type="button">Reset</button>
           </div>
         </form>
