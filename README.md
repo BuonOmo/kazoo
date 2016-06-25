@@ -7,7 +7,7 @@ Two windows communicating, for real-time editing. No installation needed !
 
 ## Online version
 
-You can find kazoo [here](http://tti.insa-lyon.fr/kazoo/master.html). Along with it’s little brother [createCollection](http://tti.insa-lyon.fr/col/index.html).
+You can find kazoo [here](http://buonomo.github.io/kazoo/). Along with it’s little brother [createCollection](http://buonomo.github.io/collectionform/).
 
 ## Local version
 
@@ -16,6 +16,6 @@ Kazoo doesn't work on Google Chrome or any chromium based browser due to "Cross 
 With firefox :
 
     git clone https://github.com/Ealhad/kazoo.git
-    firefox kazoo-master/master.html
+    firefox kazoo-master/index.html
 
-Basically, just launch master.html with your favorite browser.
+Basically, just launch index.html with your favorite browser.
