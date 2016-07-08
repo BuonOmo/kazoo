@@ -2,31 +2,34 @@
  * impro object
  */
 
-function Impro(dom_category, dom_number_of_players, dom_theme, dom_type) {
+class Impro {
 
-    this.dom_category = dom_category;
-    this.dom_number_of_players = dom_number_of_players;
-    this.dom_theme = dom_theme;
-    this.dom_type = dom_type;
+    constructor (dom_category, dom_number_of_players, dom_theme, dom_type) {
+        this.dom_category = dom_category;
+        this.dom_number_of_players = dom_number_of_players;
+        this.dom_theme = dom_theme;
+        this.dom_type = dom_type;
+    }
 
-    this.setCategory = function(category) {
+    setCategory (category) {
         this.dom_category.html(category);
     };
 
-    this.setNumberOfPlayers = function(number_of_players) {
+    setNumberOfPlayers (number_of_players) {
         this.dom_number_of_players.html(number_of_players);
     };
 
-    this.setTheme = function(theme) {
-        var more = 18;
-        var fontSize = (2 * (18 + more) / (theme.length + more)); // 18 caractèrs
-        var fontSize_em = (fontSize > 2) ? "2em" : fontSize + "em";
+    setTheme (theme) {
+        let more = 18;
+        let fontSize = (2 * (18 + more) / (theme.length + more)); // 18 caractèrs
+        let fontSize_em = (fontSize > 2) ? "2em" : fontSize + "em";
         this.dom_theme.css('font-size', fontSize_em);
         this.dom_theme.html(theme);
         return fontSize;
     };
 
-    this.setType = function(type) {
+    setType (type) {
         this.dom_type.html(type);
     };
 }
+
