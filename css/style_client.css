@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: arial; /* TODO add dynamic font */
+    font-family: arial, sans-serif; /* TODO add dynamic font */
     font-variant: small-caps;
     font-weight: bold;
 }
@@ -112,7 +112,7 @@ body {
     border-radius: 50%;
     background: black;
     border: 4px solid white;
-    margin-top: 0vh;
+    margin-top: 0;
 }
 
 @keyframes blink {
