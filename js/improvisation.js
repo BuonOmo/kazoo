@@ -20,9 +20,9 @@ class Impro {
     };
 
     setTheme (theme) {
-        let more = 18;
-        let fontSize = (2 * (18 + more) / (theme.length + more)); // 18 caractèrs
-        let fontSize_em = (fontSize > 2) ? "2em" : fontSize + "em";
+        const more = 18,
+            fontSize = (2 * (18 + more) / (theme.length + more)), // 18 caractères
+            fontSize_em = (fontSize > 2) ? "2em" : fontSize + "em";
         this.dom_theme.css('font-size', fontSize_em);
         this.dom_theme.html(theme);
         return fontSize;

@@ -13,7 +13,7 @@
    * @type color
    ************************/
   --brand-color: #581845;
-  font-family: Quicksand;
+    font-family: Quicksand, sans-serif;
   --brand-ff:   Calligraffitti;
 }
 
@@ -104,6 +104,9 @@ img {
   font-size:                            28px;
   font-family: var(--brand-ff)    !important;
   color:       var(--brand-color) !important;
+}
+#navbar_timer {
+    text-align: center
 }
 #navbar_timer>.btn {
   background-color: var(--brand-color);
