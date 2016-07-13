@@ -2,21 +2,22 @@
  * client window functions
  */
 
-var client_window;
-
-var global_time = 90 * 60; // in seconds
-var timer_global_running = false;
-var global_timer_interval;
-var current_time = 5 * 60;
-var timer_current_running = false;
-var current_timer_interval;
-var cocus_time;
-var timer_cocus_running = false;
-var cocus_timer_interval;
-var team1, team2;
-var collection;
-var preview_interval;
-var teams; // set of all teams and colors
+let client_window,
+    global_time = 90 * 60, // in seconds
+    timer_global_running = false,
+    global_timer_interval,
+    current_time = 5 * 60,
+    timer_current_running = false,
+    current_timer_interval,
+    cocus_time,
+    timer_cocus_running = false,
+    cocus_timer_interval,
+    team1,
+    team2,
+    collection,
+    preview_interval,
+    impro,
+    teams; // set of all teams and colors
 
 
 function master_add_impro_list() {
@@ -49,7 +50,7 @@ function master_init() {
             collection = data;
             master_add_impro_list();
         });
-    })
+    });
 
     $.get('client.html', function (html) {
         client_window.document.write(html);
@@ -66,12 +67,12 @@ function master_init() {
     $('#team1_name').change(function () {
         $('#team1_color_bg').val(teams[this.value].background);
         $('#team1_color_border').val(teams[this.value].border);
-    })
+    });
 
     $('#team2_name').change(function () {
         $('#team2_color_bg').val(teams[this.value].background);
         $('#team2_color_border').val(teams[this.value].border);
-    })
+    });
 
     $('#teams_confirm').click(function () {
         team1.setName($('#team1_name').val());
@@ -133,10 +134,10 @@ function master_init() {
     /**
      * reset on last error.
      */
-    $("#team1_errors>div>.circle:last").on('animationend', function () {
+    $("#team1_errors").find(">div>.circle:last").on('animationend', function () {
         $('#team2_score').val(team2.score + 1);
-        $('#team1_errors>div>.error').removeClass('error');
-    })
+        $('#team1_errors').find('>div>.error').removeClass('error');
+    });
 
     $('#team2_error_up').click(function () {
         $('#team2_errors').children()[team2.errors % 3 + 1].firstChild.classList.add('error');
@@ -153,10 +154,10 @@ function master_init() {
     /**
      * reset on last error.
      */
-    $("#team2_errors>div>.circle:last").on('animationend', function () {
+    $("#team2_errors").find(">div>.circle:last").on('animationend', function () {
         $('#team1_score').val(team1.score + 1);
-        $('#team2_errors>div>.error').removeClass('error');
-    })
+        $('#team2_errors').find('>div>.error').removeClass('error');
+    });
 
     $('#impro_reset').click(function () {
         $('#theme_title').val('');
@@ -175,24 +176,24 @@ function master_init() {
     });
 
     $('#confirm_impro_from_list').click(function () {
-        var theme = document.getElementById('select_impro').value;
-        var i;
-        for (i = 0; i < collection.length; i++) {
-            if (collection[i].theme == theme) {
-                break;
-            }
+        const theme = document.getElementById('select_impro').value,
+            savedImpro = collection.find(x => x.theme == theme);
+
+        if (!savedImpro) {
+            return;
         }
-        impro.setTheme(collection[i].theme);
-        impro.setCategory(collection[i].category);
-        impro.setType(collection[i].impro_type);
-        impro.setNumberOfPlayers(collection[i].number_of_players);
-        $('#number_of_players').val(collection[i].number_of_players);
-        $('#theme_title').val(collection[i].theme);
-        $('#category').val(collection[i].category);
-        $('#impro_type').val(collection[i].impro_type);
-        $('#timer_current_m').val(Math.floor(collection[i].duration / 60));
-        $('#timer_current_s').val(collection[i].duration % 60);
-        setCurrentTimer(collection[i].duration);
+
+        impro.setTheme(savedImpro.theme);
+        impro.setCategory(savedImpro.category);
+        impro.setType(savedImpro.impro_type);
+        impro.setNumberOfPlayers(savedImpro.number_of_players);
+        $('#number_of_players').val(savedImpro.number_of_players);
+        $('#theme_title').val(savedImpro.theme);
+        $('#category').val(savedImpro.category);
+        $('#impro_type').val(savedImpro.impro_type);
+        $('#timer_current_m').val(Math.floor(savedImpro.duration / 60));
+        $('#timer_current_s').val(savedImpro.duration % 60);
+        setCurrentTimer(savedImpro.duration);
         //$('#timer_current_show').html("Durée — "+convertTime(current_time,false));
     });
 
@@ -238,7 +239,6 @@ function master_init() {
                 html2canvas(client_window.document.body, {
                     onrendered: function (canvas) {
                         /*canvas.height = (3/4) * $('#sidebar-wrapper').width()*/
-                        ;
                         var oldCanvas = canvas.toDataURL("image/png");
                         var img = new Image();
                         img.src = oldCanvas;
@@ -302,9 +302,9 @@ function client_init() {
 }
 
 function setGlobalTimer() {
-    var h = parseInt($('#timer_global_h').val())
-    var m = parseInt($('#timer_global_m').val())
-    var s = parseInt($('#timer_global_s').val())
+    var h = parseInt($('#timer_global_h').val());
+    var m = parseInt($('#timer_global_m').val());
+    var s = parseInt($('#timer_global_s').val());
     global_time = h * 3600 + m * 60 + s;
     $(client_window.document.body)
         .find('#timer_global')
@@ -394,6 +394,7 @@ function startCocusTimer() {
         }
     }, 1000);
 }
+
 function toggleCocusTimer() {
     timer_cocus_running ? stopCocusTimer() : resetCocusTimer();
 }
@@ -412,14 +413,13 @@ function togglePreview() {
 /**
  * Convert seconds time to human readable time
  * @param  time         time in seconds
- * @param  showZeros    default value true, show unecessary zeros
+ * @param  zeros    default value true, show unecessary zeros
  * @return string       format mm:ss
  */
-function convertTime(time, showZeros) {
-    var zeros = (typeof(showZeros) === 'boolean') ? showZeros : true;
-    var hours = Math.floor(time / 3600);
-    var minutes = Math.floor(time / 60) - 60 * hours;
-    var seconds = time % 60;
+function convertTime(time, zeros = true) {
+    let hours = Math.floor(time / 3600),
+        minutes = Math.floor(time / 60) - 60 * hours,
+        seconds = time % 60;
     if (minutes < 10 && (zeros || hours)) {
         minutes = "0" + minutes;
     }
@@ -432,5 +432,5 @@ function convertTime(time, showZeros) {
     if (zeros || minutes) {
         return minutes + ':' + seconds;
     }
-    return seconds;
+    return seconds.toString();
 }
