@@ -262,6 +262,7 @@ function master_init() {
 
   $("#toggle_sidebar").click(function() {
       $("#wrapper").toggleClass("active");
+      $("#toggle_sidebar").toggleClass("active");
   });
 
   $('#font_size').change(function () {
