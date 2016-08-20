@@ -4,10 +4,10 @@
 
 var client_window;
 
-var global_time = 90*60; // in seconds
+var global_time = 90 * 60; // in seconds
 var timer_global_running = false;
 var global_timer_interval;
-var current_time = 5*60;
+var current_time = 5 * 60;
 var timer_current_running = false;
 var current_timer_interval;
 var cocus_time;
@@ -19,8 +19,7 @@ var preview_interval;
 var teams; // set of all teams and colors
 
 
-function master_add_impro_list()
-{
+function master_add_impro_list() {
     var impro_list = document.getElementById('impro_list');
 
     // clear former content, to avoid reloading the app
@@ -34,409 +33,400 @@ function master_add_impro_list()
 }
 
 function master_init() {
-  client_window = window.open();
+    client_window = window.open();
 
-  // Ask confirm before leaving the page
-  $(window).bind('beforeunload', function(){
-    return 'Vous risquez de perdre la connection avec la fenêtre client';
-  });
-
-
-  // retrieves collection of improvisation from a json file
-  $('#collection_input').change( function (event) {
-    var tmppath = URL.createObjectURL(event.target.files[0]);
-
-    $.getJSON(tmppath, function(data) {
-        collection = data;
-        master_add_impro_list();
+    // Ask confirm before leaving the page
+    $(window).bind('beforeunload', function () {
+        return 'Vous risquez de perdre la connection avec la fenêtre client';
     });
-  })
 
-  $.get('client.html', function (html) {
-      client_window.document.write(html);
-      client_init(client_window);
-  }, 'html');
 
-  $.getJSON('data/teams.json', function (data) {
-    teams = data;
-    for (var i in teams) {
-      $('#team_name_list').append('<option value="'+i+'">');
-    }
-  });
+    // retrieves collection of improvisation from a json file
+    $('#collection_input').change(function (event) {
+        var tmppath = URL.createObjectURL(event.target.files[0]);
 
-  $('#team1_name').change(function () {
-    $('#team1_color_bg').val(teams[this.value].background);
-    $('#team1_color_border').val(teams[this.value].border);
-  })
+        $.getJSON(tmppath, function (data) {
+            collection = data;
+            master_add_impro_list();
+        });
+    });
 
-  $('#team2_name').change(function () {
-    $('#team2_color_bg').val(teams[this.value].background);
-    $('#team2_color_border').val(teams[this.value].border);
-  })
+    $.get('client.html', function (html) {
+        client_window.document.write(html);
+        client_init(client_window);
+    }, 'html');
 
-  $('#teams_confirm').click(function () {
-    team1.setName($('#team1_name').val());
-    team2.setName($('#team2_name').val());
-    team1.setBackground($('#team1_color_bg').val());
-    team1.setBorder($('#team1_color_border').val());
-    team2.setBackground($('#team2_color_bg').val());
-    team2.setBorder($('#team2_color_border').val());
-  });
-  /*
-  $('#teams_mirror').click(function () {
-      var mirror = true;
-      return function(e) {
-        if (mirror) {
-            $('#team1').insertAfter('#team2');
-        } else {
-            $('#team2').insertAfter('#team1');
+    $.getJSON('data/teams.json', function (data) {
+        teams = data;
+        for (var i in teams) {
+            $('#team_name_list').append('<option value="' + i + '">');
         }
-        mirror = !mirror;
-      };
-  }());*/
+    });
 
-  $('#team1_score_low').click(function () {
-    if (team1.score > 0)
-    {
-      team1.scoreLow();
-      $('#team1_score').val(team1.score);
-    }
-  });
+    $('#team1_name').change(function () {
+        $('#team1_color_bg').val(teams[this.value].background);
+        $('#team1_color_border').val(teams[this.value].border);
+    });
 
-  $('#team1_score_up').click(function () {
-    team1.scoreUp();
-    $('#team1_score').val(team1.score);
-  });
+    $('#team2_name').change(function () {
+        $('#team2_color_bg').val(teams[this.value].background);
+        $('#team2_color_border').val(teams[this.value].border);
+    });
 
-  $('#team2_score_low').click(function () {
-    if (team2.score > 0)
-    {
-      team2.scoreLow();
-      $('#team2_score').val(team2.score);
-    }
-  });
+    $('#teams_confirm').click(function () {
+        team1.setName($('#team1_name').val());
+        team2.setName($('#team2_name').val());
+        team1.setBackground($('#team1_color_bg').val());
+        team1.setBorder($('#team1_color_border').val());
+        team2.setBackground($('#team2_color_bg').val());
+        team2.setBorder($('#team2_color_border').val());
+    });
+    /*
+     $('#teams_mirror').click(function () {
+     var mirror = true;
+     return function(e) {
+     if (mirror) {
+     $('#team1').insertAfter('#team2');
+     } else {
+     $('#team2').insertAfter('#team1');
+     }
+     mirror = !mirror;
+     };
+     }());*/
 
-  $('#team2_score_up').click(function () {
-    team2.scoreUp();
-    $('#team2_score').val(team2.score);
-  });
+    $('#team1_score_low').click(function () {
+        if (team1.score > 0) {
+            team1.scoreLow();
+            $('#team1_score').val(team1.score);
+        }
+    });
 
-  $('#team1_error_up').click(function () {
-    $('#team1_errors').children()[team1.errors%3+1].firstChild.classList.add('error');
-    team1.error();
-  });
+    $('#team1_score_up').click(function () {
+        team1.scoreUp();
+        $('#team1_score').val(team1.score);
+    });
 
-  $("#team1_error_down").click(function () {
-    if (team1.errors%3) {
-      team1.removeError();
-      $('#team1_errors').children()[team1.errors%3 + 1].firstChild.classList.remove("error");
-    }
-  });
+    $('#team2_score_low').click(function () {
+        if (team2.score > 0) {
+            team2.scoreLow();
+            $('#team2_score').val(team2.score);
+        }
+    });
 
-  /**
-   * reset on last error.
-   */
-  $("#team1_errors>div>.circle:last").on('animationend', function (){
-      $('#team2_score').val(team2.score+1);
-      $('#team1_errors>div>.error').removeClass('error');
-  })
+    $('#team2_score_up').click(function () {
+        team2.scoreUp();
+        $('#team2_score').val(team2.score);
+    });
 
-  $('#team2_error_up').click(function () {
-    $('#team2_errors').children()[team2.errors%3+1].firstChild.classList.add('error');
-    team2.error();
-  });
+    $('#team1_error_up').click(function () {
+        $('#team1_errors').children()[team1.errors % 3 + 1].firstChild.classList.add('error');
+        team1.error();
+    });
 
-  $("#team2_error_down").click(function () {
-    if (team2.errors%3) {
-      team2.removeError();
-      $('#team2_errors').children()[team2.errors%3 + 1].firstChild.classList.remove("error");
-    }
-  });
+    $("#team1_error_down").click(function () {
+        if (team1.errors % 3) {
+            team1.removeError();
+            $('#team1_errors').children()[team1.errors % 3 + 1].firstChild.classList.remove("error");
+        }
+    });
 
-  /**
-   * reset on last error.
-   */
-  $("#team2_errors>div>.circle:last").on('animationend', function (){
-      $('#team1_score').val(team1.score+1);
-      $('#team2_errors>div>.error').removeClass('error');
-  })
+    /**
+     * reset on last error.
+     */
+    $("#team1_errors").find("div>.circle:last").on('animationend', function () {
+        $('#team2_score').val(team2.score + 1);
+        $('#team1_errors').find('div>.error').removeClass('error');
+    });
+
+    $('#team2_error_up').click(function () {
+        $('#team2_errors').children()[team2.errors % 3 + 1].firstChild.classList.add('error');
+        team2.error();
+    });
+
+    $("#team2_error_down").click(function () {
+        if (team2.errors % 3) {
+            team2.removeError();
+            $('#team2_errors').children()[team2.errors % 3 + 1].firstChild.classList.remove("error");
+        }
+    });
+
+    /**
+     * reset on last error.
+     */
+    $("#team2_errors>div>.circle:last").on('animationend', function () {
+        $('#team1_score').val(team1.score + 1);
+        $('#team2_errors>div>.error').removeClass('error');
+    })
 
     $('#impro_reset').click(function () {
-      $('#theme_title').val('');
-      $('#category').val('');
-      $('#impro_type').val('');
-      $('#number_of_players').val('');
+        $('#theme_title').val('');
+        $('#category').val('');
+        $('#impro_type').val('');
+        $('#number_of_players').val('');
     });
 
-  $('#impro_name').click(function () {
-    $('#font_size').val(Math.round(10*impro.setTheme($('#theme_title').val()))/10);
-    // document.getElementById('font_size').value = Math.round(10*impro.setTheme($('#theme_title').val()))/10 ;
-    impro.setCategory($('#category').val());
-    impro.setType($('#impro_type').val());
-    impro.setNumberOfPlayers($('#number_of_players').val());
-    setCurrentTimer();
-  });
+    $('#impro_name').click(function () {
+        $('#font_size').val(Math.round(10 * impro.setTheme($('#theme_title').val())) / 10);
+        // document.getElementById('font_size').value = Math.round(10*impro.setTheme($('#theme_title').val()))/10 ;
+        impro.setCategory($('#category').val());
+        impro.setType($('#impro_type').val());
+        impro.setNumberOfPlayers($('#number_of_players').val());
+        setCurrentTimer();
+    });
 
-  $('#confirm_impro_from_list').click(function () {
-    var theme = document.getElementById('select_impro').value;
-    var i;
-    for (i = 0; i < collection.length; i++) {
-        if (collection[i].theme == theme)
-        {
-            break;
-        }
-    }
-    impro.setTheme          (collection[i].theme);
-    impro.setCategory       (collection[i].category);
-    impro.setType           (collection[i].impro_type);
-    impro.setNumberOfPlayers(collection[i].number_of_players);
-    $('#number_of_players').val(collection[i].number_of_players);
-    $('#theme_title').val(collection[i].theme);
-    $('#category').val(collection[i].category);
-    $('#impro_type').val(collection[i].impro_type);
-    $('#timer_current_m').val(Math.floor(collection[i].duration/60));
-    $('#timer_current_s').val(collection[i].duration%60);
-    setCurrentTimer(collection[i].duration);
-    //$('#timer_current_show').html("Durée — "+convertTime(current_time,false));
-  });
-
-  $('#timer_global_set').click(setGlobalTimer);
-
-  $('.timer_global_start').click(function () {
-      if (timer_global_running)
-          stopGlobalTimer();
-      else
-          if(global_time > 0)
-              startGlobalTimer();
-  });
-
-  $('#timer_current_toggle').click(function () {
-      if (timer_current_running) {
-        stopCurrentTimer();
-        $(this).html("Lancer");
-      } else {
-        if(current_time > 0) {
-          if (!timer_global_running)
-            $('#timer_alert').slideDown();
-          startCurrentTimer();
-          $(this).html("Pause");
-        }
-      }
-  });
-
-  $('#navbar_timer_button').click(toggleCocusTimer);
-
-  $('#width_slider').change(function () {
-    $(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
-  });
-  $('#height_slider').change(function () {
-    $(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
-  });
-  $('#set_mirror_mode').click(function () {
-    var order = this.checked ? 3 : 1;
-    $(client_window.document.body).find('#team1').css('order',order);
-    $(client_window.document.body).find('#team2').css('order',3 - order);
-  });
-  $('#toggle_preview').click(function () {
-    if (this.checked) {
-      preview_interval = setInterval(function () {
-        html2canvas(client_window.document.body, {
-          onrendered: function (canvas) {
-            /*canvas.height = (3/4) * $('#sidebar-wrapper').width()*/;
-            var oldCanvas = canvas.toDataURL("image/png");
-            var img = new Image();
-            img.src = oldCanvas;
-            // img.style.width = $('#sidebar-wrapper').width();
-            img.onload = function (){
-              canvas.getContext('2d').drawImage(img, 0, 0);
-              $('#preview').html(img);
+    $('#confirm_impro_from_list').click(function () {
+        var theme = document.getElementById('select_impro').value;
+        var i;
+        for (i = 0; i < collection.length; i++) {
+            if (collection[i].theme == theme) {
+                break;
             }
-          }
-        });
-      },1000);
-    } else {
-      clearInterval(preview_interval);
-      $('#preview').html("Cochez la prévisualisation dans les paramètres");
-    }
-  });
+        }
+        impro.setTheme(collection[i].theme);
+        impro.setCategory(collection[i].category);
+        impro.setType(collection[i].impro_type);
+        impro.setNumberOfPlayers(collection[i].number_of_players);
+        $('#number_of_players').val(collection[i].number_of_players);
+        $('#theme_title').val(collection[i].theme);
+        $('#category').val(collection[i].category);
+        $('#impro_type').val(collection[i].impro_type);
+        $('#timer_current_m').val(Math.floor(collection[i].duration / 60));
+        $('#timer_current_s').val(collection[i].duration % 60);
+        setCurrentTimer(collection[i].duration);
+        //$('#timer_current_show').html("Durée — "+convertTime(current_time,false));
+    });
 
-  $("#toggle_sidebar").click(function() {
-      $("#wrapper").toggleClass("active");
-  });
+    $('#timer_global_set').click(setGlobalTimer);
 
-  $('#font_size').change(function () {
-    console.log(this);
-    console.log(this.value);
-    impro.dom_theme.css('font-size', this.value+"em");
-  })
+    $('.timer_global_start').click(function () {
+        if (timer_global_running)
+            stopGlobalTimer();
+        else if (global_time > 0)
+            startGlobalTimer();
+    });
+
+    $('#timer_current_toggle').click(function () {
+        if (timer_current_running) {
+            stopCurrentTimer();
+            $(this).html("Lancer");
+        } else {
+            if (current_time > 0) {
+                if (!timer_global_running)
+                    $('#timer_alert').slideDown();
+                startCurrentTimer();
+                $(this).html("Pause");
+            }
+        }
+    });
+
+    $('#navbar_timer_button').click(toggleCocusTimer);
+
+    $('#width_slider').change(function () {
+        $(client_window.document.body).find('#content').css('width', $(this).val() + 'vw');
+    });
+    $('#height_slider').change(function () {
+        $(client_window.document.body).find('#content').css('height', $(this).val() + 'vh');
+    });
+    $('#set_mirror_mode').click(function () {
+        var order = this.checked ? 3 : 1;
+        $(client_window.document.body).find('#team1').css('order', order);
+        $(client_window.document.body).find('#team2').css('order', 3 - order);
+    });
+    $('#toggle_preview').click(function () {
+        if (this.checked) {
+            preview_interval = setInterval(function () {
+                html2canvas(client_window.document.body, {
+                    onrendered: function (canvas) {
+                        /*canvas.height = (3/4) * $('#sidebar-wrapper').width()*/
+                        ;
+                        var oldCanvas = canvas.toDataURL("image/png");
+                        var img = new Image();
+                        img.src = oldCanvas;
+                        // img.style.width = $('#sidebar-wrapper').width();
+                        img.onload = function () {
+                            canvas.getContext('2d').drawImage(img, 0, 0);
+                            $('#preview').html(img);
+                        }
+                    }
+                });
+            }, 1000);
+        } else {
+            clearInterval(preview_interval);
+            $('#preview').html("Cochez la prévisualisation dans les paramètres");
+        }
+    });
+
+    $("#toggle_sidebar").click(function () {
+        $("#wrapper").toggleClass("active");
+    });
+
+    $('#font_size').change(function () {
+        console.log(this);
+        console.log(this.value);
+        impro.dom_theme.css('font-size', this.value + "em");
+    })
 }
 
 function client_init() {
-  team1 = new Team(
-          $(client_window.document.body).find('#team1_name'),
-          $(client_window.document.body).find('#team1_score'),
-          $(client_window.document.body).find('#team1_errors .circle')
-          );
-  team2 = new Team(
-          $(client_window.document.body).find('#team2_name'),
-          $(client_window.document.body).find('#team2_score'),
-          $(client_window.document.body).find('#team2_errors .circle')
-          );
+    const client_body = client_window.document.body;
+    team1 = createTeam({
+        name: $(client_body).find('#team1_name'),
+        score: $(client_body).find('#team1_score'),
+        error_circles: $(client_body).find('#team1_errors .circle')
+    });
+    team2 = createTeam({
+        name: $(client_body).find('#team2_name'),
+        score: $(client_body).find('#team2_score'),
+        error_circles: $(client_body).find('#team2_errors .circle')
+    });
 
-  impro = new Impro(
-          $(client_window.document.body).find('#category'),
-          $(client_window.document.body).find('#number_of_players'),
-          $(client_window.document.body).find('#theme_title'),
-          $(client_window.document.body).find('#impro_type')
+    impro = new Impro(
+        $(client_body).find('#category'),
+        $(client_body).find('#number_of_players'),
+        $(client_body).find('#theme_title'),
+        $(client_body).find('#impro_type')
+    );
 
-          );
+    team1.dom.error_circles[2].on('animationend', function () {
+        team1.dom.error_circles.removeClass('error');
+        team1.errors = 0;
+        team2.scoreUp();
+        $('#team2_score').html(team2.score);
+    });
 
-  team1.dom_error_circles.slice(-1).on('animationend', function () {
-    team1.dom_error_circles.removeClass('error');
-    team1.errors = 0;
-    team2.scoreUp();
-    $('#team2_score').html(team2.score);
-  });
-
-  team2.dom_error_circles.slice(-1).on('animationend', function () {
-    team2.dom_error_circles.removeClass('error');
-    team2.errors = 0;
-    team1.scoreUp();
-    $('#team1_score').html(team1.score);
-  });
+    team2.dom.error_circles[2].on('animationend', function () {
+        team2.dom.error_circles.removeClass('error');
+        team2.errors = 0;
+        team1.scoreUp();
+        $('#team1_score').html(team1.score);
+    });
 }
 
 function setGlobalTimer() {
     var h = parseInt($('#timer_global_h').val())
     var m = parseInt($('#timer_global_m').val())
     var s = parseInt($('#timer_global_s').val())
-    global_time = h*3600 + m*60 + s;
+    global_time = h * 3600 + m * 60 + s;
     $(client_window.document.body)
-            .find('#timer_global')
-            .html(convertTime(global_time));
-    $('#timer_global_show').html("Timer global  — "+convertTime(global_time,false));
+        .find('#timer_global')
+        .html(convertTime(global_time));
+    $('#timer_global_show').html("Timer global  — " + convertTime(global_time, false));
 }
 
 function startGlobalTimer() {
-  global_timer_interval = setInterval(function () {
-    timer_global_running = true;
-    $(client_window.document.body)
+    global_timer_interval = setInterval(function () {
+        timer_global_running = true;
+        $(client_window.document.body)
             .find('#timer_global')
             .html(convertTime(--global_time));
-  $('#timer_global_show').html("Timer global  — "+convertTime(global_time,false));
-    if (global_time <= 0) {
-        stopGlobalTimer();
-    }
-  }, 1000);
+        $('#timer_global_show').html("Timer global  — " + convertTime(global_time, false));
+        if (global_time <= 0) {
+            stopGlobalTimer();
+        }
+    }, 1000);
 }
 
 function stopGlobalTimer() {
-  clearInterval(global_timer_interval);
-  timer_global_running = false;
-  if (global_time > 0) {
-    $('#timer_global_show').html("Timer global  — "+convertTime(global_time,false));
-  } else {
-    $('#timer_global_show').html("Timer global");
-  }
+    clearInterval(global_timer_interval);
+    timer_global_running = false;
+    if (global_time > 0) {
+        $('#timer_global_show').html("Timer global  — " + convertTime(global_time, false));
+    } else {
+        $('#timer_global_show').html("Timer global");
+    }
 }
 
 function setCurrentTimer(time) {
-  if (typeof(time) === 'string') {
-    $('#timer_current_m').val((time-time%60)/60);
-    $('#timer_current_s').val(time%60);
-    current_time = time;
-  } else {
-    var m = parseInt($('#timer_current_m').val());
-    var s = parseInt($('#timer_current_s').val());
-    current_time = m*60 + s;
-  }
-  $(client_window.document.body)
-    .find('#timer_current')
-    .html(convertTime(current_time));
-  $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
+    if (typeof(time) === 'string') {
+        $('#timer_current_m').val((time - time % 60) / 60);
+        $('#timer_current_s').val(time % 60);
+        current_time = time;
+    } else {
+        var m = parseInt($('#timer_current_m').val());
+        var s = parseInt($('#timer_current_s').val());
+        current_time = m * 60 + s;
+    }
+    $(client_window.document.body)
+        .find('#timer_current')
+        .html(convertTime(current_time));
+    $('#timer_current_show').html("Durée — " + convertTime(current_time, false));
 }
 
 function startCurrentTimer() {
-  current_timer_interval = setInterval(function () {
-    // Only start current_timer if there is time left
-    if(current_time > 0) {
-      timer_current_running = true;
-      $(client_window.document.body)
-              .find('#timer_current')
-              .html(convertTime(--current_time));
-      $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
-    }
+    current_timer_interval = setInterval(function () {
+        // Only start current_timer if there is time left
+        if (current_time > 0) {
+            timer_current_running = true;
+            $(client_window.document.body)
+                .find('#timer_current')
+                .html(convertTime(--current_time));
+            $('#timer_current_show').html("Durée — " + convertTime(current_time, false));
+        }
 
-    // Once the current timer is over, stop it
-    if (current_time <= 0) {
-        stopCurrentTimer();
-    }
-  }, 1000);
+        // Once the current timer is over, stop it
+        if (current_time <= 0) {
+            stopCurrentTimer();
+        }
+    }, 1000);
 }
 
 function stopCurrentTimer() {
-  clearInterval(current_timer_interval);
-  if (current_time > 0) {
-    $('#timer_current_show').html("Durée — "+convertTime(current_time,false));
-  } else {
-    $('#timer_current_show').html("Courant");
-  }
-  timer_current_running = false;
+    clearInterval(current_timer_interval);
+    if (current_time > 0) {
+        $('#timer_current_show').html("Durée — " + convertTime(current_time, false));
+    } else {
+        $('#timer_current_show').html("Courant");
+    }
+    timer_current_running = false;
 }
 
 function resetCocusTimer() {
-  cocus_time = 20;
-  $('#navbar_timer_value').html(cocus_time);
-  startCocusTimer();
+    cocus_time = 20;
+    $('#navbar_timer_value').html(cocus_time);
+    startCocusTimer();
 }
 
 function startCocusTimer() {
 
-  cocus_timer_interval = setInterval(function () {
-    timer_cocus_running = true;
-    $('#navbar_timer_value').html(--cocus_time);
-    if (cocus_time <= 0) {
-        stopCocusTimer();
-    }
-  }, 1000);
+    cocus_timer_interval = setInterval(function () {
+        timer_cocus_running = true;
+        $('#navbar_timer_value').html(--cocus_time);
+        if (cocus_time <= 0) {
+            stopCocusTimer();
+        }
+    }, 1000);
 }
 function toggleCocusTimer() {
-  timer_cocus_running ? stopCocusTimer() : resetCocusTimer();
+    timer_cocus_running ? stopCocusTimer() : resetCocusTimer();
 }
 
 function stopCocusTimer() {
-  clearInterval(cocus_timer_interval);
-  timer_cocus_running = false;
+    clearInterval(cocus_timer_interval);
+    timer_cocus_running = false;
 }
 
 function togglePreview() {
-  preview_interval = setInterval(function () {
-    $('#preview').html($(client_window.document.body).find('#content')[0]);
-  },1000);
+    preview_interval = setInterval(function () {
+        $('#preview').html($(client_window.document.body).find('#content')[0]);
+    }, 1000);
 }
 
-/**
- * Convert seconds time to human readable time
- * @param  number time       time in seconds
- * @param  bool show_zeros   default value true, show unecessary zeros
- * @return string            format mm:ss
- */
 function convertTime(time, showZeros) {
-  var zeros   = (typeof(showZeros) === 'boolean') ? showZeros : true;
-  var hours   = Math.floor(time / 3600);
-  var minutes = Math.floor(time / 60) - 60*hours;
-  var seconds = time % 60;
-  if (minutes < 10 && (zeros || hours)) {
-      minutes = "0" + minutes;
-  }
-  if (seconds < 10 && (zeros || minutes || hours )) {
-      seconds = "0" + seconds;
-  }
-  if (hours) {
-    return hours + ':' + minutes + ':' + seconds;
-  }
-  if (zeros || minutes) {
-    return minutes + ':' + seconds;
-  }
-  return seconds;
+    var zeros = (typeof(showZeros) === 'boolean') ? showZeros : true;
+    var hours = Math.floor(time / 3600);
+    var minutes = Math.floor(time / 60) - 60 * hours;
+    var seconds = time % 60;
+    if (minutes < 10 && (zeros || hours)) {
+        minutes = "0" + minutes;
+    }
+    if (seconds < 10 && (zeros || minutes || hours )) {
+        seconds = "0" + seconds;
+    }
+    if (hours) {
+        return hours + ':' + minutes + ':' + seconds;
+    }
+    if (zeros || minutes) {
+        return minutes + ':' + seconds;
+    }
+    return seconds;
 }

@@ -2,49 +2,54 @@
  * team object
  */
 
-function Team(dom_name, dom_score, dom_error_circles) {
-    this.score = 0;
-    this.errors = 0;
+function createTeam(dom) {
+    'use strict';
+    let score = 0;
+    let errors = 0;
 
-    this.dom_name = dom_name;
-    this.dom_score = dom_score;
-    this.dom_error_circles = dom_error_circles;
-
-    this.setName = function(name) {
-        this.dom_name.html(name);
-        var fontSize = (1.5 * 16 / (name.length + 8));
-        fontSize = (fontSize > 1.7) ? "1.7em" : fontSize + "em";
-        this.dom_name.css('font-size', fontSize);
+    const setName = function (name) {
+        dom.name.html(name);
+        const fontSize = Math.min(1.5 * 16 / (name.length + 8), 1.7) + 'em';
+        dom.name.css('font-size', fontSize);
     };
 
-    this.setBackground = function(color) {
-      this.dom_score.css('background-color',color);
-    }
-
-    this.setBorder = function(color) {
-      this.dom_score.css('border','4px solid'+color);
-      this.dom_score.css('color',color);
-    }
-
-    this.scoreUp = function() {
-        this.dom_score.html(++this.score);
+    const setBackground = function (color) {
+        dom.score.css('background-color', color);
     };
 
-    this.scoreLow = function() {
-        this.dom_score.html(--this.score);
+    const setBorder = function (color) {
+        dom.score.css('border', '4px solid' + color);
+        dom.score.css('color', color);
     };
 
-    this.setScore = function(score) {
-        this.dom_score.html(score);
-        this.score = score;
+    const scoreUp = function () {
+        score += 1;
+        dom.score.html(score);
     };
 
-    this.error = function() {
-        this.dom_error_circles.slice(0, ++this.errors).addClass('error');
+    const scoreLow = function () {
+        score -= 1;
+        dom.score.html(score);
     };
 
-    this.removeError = function() {
-      this.errors--;
-      this.dom_error_circles[this.errors%3].classList.remove('error');
-    }
+    const errorUp = function () {
+        errors += 1;
+        dom.error_circles.slice(0, errors).addClass('error');
+    };
+
+    const errorDown = function () {
+        errors -= 1;
+        dom.error_circles[errors % 3].classList.remove('error');
+    };
+
+    return {
+        dom,
+        setName,
+        setBackground,
+        setBorder,
+        scoreUp,
+        scoreLow,
+        errorUp,
+        errorDown
+    };
 }
