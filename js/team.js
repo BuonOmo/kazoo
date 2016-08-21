@@ -1,50 +1,83 @@
-/*
+/**
  * team object
+ *
+ * Controls Team display in both windows
+ *
+ * spec {
+ *  dom {name, score, error_circles, background, border},
+ *  client_dom{name, score, error_circles}
+ * }
  */
 
-function Team(dom_name, dom_score, dom_error_circles) {
-    this.score = 0;
-    this.errors = 0;
+function createTeam(spec) {
+    'use strict';
+    let score = 0;
+    let errors = 0;
 
-    this.dom_name = dom_name;
-    this.dom_score = dom_score;
-    this.dom_error_circles = dom_error_circles;
+    const {dom, client_dom} = spec;
 
-    this.setName = function(name) {
-        this.dom_name.html(name);
-        var fontSize = (1.5 * 16 / (name.length + 8));
-        fontSize = (fontSize > 1.7) ? "1.7em" : fontSize + "em";
-        this.dom_name.css('font-size', fontSize);
+    const setName = function (name) {
+        client_dom.name.html(name);
+        const fontSize = Math.min(1.5 * 16 / (name.length + 8), 1.7) + 'em';
+        client_dom.name.css('font-size', fontSize);
     };
 
-    this.setBackground = function(color) {
-      this.dom_score.css('background-color',color);
-    }
-
-    this.setBorder = function(color) {
-      this.dom_score.css('border','4px solid'+color);
-      this.dom_score.css('color',color);
-    }
-
-    this.scoreUp = function() {
-        this.dom_score.html(++this.score);
+    const setBackground = function (color) {
+        client_dom.score.css('background-color', color);
     };
 
-    this.scoreLow = function() {
-        this.dom_score.html(--this.score);
+    const setBorder = function (color) {
+        client_dom.score.css('border', '4px solid' + color);
     };
 
-    this.setScore = function(score) {
-        this.dom_score.html(score);
-        this.score = score;
+    const update = function () {
+        setName(dom.name.val());
+        setBackground(dom.background.val());
+        setBorder(dom.border.val());
+        dom.score.val(score);
     };
 
-    this.error = function() {
-        this.dom_error_circles.slice(0, ++this.errors).addClass('error');
+    const scoreUp = function () {
+        score += 1;
+        dom.score.val(score);
+        client_dom.score.html(score);
     };
 
-    this.removeError = function() {
-      this.errors--;
-      this.dom_error_circles[this.errors%3].classList.remove('error');
-    }
+    const scoreLow = function () {
+        score -= 1;
+        dom.score.val(score);
+        client_dom.score.html(score);
+    };
+
+    const errorUp = function () {
+        if (errors <= 3) {
+            errors += 1;
+        }
+        client_dom.error_circles.slice(0, errors).addClass('error');
+        dom.error_circles.slice(0, errors).addClass('error');
+    };
+
+    const errorDown = function () {
+        if (errors > 0) {
+            errors -= 1;
+        }
+        dom.error_circles.slice(errors).removeClass('error');
+        client_dom.error_circles.slice(errors).removeClass('error');
+    };
+
+    const removeErrors = function () {
+        errors = 0;
+        dom.error_circles.removeClass('error');
+        client_dom.error_circles.removeClass('error');
+    };
+
+    return {
+        last_error_circle: client_dom.error_circles[2],
+        update,
+        scoreUp,
+        scoreLow,
+        errorUp,
+        errorDown,
+        removeErrors
+    };
 }
