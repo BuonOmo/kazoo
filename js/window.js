@@ -17,6 +17,7 @@ var team1, team2;
 var collection;
 var preview_interval;
 var teams; // set of all teams and colors
+var impro;
 
 
 function master_add_impro_list() {
@@ -51,10 +52,14 @@ function master_init() {
         });
     });
 
-    $.get('client.html', function (html) {
-        client_window.document.write(html);
-        client_init(client_window);
-    }, 'html');
+    $.ajax({
+        url: 'client.html',
+        success: function (html) {
+            client_window.document.write(html);
+            client_init(client_window);
+        },
+        async: false
+    });
 
     $.getJSON('data/teams.json', function (data) {
         teams = data;
@@ -74,12 +79,8 @@ function master_init() {
     });
 
     $('#teams_confirm').click(function () {
-        team1.setName($('#team1_name').val());
-        team2.setName($('#team2_name').val());
-        team1.setBackground($('#team1_color_bg').val());
-        team1.setBorder($('#team1_color_border').val());
-        team2.setBackground($('#team2_color_bg').val());
-        team2.setBorder($('#team2_color_border').val());
+        team1.update();
+        team2.update();
     });
     /*
      $('#teams_mirror').click(function () {
@@ -94,69 +95,21 @@ function master_init() {
      };
      }());*/
 
-    $('#team1_score_low').click(function () {
-        if (team1.score > 0) {
-            team1.scoreLow();
-            $('#team1_score').val(team1.score);
-        }
-    });
+    $('#team1_score_low').click(team1.scoreLow);
 
-    $('#team1_score_up').click(function () {
-        team1.scoreUp();
-        $('#team1_score').val(team1.score);
-    });
+    $('#team1_score_up').click(team1.scoreUp);
 
-    $('#team2_score_low').click(function () {
-        if (team2.score > 0) {
-            team2.scoreLow();
-            $('#team2_score').val(team2.score);
-        }
-    });
+    $('#team2_score_low').click(team2.scoreLow);
 
-    $('#team2_score_up').click(function () {
-        team2.scoreUp();
-        $('#team2_score').val(team2.score);
-    });
+    $('#team2_score_up').click(team2.scoreUp);
 
-    $('#team1_error_up').click(function () {
-        $('#team1_errors').children()[team1.errors % 3 + 1].firstChild.classList.add('error');
-        team1.error();
-    });
+    $('#team1_error_up').click(team1.errorUp);
 
-    $("#team1_error_down").click(function () {
-        if (team1.errors % 3) {
-            team1.removeError();
-            $('#team1_errors').children()[team1.errors % 3 + 1].firstChild.classList.remove("error");
-        }
-    });
+    $('#team1_error_down').click(team1.errorDown);
 
-    /**
-     * reset on last error.
-     */
-    $("#team1_errors").find("div>.circle:last").on('animationend', function () {
-        $('#team2_score').val(team2.score + 1);
-        $('#team1_errors').find('div>.error').removeClass('error');
-    });
+    $('#team2_error_up').click(team2.errorUp);
 
-    $('#team2_error_up').click(function () {
-        $('#team2_errors').children()[team2.errors % 3 + 1].firstChild.classList.add('error');
-        team2.error();
-    });
-
-    $("#team2_error_down").click(function () {
-        if (team2.errors % 3) {
-            team2.removeError();
-            $('#team2_errors').children()[team2.errors % 3 + 1].firstChild.classList.remove("error");
-        }
-    });
-
-    /**
-     * reset on last error.
-     */
-    $("#team2_errors>div>.circle:last").on('animationend', function () {
-        $('#team1_score').val(team1.score + 1);
-        $('#team2_errors>div>.error').removeClass('error');
-    })
+    $('#team2_error_down').click(team2.errorDown);
 
     $('#impro_reset').click(function () {
         $('#theme_title').val('');
@@ -270,14 +223,32 @@ function master_init() {
 function client_init() {
     const client_body = client_window.document.body;
     team1 = createTeam({
-        name: $(client_body).find('#team1_name'),
-        score: $(client_body).find('#team1_score'),
-        error_circles: $(client_body).find('#team1_errors .circle')
+        client_dom: {
+            name: $(client_body).find('#team1_name'),
+            score: $(client_body).find('#team1_score'),
+            error_circles: $(client_body).find('#team1_errors .circle')
+        },
+        dom: {
+            name: $('#team1_name'),
+            background: $('#team1_color_bg'),
+            border: $('#team1_color_border'),
+            score: $('#team1_score'),
+            error_circles: $('#team1_errors').find('.circle')
+        }
     });
     team2 = createTeam({
-        name: $(client_body).find('#team2_name'),
-        score: $(client_body).find('#team2_score'),
-        error_circles: $(client_body).find('#team2_errors .circle')
+        client_dom: {
+            name: $(client_body).find('#team2_name'),
+            score: $(client_body).find('#team2_score'),
+            error_circles: $(client_body).find('#team2_errors .circle')
+        },
+        dom: {
+            name: $('#team2_name'),
+            background: $('#team2_color_bg'),
+            border: $('#team2_color_border'),
+            score: $('#team2_score'),
+            error_circles: $('#team2_errors').find('.circle')
+        }
     });
 
     impro = new Impro(
@@ -287,18 +258,14 @@ function client_init() {
         $(client_body).find('#impro_type')
     );
 
-    team1.dom.error_circles[2].on('animationend', function () {
-        team1.dom.error_circles.removeClass('error');
-        team1.errors = 0;
+    $(team1.last_error_circle).on('animationend', function () {
+        team1.removeErrors();
         team2.scoreUp();
-        $('#team2_score').html(team2.score);
     });
 
-    team2.dom.error_circles[2].on('animationend', function () {
-        team2.dom.error_circles.removeClass('error');
-        team2.errors = 0;
+    $(team2.last_error_circle).on('animationend', function () {
+        team2.removeErrors();
         team1.scoreUp();
-        $('#team1_score').html(team1.score);
     });
 }
 
