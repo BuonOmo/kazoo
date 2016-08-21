@@ -41,7 +41,6 @@ function master_init() {
         return 'Vous risquez de perdre la connection avec la fenêtre client';
     });
 
-
     // retrieves collection of improvisation from a json file
     $('#collection_input').change(function (event) {
         var tmppath = URL.createObjectURL(event.target.files[0]);
@@ -63,9 +62,9 @@ function master_init() {
 
     $.getJSON('data/teams.json', function (data) {
         teams = data;
-        for (var i in teams) {
-            $('#team_name_list').append('<option value="' + i + '">');
-        }
+        Object.keys(teams).forEach((team) => {
+            $('#team_name_list').append('<option value="' + team + '">');
+        });
     });
 
     $('#team1_name').change(function () {
@@ -111,42 +110,24 @@ function master_init() {
 
     $('#team2_error_down').click(team2.errorDown);
 
-    $('#impro_reset').click(function () {
-        $('#theme_title').val('');
-        $('#category').val('');
-        $('#impro_type').val('');
-        $('#number_of_players').val('');
-    });
+    $('#impro_reset').click(impro.reset);
 
-    $('#impro_name').click(function () {
-        $('#font_size').val(Math.round(10 * impro.setTheme($('#theme_title').val())) / 10);
-        // document.getElementById('font_size').value = Math.round(10*impro.setTheme($('#theme_title').val()))/10 ;
-        impro.setCategory($('#category').val());
-        impro.setType($('#impro_type').val());
-        impro.setNumberOfPlayers($('#number_of_players').val());
-        setCurrentTimer();
-    });
+    $('#impro_name').click(impro.update);
 
     $('#confirm_impro_from_list').click(function () {
-        var theme = document.getElementById('select_impro').value;
-        var i;
-        for (i = 0; i < collection.length; i++) {
-            if (collection[i].theme == theme) {
-                break;
-            }
+        const theme = document.getElementById('select_impro').value;
+        const saved_impro = collection.find((imp) => imp.theme === theme);
+        if (saved_impro) {
+            $('#number_of_players').val(saved_impro.number_of_players);
+            $('#theme_title').val(saved_impro.theme);
+            $('#category').val(saved_impro.category);
+            $('#impro_type').val(saved_impro.impro_type);
+            impro.update();
+            $('#timer_current_m').val(Math.floor(saved_impro.duration / 60));
+            $('#timer_current_s').val(saved_impro.duration % 60);
+            setCurrentTimer(saved_impro.duration);
+            //$('#timer_current_show').html("Durée — "+convertTime(current_time,false));
         }
-        impro.setTheme(collection[i].theme);
-        impro.setCategory(collection[i].category);
-        impro.setType(collection[i].impro_type);
-        impro.setNumberOfPlayers(collection[i].number_of_players);
-        $('#number_of_players').val(collection[i].number_of_players);
-        $('#theme_title').val(collection[i].theme);
-        $('#category').val(collection[i].category);
-        $('#impro_type').val(collection[i].impro_type);
-        $('#timer_current_m').val(Math.floor(collection[i].duration / 60));
-        $('#timer_current_s').val(collection[i].duration % 60);
-        setCurrentTimer(collection[i].duration);
-        //$('#timer_current_show').html("Durée — "+convertTime(current_time,false));
     });
 
     $('#timer_global_set').click(setGlobalTimer);
@@ -251,12 +232,20 @@ function client_init() {
         }
     });
 
-    impro = new Impro(
-        $(client_body).find('#category'),
-        $(client_body).find('#number_of_players'),
-        $(client_body).find('#theme_title'),
-        $(client_body).find('#impro_type')
-    );
+    impro = createImpro({
+        dom: {
+            theme: $('#theme_title'),
+            category: $('#category'),
+            type: $('#impro_type'),
+            players: $('#number_of_players')
+        },
+        client_dom: {
+            category: $(client_body).find('#category'),
+            players: $(client_body).find('#number_of_players'),
+            theme: $(client_body).find('#theme_title'),
+            type: $(client_body).find('#impro_type')
+        }
+    });
 
     $(team1.last_error_circle).on('animationend', function () {
         team1.removeErrors();
