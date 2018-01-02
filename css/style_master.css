@@ -192,6 +192,10 @@ input {
   margin-bottom: 4px;
 }
 
+.distinct {
+    margin-top: 50px;
+}
+
 /***************************  A Few Animations ***************************/
 
 #jumbotron {

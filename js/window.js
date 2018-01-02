@@ -38,8 +38,12 @@ function master_init() {
 
     // Ask confirm before leaving the page
     $(window).bind('beforeunload', function () {
-        return 'Vous risquez de perdre la connection avec la fenêtre client';
+        return 'Cette fermeture engendrera aussi celle de la fenêtre de score';
     });
+
+    $(window).bind('unload', function () {
+        client_window.close()
+    })
 
     // retrieves collection of improvisation from a json file
     $('#collection_input').change(function (event) {
